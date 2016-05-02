@@ -1,5 +1,6 @@
 # coding=utf-8
 import Queue
+import sys
 import webbrowser
 import re
 import requests
@@ -74,13 +75,52 @@ def getCompleteUrl(scheme,netloc,path,tmpUrl):
         tmpUrl = scheme + '://' + tmpUrl
     return tmpUrl
 
-
-
+def getCookie(loginUrl):
+    if loginUlr == '':
+        return ''
+    # recording cookie
+    try:
+        webbrowser.open_new(loginUrl)
+    except Exception as err:
+        print err
+    print 'Please enter "Y" if you finishing recording cookie.'
+    while True: 
+        finish = raw_input('')
+        if finish.lower() == 'y':
+            break
+        else:
+            finish = ''
+    # read cookie from cookieFile
+    cookieFileName = config.conf['CookieFileName']
+    # cookieFileName = '/root/cntzapfile.txt'
+    print 'Read cookie from file: ',cookieFileName
+    cookiePat = re.compile(r'\bCookie:([\S \t]*)')
+    allText = open(cookieFileName).read()
+    cookieTmp = cookiePat.findall(allText)
+    cookie = {}
+    if len(cookieTmp) != 0:
+        for line in cookieTmp[0].split(';'):
+            name,value = line.strip().split('=',1)
+            cookie[name] = value
+    print 'cookie is:',cookie
+    return cookie
+    
+    
 if __name__ == "__main__":
+    if not '/root/WorkSpace/SqliScan/Master/config/' in sys.path:
+        sys.path.append('/root/WorkSpace/SqliScan/Master/config/')
+    if not 'config' in sys.modules:
+        config = __import__('config')
+    else:
+        eval('import config')
+        config = eval('reload(config)')
+
     #seed = 'http://192.168.42.138/' # web for pentest
+    
     #seed = Request(base='http://192.168.42.131/dvwa/index.php',url='http://192.168.42.131/dvwa/index.php',method='get')
-    seed = Request(base='http://192.168.42.138',url='http://192.168.42.138',method='get')
+    seed = Request(base='http://192.168.42.133',url='http://192.168.42.133',method='get')
     print 'seed url: ',seed._url
+    '''
     print 'Do you want to recording cookie?'
     recordCookie = raw_input('(Y/N)')
     if recordCookie.lower() == 'y':
@@ -108,6 +148,8 @@ if __name__ == "__main__":
             name,value = line.strip().split('=',1)
             cookies[name] = value
     print 'cookie is:',cookies
+    '''
+    #cookie = getCookie(seed._url)
     # begin crawler
     tup = urlparse.urlparse(seed._url)
     netloc = tup.netloc # seed url 
@@ -123,12 +165,13 @@ if __name__ == "__main__":
         #print 'Url: ',req._url
         count += 1
         html = ''
+        r = requests("","")
         try:
             if req._method == 'get':
-                r = requests.get(req._url,timeout=1,cookies=cookies)
+                r = requests.get(req._url,timeout=1,cookies=cookie)
                 html = r.content
             else:
-                r = requests.post(req._url,data=req._payload,timeout=1,cookies=cookies)
+                r = requests.post(req._url,data=req._payload,timeout=1,cookies=cookie)
                 html = r.content
         except Exception as err:
             print '[Error]: ',err
