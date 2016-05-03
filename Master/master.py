@@ -120,36 +120,9 @@ if __name__ == "__main__":
     #seed = Request(base='http://192.168.42.131/dvwa/index.php',url='http://192.168.42.131/dvwa/index.php',method='get')
     seed = Request(base='http://192.168.42.133',url='http://192.168.42.133',method='get')
     print 'seed url: ',seed._url
-    '''
-    print 'Do you want to recording cookie?'
-    recordCookie = raw_input('(Y/N)')
-    if recordCookie.lower() == 'y':
-        # recording cookie
-        try:
-            webbrowser.open_new(seed._url)
-        except Exception as err:
-            print err
-        print 'Please enter "Y" after finishing recording cookie.'
-        while True: 
-            finish = raw_input('')
-            if finish.lower() == 'y':
-                break
-            else:
-                finish = ''
-    # read cookie from /root/cntzapfile.txt
-    cookieFileName = '/root/cntzapfile.txt'
-    print 'Read cookie from file: ',cookieFileName
-    cookiePat = re.compile(r'\bCookie:([\S \t]*)')
-    allText = open(cookieFileName).read()
-    cookieTmp = cookiePat.findall(allText)
-    cookies = {}
-    if len(cookieTmp) != 0:
-        for line in cookieTmp[0].split(';'):
-            name,value = line.strip().split('=',1)
-            cookies[name] = value
-    print 'cookie is:',cookies
-    '''
+
     #cookie = getCookie(seed._url)
+    cookie ={}
     # begin crawler
     tup = urlparse.urlparse(seed._url)
     netloc = tup.netloc # seed url 
@@ -158,21 +131,30 @@ if __name__ == "__main__":
     q.put(seed)
     #q.put(Request('http://192.168.42.131/dvwa/vulnerabilities/sqli/','http://192.168.42.131/dvwa/vulnerabilities/sqli/','get'))
     bf = bloomFilter.BloomFilter(0.001,100000)
+    # !!! need deal with seed._url
     bf.insert(seed._url)
     while(not q.empty()):
         req = q.get()
+        
+        # test sqli vuln
+        
+
         print 'req._BFUrl: ',req._BFUrl,' ',req._method,' ', req._source
         #print 'Url: ',req._url
         count += 1
         html = ''
-        r = requests("","")
         try:
-            if req._method == 'get':
+            method = req._method.lower()
+            if method == 'get':
                 r = requests.get(req._url,timeout=1,cookies=cookie)
                 html = r.content
-            else:
+            elif method == 'post':
                 r = requests.post(req._url,data=req._payload,timeout=1,cookies=cookie)
                 html = r.content
+            else:
+                print '[Info] Method '+ method +' not support!'
+                pass
+
         except Exception as err:
             print '[Error]: ',err
         
@@ -197,10 +179,12 @@ if __name__ == "__main__":
         
         hrefPat = re.compile(r'href="([\S]{5,})"')
         srcPat = re.compile(r'src="([\S]{5,})"')
-        urls = hrefPat.findall(r.content)
-        urls.extend(srcPat.findall(r.content))
+        urls = hrefPat.findall(html)
+        urls.extend(srcPat.findall(html))
         reqs =[]
         reqs.extend(formUrls)
+
+        # only crawl url with the same netloc
         for url in urls:
             if url.find('logout') != -1:
                 continue
@@ -208,6 +192,8 @@ if __name__ == "__main__":
             netlocTmp = urlparse.urlparse(tmpReq._url).netloc
             if netlocTmp == netloc:
                 reqs.append(Request(req._url,url,'get'))
+        
+        # prase url by bloomFilter and treeFilter ?++?
         for x in reqs:
             if not bf.exist(x._BFUrl):
                 bf.insert(x._BFUrl)
