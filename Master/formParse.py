@@ -137,11 +137,11 @@ class Form(object):
         if self._method == 'get':
             tmpUrl = actionTup.path + '?' + query
             self._url = urlparse.urljoin(base,tmpUrl)
-            self._payload = {} 
+            self._query = {} 
         elif self._method == 'post':
             tmpUrl = actionTup.path
             self._url = urlparse.urljoin(base,tmpUrl)
-            self._payload = payload
+            self._query = payload
         '''    
         # dirPath of parent url
         pos = path.rfind('/')
@@ -173,8 +173,8 @@ class Form(object):
     def getUrl(self):
         return self._url
     def getReq(self):
-        return Request(self._base,self._url,self._method,self._payload,source='form')
+        return Request(self._base,self._url,self._method,self._query,source='form')
     def getMethod(self):
         return self._method
     def getPayload(self):
-        return self._payload
+        return self._query

@@ -11,10 +11,11 @@ from bs4 import BeautifulSoup
 from posixpath import normpath
 
 class Request(object):
-    def __init__(self,base,url,method='get',payload={},source='regex'):
+    def __init__(self,base,url,method='get',query={},cookie={},source='regex'):
         self._url = myJoin(base,url)
         self._method = method
-        self._payload = payload
+        self._query = query
+        self._cookies = cookie
         self._BFUrl = '' # like ID to identify unique request
         self._source = source
         tup = urlparse.urlparse(self._url)
@@ -149,7 +150,7 @@ if __name__ == "__main__":
                 r = requests.get(req._url,timeout=1,cookies=cookie)
                 html = r.content
             elif method == 'post':
-                r = requests.post(req._url,data=req._payload,timeout=1,cookies=cookie)
+                r = requests.post(req._url,data=req._query,timeout=1,cookies=cookie)
                 html = r.content
             else:
                 print '[Info] Method '+ method +' not support!'
