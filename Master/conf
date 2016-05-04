@@ -1,5 +1,7 @@
 {
 "EnableTreeFilter":true,
 "MaxUrl":100000,
-"Magic":100
+"Magic":100,
+"DbIp":"127.0.0.1",
+"DBPort":"3306"
 }
