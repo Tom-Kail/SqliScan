@@ -6,5 +6,5 @@
 "DBPort":"3306",
 "User":"root",
 "Pwd":"",
-"DB"
+"DB":"sqliscan"
 }
