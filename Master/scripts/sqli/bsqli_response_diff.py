@@ -2,6 +2,7 @@
 import request
 import result
 import Levenshtein
+import copy
 import re
 import os
 import time  
@@ -43,7 +44,8 @@ class BSqliRspDiff():
             print "\nRatio:%f and result = False"%(ratio)
             return False
             
-    def response_diff(self,req):     
+    def response_diff(self):
+        req = self._req
         #true/false response comparison
         for i in range(len(TF_OBJ)/4):
             trueStm1 = TF_OBJ[i*4]
@@ -51,10 +53,10 @@ class BSqliRspDiff():
             trueStm3 = TF_OBJ[i*4+2]
             falseStm = TF_OBJ[i*4+3]
             
-            trueQueryList1=getPayloadQueryList(req._query,trueStm1)
-            trueQueryList2=getPayloadQueryList(req._query,trueStm2)
-            trueQueryList3=getPayloadQueryList(req._query,trueStm3)
-            falseQueryList=getPayloadQueryList(req._query,falseStm)
+            trueQueryList1=request.getPayloadQueryList(req._query,trueStm1)
+            trueQueryList2=request.getPayloadQueryList(req._query,trueStm2)
+            trueQueryList3=request.getPayloadQueryList(req._query,trueStm3)
+            falseQueryList=request.getPayloadQueryList(req._query,falseStm)
 
             for j in range(len(trueQueryList1)):
                 tmpReq1 = copy.deepcopy(req)
@@ -104,5 +106,5 @@ class BSqliRspDiff():
 
 def start(req): 
     bsi = BSqliRspDiff(req)
-    bsi.response_diff()
+    return bsi.response_diff()
   

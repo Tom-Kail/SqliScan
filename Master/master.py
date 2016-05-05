@@ -75,21 +75,16 @@ if __name__ == "__main__":
             rsp = request.sendRequest(req)
             if rsp != None:
                 html = rsp.content
-            '''
-            method = req._method.lower()
-            if method == 'get':
-                r = requests.get(req._url,timeout=1,cookies=cookie)
-                html = r.content
-            elif method == 'post':
-                r = requests.post(req._url,data=req._query,timeout=1,cookies=cookie)
-                html = r.content
-            else:
-                print '[Info] Method '+ method +' not support!'
-                pass
-            '''
         except Exception as err:
-            print '[Error]: ',err
-        
+            print '[Error]: ',err,' Url: ',req._url
+   
+        try:
+            rsp = bsqli.start(req)
+            if rsp == None:
+                pass
+        except Exception as err:
+            print '[Error]: ',err 
+            
         # parse form in response content
         soup = BeautifulSoup(html)
         formUrls = []
