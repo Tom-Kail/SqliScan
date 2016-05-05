@@ -1,5 +1,6 @@
 # encoding=utf-8
 import requests
+import urlparse
 import copy
 
 class Request(object):
@@ -25,7 +26,7 @@ class Request(object):
                 self._BFUrl = self._url
         elif self._method == 'post': 
             self._BFUrl = self._BFUrl + url + '?'
-            for k in payload.keys():
+            for k in query.keys():
                 self._BFUrl = self._BFUrl + k + '&'
 def myJoin(base,url): 
     tup = urlparse.urlparse(url)

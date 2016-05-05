@@ -44,14 +44,6 @@ def getCookie(loginUrl):
     
     
 if __name__ == "__main__":
-    if not '/root/WorkSpace/SqliScan/Master/config/' in sys.path:
-        sys.path.append('/root/WorkSpace/SqliScan/Master/config/')
-    if not 'config' in sys.modules:
-        config = __import__('config')
-    else:
-        eval('import config')
-        config = eval('reload(config)')
-
     #seed = 'http://192.168.42.138/' # web for pentest
     
     #seed = Request(base='http://192.168.42.131/dvwa/index.php',url='http://192.168.42.131/dvwa/index.php',method='get')
@@ -80,7 +72,7 @@ if __name__ == "__main__":
         count += 1
         html = ''
         try:
-            rsp = sendRequest(req)
+            rsp = request.sendRequest(req)
             if rsp != None:
                 html = rsp.content
             '''

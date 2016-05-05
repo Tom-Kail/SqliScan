@@ -2,7 +2,7 @@
 from bs4 import BeautifulSoup
 import lxml
 import urlparse
-from master import Request
+import request
 
 class Input(object):
     def __init__(self,content):
@@ -173,7 +173,7 @@ class Form(object):
     def getUrl(self):
         return self._url
     def getReq(self):
-        return Request(self._base,self._url,self._method,self._query,source='form')
+        return request.Request(self._base,self._url,self._method,self._query,source='form')
     def getMethod(self):
         return self._method
     def getPayload(self):
