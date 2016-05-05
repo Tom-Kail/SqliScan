@@ -27,25 +27,10 @@ TF_OBJ = (
     '" and 7777="7778'
 )
 class BSqliRspDiff():
-    def __init__(self, req, cookies={}, eq_limit=0.98):
-        url = req._url
-        method = req._method
-        if url =="":
-            raise Exception("url mustn't be empty!\n")
-
-        nPos = url.find("?");
-        if nPos == -1 or nPos == len(url)-1:
-            raise Exception("Can't find sqli in such format of url!\n")
-
-        self._url = url
-        self._cookies = cookies
+    def __init__(self, req, eq_limit=0.98):
+        self._req = req
         self._eq_limit = eq_limit
-        tmpMethod = method.lower()
-        if tmpMethod == "post" or tmpMethod == "get":
-            self._method = tmpMethod
-        else:
-            raise Exception("Method "+ tmpMethod +" not supported!\n")
-                    
+            
     def relative_compare(self, strA, strB):
         '''
             using Levenshtein algorithm to calculate similarity of strA and strB
@@ -57,14 +42,6 @@ class BSqliRspDiff():
         else:
             print "\nRatio:%f and result = False"%(ratio)
             return False
-    '''
-    def encrypt_para(self,urlPara):
-        tmpPara = urlPara
-        i = 0
-        while i < len(tmpPara):
-    
-        return tmpPara
-    '''
             
     def response_diff(self,req):     
         #true/false response comparison

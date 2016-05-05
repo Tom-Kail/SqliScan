@@ -2,6 +2,9 @@
 "EnableTreeFilter":true,
 "MaxUrl":100000,
 "Magic":100,
-"DbIp":"127.0.0.1",
-"DBPort":"3306"
+"DBHost":"127.0.0.1",
+"DBPort":"3306",
+"User":"root",
+"Pwd":"",
+"DB"
 }

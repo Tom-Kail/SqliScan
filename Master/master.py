@@ -3,78 +3,14 @@ import Queue
 import sys
 import webbrowser
 import re
-import requests
+import request
 import bloomFilter
 import urlparse
 import formParse
+import config.config
+import scripts.sqli.bsqli_response_diff as bsqli
 from bs4 import BeautifulSoup
 from posixpath import normpath
-
-class Request(object):
-    def __init__(self,base,url,method='get',query={},cookie={},source='regex'):
-        self._url = myJoin(base,url)
-        self._method = method
-        self._query = query
-        self._cookies = cookie
-        self._BFUrl = '' # like ID to identify unique request
-        self._source = source
-        tup = urlparse.urlparse(self._url)
-        
-        if self._method == 'get':
-            if tup.query != '':
-                self._BFUrl = urlparse.urlunparse((tup.scheme,tup.netloc,tup.path,tup.params,'','')) + '?'
-                for line in tup.query.strip().split('&'):
-                    if line.find('=') == -1:# in case of www.baidu.com/?www.google.com
-                        continue
-                    #print 'url: ',url,' line:',line,' pos: ',pos
-                    name, value = line.strip().split('=',1)
-                    self._BFUrl = self._BFUrl + name + '&'
-            else:
-                self._BFUrl = self._url
-        elif self._method == 'post': 
-            self._BFUrl = self._BFUrl + url + '?'
-            for k in payload.keys():
-                self._BFUrl = self._BFUrl + k + '&'
-def myJoin(base,url): 
-    tup = urlparse.urlparse(url)
-    #if tup.netloc == '' and url.find('/') != -1 and len(url) > 0 and url[0] != '/':
-    #    url = '/' + url
-        #print 'Special Url: ',url
-    rst = urlparse.urljoin(base,url)
-    #print '   base: ',base,' url: ',url,' rst:',rst
-    return rst
-'''
-    urlTmp = urlparse.urljoin(base,url)
-    arr = urlparse.urlparse(urlTmp)
-    path = normpath(arr[2])
-    
-    return urlparse.urlunparse((arr.scheme,arr.netloc,path,arr.params,arr.query,arr.fragment))
-'''
-def getCompleteUrl(scheme,netloc,path,tmpUrl):
-    dirPath = ''
-    pos = path.rfind('/')
-    if pos != -1:
-        dirPath = path[0:pos+1]
-    else:
-        dirPath = '/'
-    tup = urlparse.urlparse(tmpUrl)
-
-    # example:
-    #   url: 'example8.php?order=name'
-    #   parent url: '192.168.42.138/sqli/example8.php?order=age'
-    #   result: '192.168.42.138/sqli/example8.php?order=name'
-    if tup.netloc == '':
-        if tup.path =='':
-            tmpUrl = netloc + path + '?' + tup.query
-        elif tup.path[0] == '/':
-            tmpUrl = netloc + tmpUrl
-        elif tup.path.find('/') == -1:
-            tmpUrl = netloc + dirPath + tmpUrl
-        else:
-            tmpUrl = netloc + '/' + tmpUrl
-    if tup.scheme == '':
-        tmpUrl = scheme + '://' + tmpUrl
-    return tmpUrl
 
 def getCookie(loginUrl):
     if loginUlr == '':
@@ -119,7 +55,7 @@ if __name__ == "__main__":
     #seed = 'http://192.168.42.138/' # web for pentest
     
     #seed = Request(base='http://192.168.42.131/dvwa/index.php',url='http://192.168.42.131/dvwa/index.php',method='get')
-    seed = Request(base='http://192.168.42.133',url='http://192.168.42.133',method='get')
+    seed = request.Request(base='http://192.168.42.133',url='http://192.168.42.133',method='get')
     print 'seed url: ',seed._url
 
     #cookie = getCookie(seed._url)
@@ -136,15 +72,18 @@ if __name__ == "__main__":
     bf.insert(seed._url)
     while(not q.empty()):
         req = q.get()
-        
+        req._cookies = cookie
         # test sqli vuln
-        
-
+    
         print 'req._BFUrl: ',req._BFUrl,' ',req._method,' ', req._source
         #print 'Url: ',req._url
         count += 1
         html = ''
         try:
+            rsp = sendRequest(req)
+            if rsp != None:
+                html = rsp.content
+            '''
             method = req._method.lower()
             if method == 'get':
                 r = requests.get(req._url,timeout=1,cookies=cookie)
@@ -155,7 +94,7 @@ if __name__ == "__main__":
             else:
                 print '[Info] Method '+ method +' not support!'
                 pass
-
+            '''
         except Exception as err:
             print '[Error]: ',err
         
@@ -189,10 +128,10 @@ if __name__ == "__main__":
         for url in urls:
             if url.find('logout') != -1:
                 continue
-            tmpReq = Request(req._url,url,'get')
+            tmpReq = request.Request(req._url,url,'get')
             netlocTmp = urlparse.urlparse(tmpReq._url).netloc
             if netlocTmp == netloc:
-                reqs.append(Request(req._url,url,'get'))
+                reqs.append(request.Request(req._url,url,'get'))
         
         # prase url by bloomFilter and treeFilter ?++?
         for x in reqs:
