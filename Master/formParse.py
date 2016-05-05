@@ -62,7 +62,7 @@ class Form(object):
         'scheme', 'netloc' and 'path' come form parent url
         '''
         # parse form content
-        soup = BeautifulSoup(content)
+        soup = BeautifulSoup(content,'lxml')
         try:
             self._method = soup.form.attrs['method'].lower()
         except Exception as err:

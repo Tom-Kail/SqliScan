@@ -29,7 +29,7 @@ TF_OBJ = (
 )
 class BSqliRspDiff():
     def __init__(self, req, eq_limit=0.98):
-        self._req = req
+        self._req = copy.deepcopy(req)
         self._eq_limit = eq_limit
             
     def relative_compare(self, strA, strB):
@@ -38,16 +38,19 @@ class BSqliRspDiff():
         '''
         ratio = Levenshtein.ratio(strA,strB)
         if ratio >= self._eq_limit:
-            print "\nRatio:%f and result = True"%(ratio)
+            #print "\nRatio:%f and result = True"%(ratio)
+            #print "ratio:",ratio," eq_limit:0.98"," rst:",True
             return True
         else:
-            print "\nRatio:%f and result = False"%(ratio)
+            #print "\nRatio:%f and result = False"%(ratio)
+            #print "ratio:",ratio," eq_limit:0.98"," rst:",True
             return False
+        print "ratio:",ratio," eq_limit:0.98"," rst:",True
             
     def response_diff(self):
         req = self._req
         #true/false response comparison
-        for i in range(len(TF_OBJ)/4):
+        for i in range(0,len(TF_OBJ)/4):
             trueStm1 = TF_OBJ[i*4]
             trueStm2 = TF_OBJ[i*4+1]
             trueStm3 = TF_OBJ[i*4+2]
@@ -59,6 +62,7 @@ class BSqliRspDiff():
             falseQueryList=request.getPayloadQueryList(req._query,falseStm)
 
             for j in range(len(trueQueryList1)):
+
                 tmpReq1 = copy.deepcopy(req)
                 tmpReq2 = copy.deepcopy(req)
                 tmpReq3 = copy.deepcopy(req)
@@ -68,8 +72,7 @@ class BSqliRspDiff():
                 tmpReq2._query = trueQueryList2[j] 
                 rsp1 = request.sendRequest(tmpReq1)
                 rsp2 = request.sendRequest(tmpReq2)
-                cleanRsp = self.relative_compare(rsp1.content,rsp2.content)  
-                # cleanRsp = self.compare_response_diff(tmpReq1,tmpReq2)
+                cleanRsp = self.relative_compare(rsp1.content,rsp2.content)
                 
                 tmpReq3._query = trueQueryList1[j] 
                 tmpReq4._query = falseQueryList[j] 
@@ -81,12 +84,13 @@ class BSqliRspDiff():
                 if cleanRsp == True and payloadRsp == False:
                     # find vuln and insert record into db
                     # code for insert db    
-                    print "*******************************"
+                    print "\n*******************************"
                     print "**Find bsqli in:"
-                    print "*url:",self._url
+                    print "!!!!!!!!!!!url:",self._req._url
                     print "*cleanRsp:",cleanRsp
                     print "*payloadRsp:",payloadRsp
                     print "*******************************"
+                    print "\n"
                     return result.Result([tmpReq1,tmpReq2,tmpReq3,tmpReq4],[rsp1,rsp2,rsp3,rsp4],TF_OBJ[i*4:i*4+4])
                 else:
                     tmpReq5 = copy.deepcopy(req)
@@ -97,12 +101,15 @@ class BSqliRspDiff():
                     rsp6 = request.sendRequest(tmpReq6)
                     orRsp = self.relative_compare(rsp5.content,rsp6.content) 
                     if cleanRsp == True and orRsp == False:
+                        print "\n*******************************"
                         print "* Find bsqli in:"
-                        print "* url:",self._url
+                        print "!!!!!!!!!url:",self._req._url
                         print "*cleanRsp:",cleanRsp
                         print "*orRsp:",orRsp
                         print "*******************************"                                       
+                        print "\n"
                         return result.Result([tmpReq1,tmpReq2,tmpReq5,tmpReq6],[rsp1,rsp2,rsp5,rsp6],TF_OBJ[i*4:i*4+4]) 
+
 
 def start(req): 
     bsi = BSqliRspDiff(req)

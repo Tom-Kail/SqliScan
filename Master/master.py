@@ -47,7 +47,7 @@ if __name__ == "__main__":
     #seed = 'http://192.168.42.138/' # web for pentest
     
     #seed = Request(base='http://192.168.42.131/dvwa/index.php',url='http://192.168.42.131/dvwa/index.php',method='get')
-    seed = request.Request(base='http://192.168.42.133',url='http://192.168.42.133',method='get')
+    seed = request.Request(base='http://192.168.42.133',url='http://192.168.42.133/',query={},method='get')
     print 'seed url: ',seed._url
 
     #cookie = getCookie(seed._url)
@@ -76,17 +76,17 @@ if __name__ == "__main__":
             if rsp != None:
                 html = rsp.content
         except Exception as err:
-            print '[Error]: ',err,' Url: ',req._url
+            print '[Spider Error]: ',err,' Url: ',req._url
    
         try:
             rsp = bsqli.start(req)
-            if rsp == None:
-                pass
+            if rsp != None:
+                print "Find Vuln!!"
         except Exception as err:
-            print '[Error]: ',err 
+            print '[Check Vuln Error]: ',err 
             
         # parse form in response content
-        soup = BeautifulSoup(html)
+        soup = BeautifulSoup(html,'lxml')
         formUrls = []
         #formPat = re.compile(r'<form[\S\s]*?</form>')
         #forms = formPat.findall(r.content)
@@ -118,7 +118,7 @@ if __name__ == "__main__":
             tmpReq = request.Request(req._url,url,'get')
             netlocTmp = urlparse.urlparse(tmpReq._url).netloc
             if netlocTmp == netloc:
-                reqs.append(request.Request(req._url,url,'get'))
+                reqs.append(request.Request(base=req._url,url=url,method='get'))
         
         # prase url by bloomFilter and treeFilter ?++?
         for x in reqs:

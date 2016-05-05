@@ -4,10 +4,16 @@ import urlparse
 import copy
 
 class Request(object):
-    def __init__(self,base,url,method='get',query={},cookie={},source='regex'):
+    def __init__(self,base,url,method='get',query={},cookie={},timeout=1,source='regex'):
+        tmpUrl = myJoin(base,url)
         self._url = myJoin(base,url)
-        self._method = method
+        self._method = method.lower()
+        if query == {} and self._method == 'get':
+            query = getQueryFromUrl(self._url)
+            self._url = stripQuery(self._url)
+
         self._query = query
+        self._timeout = timeout
         self._cookies = cookie
         self._BFUrl = '' # like ID to identify unique request
         self._source = source
@@ -28,6 +34,27 @@ class Request(object):
             self._BFUrl = self._BFUrl + url + '?'
             for k in query.keys():
                 self._BFUrl = self._BFUrl + k + '&'
+
+def getQueryFromUrl(url):
+    if url == '':
+        return {}
+    queryStr = urlparse.urlparse(url).query
+    if queryStr == '':
+        return {}
+    queryList = queryStr.split('&')
+    queryDict = {}
+    for i in queryList:
+        k, v = i.split('=')
+        queryDict[k] = v
+    return queryDict 
+
+def stripQuery(url):
+    scheme, host, path, query, fragment = urlparse.urlsplit(url)
+    return urlparse.urlunsplit((scheme, host, path, '', fragment))
+
+
+
+
 def myJoin(base,url): 
     tup = urlparse.urlparse(url)
     #if tup.netloc == '' and url.find('/') != -1 and len(url) > 0 and url[0] != '/':
@@ -73,10 +100,10 @@ def sendRequest(req):
     try:
         method = req._method.lower()
         if method == 'get':
-            r = requests.get(req._url,timeout=1,cookies=req._cookies,params=req._query)
+            r = requests.get(req._url,timeout=req._timeout,cookies=req._cookies,params=req._query)
             return r
         elif method == 'post':
-            r = requests.post(req._url,timeout=1,cookies=req._cookies,data=req._query)
+            r = requests.post(req._url,timeout=req._timeout,cookies=req._cookies,data=req._query)
             return r
         else:
             print '[Info]: Method '+ method +' not support!'
