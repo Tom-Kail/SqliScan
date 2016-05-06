@@ -5,12 +5,12 @@ import copy
 
 class Request(object):
     def __init__(self,base,url,method='get',query={},cookie={},timeout=1,source='regex'):
-        tmpUrl = myJoin(base,url)
-        self._url = myJoin(base,url)
+        tmpUrl = my_join(base,url)
+        self._url = my_join(base,url)
         self._method = method.lower()
         if query == {} and self._method == 'get':
-            query = getQueryFromUrl(self._url)
-            self._url = stripQuery(self._url)
+            query = get_query_from_url(self._url)
+            self._url = strip_query(self._url)
 
         self._query = query
         self._timeout = timeout
@@ -35,7 +35,7 @@ class Request(object):
             for k in query.keys():
                 self._BFUrl = self._BFUrl + k + '&'
 
-def getQueryFromUrl(url):
+def get_query_from_url(url):
     if url == '':
         return {}
     queryStr = urlparse.urlparse(url).query
@@ -48,14 +48,14 @@ def getQueryFromUrl(url):
         queryDict[k] = v
     return queryDict 
 
-def stripQuery(url):
+def strip_query(url):
     scheme, host, path, query, fragment = urlparse.urlsplit(url)
     return urlparse.urlunsplit((scheme, host, path, '', fragment))
 
 
 
 
-def myJoin(base,url): 
+def my_join(base,url): 
     tup = urlparse.urlparse(url)
     #if tup.netloc == '' and url.find('/') != -1 and len(url) > 0 and url[0] != '/':
     #    url = '/' + url
@@ -71,7 +71,7 @@ def myJoin(base,url):
     return urlparse.urlunparse((arr.scheme,arr.netloc,path,arr.params,arr.query,arr.fragment))
 '''
 
-def getPayloadQueryList(query,payload):
+def get_payload_query_list(query,payload):
 	'''
 	example:
 			query = {'name'='lili','pwd'='password'}

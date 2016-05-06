@@ -8,7 +8,8 @@ import bloomFilter
 import urlparse
 import formParse
 import config.config
-import scripts.sqli.bsqli_response_diff as bsqli
+import scripts.sqli.bsqli_response_diff as bsqlitf
+import scripts.sqli.bsqli_time_delay as bsqlitd
 from bs4 import BeautifulSoup
 from posixpath import normpath
 
@@ -79,9 +80,10 @@ if __name__ == "__main__":
             print '[Spider Error]: ',err,' Url: ',req._url
    
         try:
-            rsp = bsqli.start(req)
-            if rsp != None:
-                print "Find Vuln!!"
+            rsp = bsqlitf.start(req)
+            if rsp == None:
+                bsqlitd.start(req)
+                
         except Exception as err:
             print '[Check Vuln Error]: ',err 
             
