@@ -1,3 +1,4 @@
+
 # encoding=utf-8
 import requests
 import urlparse
@@ -18,7 +19,22 @@ class Request(object):
         self._BFUrl = '' # like ID to identify unique request
         self._source = source
         tup = urlparse.urlparse(self._url)
-        
+        # self._url has two kind:
+        # 1. *?*
+        # 1. 
+        # self._url + self._query + self._method
+        self._BFUrl = self._url + "?"
+        if tup.query != '':
+            self._BFUrl += tup.query + "&"
+
+        tmp = ""
+        for i in self._query:
+            tmp +=  i + '=' + self._query[i] + '&'
+        if len(tmp) >0 and tmp[-1] == '&':
+             tmp = tmp[:-1]
+        self._BFUrl += tmp
+        self._BFUrl += self._method        
+        '''
         if self._method == 'get':
             if tup.query != '':
                 self._BFUrl = urlparse.urlunparse((tup.scheme,tup.netloc,tup.path,tup.params,'','')) + '?'
@@ -31,10 +47,10 @@ class Request(object):
             else:
                 self._BFUrl = self._url
         elif self._method == 'post': 
-            self._BFUrl = self._BFUrl + url + '?'
+            self._BFUrl = self._BFUrl + self._url + '?'
             for k in query.keys():
                 self._BFUrl = self._BFUrl + k + '&'
-
+        '''
 def get_query_from_url(url):
     if url == '':
         return {}
@@ -91,10 +107,9 @@ def get_payload_query_list(query,payload):
 
 
 def sendPayload(req,payloadQuery):
-	tmpReq = copy.deepcopy(req)
-	tmpReq._query = payloadQuery
-	return sendRequest(tmpReq)
-
+    tmpReq = copy.deepcopy(req)
+    tmpReq._query = payloadQuery
+    return sendRequest(tmpReq)
 
 def sendRequest(req):
     try:

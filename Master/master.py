@@ -10,6 +10,7 @@ import formParse
 import config.config
 import scripts.sqli.bsqli_response_diff as bsqlitf
 import scripts.sqli.bsqli_time_delay as bsqlitd
+import scripts.sqli.sqli as sqli
 from bs4 import BeautifulSoup
 from posixpath import normpath
 
@@ -47,8 +48,10 @@ def getCookie(loginUrl):
 if __name__ == "__main__":
     #seed = 'http://192.168.42.138/' # web for pentest
     
+    # check url find out if it is valid 
+
     #seed = Request(base='http://192.168.42.131/dvwa/index.php',url='http://192.168.42.131/dvwa/index.php',method='get')
-    seed = request.Request(base='http://192.168.42.133',url='http://192.168.42.133/',query={},method='get')
+    seed = request.Request(base='http://192.168.42.133/',url='http://192.168.42.136/',query={},method='get')
     print 'seed url: ',seed._url
 
     #cookie = getCookie(seed._url)
@@ -73,23 +76,27 @@ if __name__ == "__main__":
         count += 1
         html = ''
         try:
-            rsp = request.sendRequest(req)
-            if rsp != None:
-                html = rsp.content
+            if req._source == 'regex':
+                rsp = request.sendRequest(req)
+                if rsp != None:
+                    html = rsp.content
         except Exception as err:
             print '[Spider Error]: ',err,' Url: ',req._url
    
         try:
-            rsp = bsqlitf.start(req)
-            if rsp == None:
-                bsqlitd.start(req)
+            if req._query != {}:
+                rsp = sqli.start(req)
+                if rsp == None:
+                    rsp2 = bsqlitf.start(req)
+                    if rsp2 == None:
+                        bsqlitd.start(req)
                 
         except Exception as err:
             print '[Check Vuln Error]: ',err 
             
         # parse form in response content
         soup = BeautifulSoup(html,'lxml')
-        formUrls = []
+        formReqs = []
         #formPat = re.compile(r'<form[\S\s]*?</form>')
         #forms = formPat.findall(r.content)
         forms = []
@@ -101,17 +108,19 @@ if __name__ == "__main__":
         #forms = soup.find_all(name='form')
         for child in forms:
             #print child
+            #print child
             #tmp = BeautifulSoup(child)
             tmpForm = formParse.Form(req._url,str(child))
-            formUrls.append(tmpForm.getReq())
-        #print 'form urls :',formUrls:
+            formReqs.append(tmpForm.getReq())
+
+        #print 'form urls :',formReqs:
         
         hrefPat = re.compile(r'href="([\S]{5,})"')
         srcPat = re.compile(r'src="([\S]{5,})"')
         urls = hrefPat.findall(html)
         urls.extend(srcPat.findall(html))
         reqs =[]
-        reqs.extend(formUrls)
+        reqs.extend(formReqs)
 
         # only crawl url with the same netloc
         for url in urls:

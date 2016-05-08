@@ -1,7 +1,11 @@
 # coding=utf-8
 import request
 import result
-                           
+import Levenshtein
+import copy
+import re
+         
+SQLIPayload = "d';z\"0`\\"                       
 DB2 = 'IBM DB2 database'
 MSSQL = 'Microsoft SQL database'
 ORACLE = 'Oracle database'
@@ -14,7 +18,7 @@ INFORMIX = 'Informix database'
 INTERBASE = 'Interbase database'
 DMLDATABASE = 'DML Language database'
 UNKNOWN = 'Unknown database'
-SQL_ERRORS = (
+SQLErrors = (
 	# ASP / MSSQL
 	(r'System\.Data\.OleDb\.OleDbException', MSSQL),
 	(r'\[SQL Server\]', MSSQL),
@@ -103,27 +107,9 @@ SQL_ERRORS = (
 )
 
 #main class in this .py file 
-class CSqli(object):
-	'''
-	match database errors in http response contents
-	'''
-	
-	def __init__(self,url,method = "post",cookies = "", eq_limit = 0.90):
-		
-		if url =="":
-			raise Exception("url mustn't be empty!\n")
-		nPos = url.find("?");
-		if nPos == -1 or nPos == len(url)-1:
-			raise Exception("Can't find sqli in such format of url!\n")
-			
-		self._url = url
-		self._cookies = cookies
-		self._eq_limit = eq_limit
-		
-		if method.lower() == "post" or method.lower() == "get":
-			self._method = method.lower()
-		else:
-			raise Exception("Method not supported!\n")
+class Sqli(object):
+	def __init__(self,req):
+		self._req = copy.deepcopy(req)
 
 	def match_sql_error(self,response):
 		'''
@@ -131,81 +117,32 @@ class CSqli(object):
 		'''
 		dataBaseType = ""
 		find_error = False
-		for index in xrange(len(SQL_ERRORS)):
-			pattern = r".*?%s.*?"%(SQL_ERRORS[index][0])
+		for index in xrange(len(SQLErrors)):
+			pattern = r".*?%s.*?"%(SQLErrors[index][0])
 			rePattern = re.compile(pattern,re.S)
 			match = rePattern.match(response)
 			if match:
-				dataBaseType = SQL_ERRORS[index][1]
+				dataBaseType = SQLErrors[index][1]
 				break
 		
 		return dataBaseType;
 			
 	#begin sql injection vlun checking 
-	def start_sqli(self):
-		'''
-		#login dvwa
-		url='http://192.168.1.10/dvwa/login.php'
-		post =  "username=admin&password=admin&Login=Login"
-		so.post_http(url,post,SPTobj)
-		print "################################################\npost response\n",SPTobj.contents.pResponse
-		self._cookies = SPTobj.contents.pGetCookie
-		SPTobj.contents.pSetCookie = self._cookies
-		'''
-		#begin test sqli
-		andPos = self._url.find("&")
-		quePos = self._url.find("?")
-		equPos = self._url.find("=")
-		tmpUrl = ""
-		db = ""
-		if andPos == -1:
-			tmpUrl = self._url[0:equPos+1] + "d'z\"0"
-		else:
-			tmpUrl = self._url[0:equPos+1] + "d'z\"0" + self._url[andPos:]
-		
-		if self._method.lower() == "post":
-			urlHead = tmpUrl[0:quePos]
-			urlPara = tmpUrl[quePos+1:]
-			so.post_http(urlHead,urlPara,SPTobj)
-		elif self._method.lower() == "get":
-			so.get_http(tmpUrl,SPTobj)
-		print "###########################",SPTobj.contents.pResponse
-		db = self.match_sql_error(SPTobj.contents.pResponse)
-		if db != "":
-			so.insert_highRisk("localhost", "root", "123456", "webscan", iUrlId ,iScanId,iHostId,20, self._url)
-			print "****************************************************"
-			print "*  Find sqli vlun"
-			print "*  Database: ",db
-			print "****************************************************"
-			return True
-			
-		return False
+	def sqliCheck(self):
+		payloadQueryList = request.get_payload_query_list(self._req._query,SQLIPayload)
+		for i in payloadQueryList:
+			req = copy.deepcopy(self._req)
+			rsp = request.sendPayload(req,i)
+			db = self.match_sql_error(rsp.text)
+			if db != "":	
+				print "*********************************************"
+				print "*  Find sqli vlun"
+				print "*  Url:",req._url
+				print "*  Database: ",db
+				print "*********************************************"
+				return result.Result([req],[rsp],[SQLIPayload])			
+		return None
 	
-def main(env):
-	optionString = env.option()
-	global iScanId
-	global iUrlId
-	global iHostId
-	
-	optionName = "url"
-	url = BkGlobal.get_option(optionName,optionString)
-	optionName ="method"
-	method = BkGlobal.get_option(optionName,optionString)
-	optionName ="scanId"
-	iScanId = BkGlobal.get_option(optionName,optionString)
-	optionName ="hostId"
-	iHostId = BkGlobal.get_option(optionName,optionString)
-	optionName = "urlId"
-	urlId = BkGlobal.get_option(optionName,optionString)
-	iUrlId = BkGlobal.atoi(urlId)
-	optionName = "cookie"
-	cookie = BkGlobal.get_option(optionName,optionString)
-	SPTobj.contents.pSetCookie = cookie
-	
-	IFvuln = 0
-	# -2 means run error  -1 means visit error 	 0 means vuln is not exist   1 means vuln is exist     
-	si = CSqli(url,method)
-	IFvuln = si.start_sqli()
-	if IFvuln:
-		return 1
-	return 0
+def start(req):
+	si = Sqli(req)
+	return si.sqliCheck()

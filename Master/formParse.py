@@ -101,10 +101,10 @@ class Form(object):
 
         # generate queries from input, textarea and select
         query = ''
-        payload = {}
+
         checkboxCount = False
         for child in self._inputs:
-            payload[child._name] = child._value
+
             if child._type == 'radio' and child._checked == 'checked':    
                 query =query + child._name + '=' + child._value + '&'
             elif child._type == 'checkbox' and checkboxCount == False:
@@ -116,60 +116,22 @@ class Form(object):
                 query = query + child._name + '=' + child._value + '&'
        
         for child in self._textareas:
-            payload[child._name] = child._value
             query = query + child._name + '=' + child._value + '&'
         
         for child in self._selects:
-            payload[child._name] = child._value
             query = query + child._name + '=' + child._value + '&'
-        # add query in action
-        actionTup = urlparse.urlparse(self._action)
-        query = query + actionTup.query
+
         if len(query) > 0 and query[len(query)-1] == '&':
             query = query[0:len(query)-1]
         
-        for line in actionTup.query.strip().split('&'):
-            if line == '':
-                break
-            name,value = line.strip().split('=',1)
-            payload[name] = value 
-        # use action and query to generate tmpUrl
-        if self._method == 'get':
-            tmpUrl = actionTup.path + '?' + query
-            self._url = urlparse.urljoin(base,tmpUrl)
-            self._query = {} 
-        elif self._method == 'post':
-            tmpUrl = actionTup.path
-            self._url = urlparse.urljoin(base,tmpUrl)
-            self._query = payload
-        '''    
-        # dirPath of parent url
-        pos = path.rfind('/')
-        dirPath = ''
-        if pos != -1:
-            dirPath = path[0:pos+1]
-        else:
-            dirPath = '/'
-        tup = urlparse.urlparse(self._action)
-        tmpUrl = ''
-        # generate tmpUrl
-        if tup.path == '':
-            # current webpage
-            tmpUrl = scheme + '://' + netloc + path + '?'
-        elif tup.path.find('/') == -1:
-            # like 'file2.php?a=one'
-            tmpUrl = scheme + '://' + netloc + dirPath + tup.path + '?'
-        elif tup.path[0] == '/':
-            # like '/' or '/file.php?a=b'
-            tmpUrl = scheme + '://' + netloc +tup.path + '?'
-        else:
-            pass
-        # add query to tmpUrl
-        if tup.query != '':
-            tmpUrl = tmpUrl + tup.query + '&' + query
-        else:
-            tmpUrl = tmpUrl + query
-        '''           
+        queryDic = {}            
+        for i in query.split('&'):
+            k,v = i.split('=')
+            queryDic[k] = v 
+
+        self._url = urlparse.urljoin(base,self._action)
+        self._query = queryDic
+                  
     def getUrl(self):
         return self._url
     def getReq(self):
