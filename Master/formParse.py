@@ -62,7 +62,9 @@ class Form(object):
         'scheme', 'netloc' and 'path' come form parent url
         '''
         # parse form content
-        soup = BeautifulSoup(content,'lxml')
+        soup = BeautifulSoup(content)
+        #raw_input('')
+
         try:
             self._method = soup.form.attrs['method'].lower()
         except Exception as err:
@@ -76,7 +78,9 @@ class Form(object):
         self._inputs = []
         self._selects = []
         self._textareas = []
+        raw_input('')
         for child in soup.find_all(name='input'):
+            raw_input('')
             try:
                 if child.attrs['name'] == '':
                     continue
@@ -84,6 +88,7 @@ class Form(object):
                 continue
             self._inputs.append(Input(child))
         for child in soup.find_all(name='select'):
+            raw_input('')
             try:
                 if child.attrs['name'] == '':
                     continue
@@ -92,6 +97,7 @@ class Form(object):
             self._selects.append(Select(child))
 
         for child in soup.find_all(name='textarea'):
+            raw_input('')
             try:
                 if child.attrs['name'] == '':
                     continue
@@ -124,11 +130,13 @@ class Form(object):
         if len(query) > 0 and query[len(query)-1] == '&':
             query = query[0:len(query)-1]
         
-        queryDic = {}            
-        for i in query.split('&'):
-            k,v = i.split('=')
-            queryDic[k] = v 
-
+        queryDic = {}
+        try:            
+            for i in query.split('&'):
+                k,v = i.split('=')
+                queryDic[k] = v 
+        except Exception as err:
+            print err
         self._url = urlparse.urljoin(base,self._action)
         self._query = queryDic
                   

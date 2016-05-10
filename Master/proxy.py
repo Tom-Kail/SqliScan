@@ -17,6 +17,7 @@ __author_email__ = 'mailsforabhinav@gmail.com'
 __homepage__ = 'https://github.com/abhinavsingh/proxy.py'
 __license__ = 'BSD'
 
+import re
 import sys
 import multiprocessing
 import datetime
@@ -134,9 +135,20 @@ class HttpParser(object):
         self.buffer = b''
         
         more = True if len(data) > 0 else False
+        if self.type == HTTP_REQUEST_PARSER:
+            cookiePat = re.compile(r'\bCookie:([\S \t]*)')
+            cookieTmp = cookiePat.findall(data)
+            if cookieTmp != []:
+                try:
+                    f = open('cookie.txt','w')
+                    f.write(cookieTmp[0])
+                    f.close()
+                except Exception as err:
+                    print err
         while more: 
             more, data = self.process(data)
         self.buffer = data
+
     
     def process(self, data):
         if self.state >= HTTP_PARSER_STATE_HEADERS_COMPLETE and \
@@ -171,6 +183,7 @@ class HttpParser(object):
         self.type == HTTP_REQUEST_PARSER and \
         not self.method == b"POST" and \
         self.raw.endswith(CRLF*2):
+
             self.state = HTTP_PARSER_STATE_COMPLETE
         
         return len(data) > 0, data

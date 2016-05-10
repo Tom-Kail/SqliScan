@@ -6,5 +6,6 @@
 "DBPort":"3306",
 "User":"root",
 "Pwd":"",
+"CookieFileName":"cookie.txt",
 "DB":"sqliscan"
 }

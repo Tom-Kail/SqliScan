@@ -57,12 +57,20 @@ def get_query_from_url(url):
     queryStr = urlparse.urlparse(url).query
     if queryStr == '':
         return {}
-    queryList = queryStr.split('&')
-    queryDict = {}
-    for i in queryList:
-        k, v = i.split('=')
-        queryDict[k] = v
-    return queryDict 
+    try:
+        queryList = queryStr.split('&')
+        queryDict = {}
+        for i in queryList:
+            k, v = i.split('=')
+            queryDict[k] = v
+        return queryDict
+    except Exception as err:
+        print '\n--------'
+        print 'queryStr: ',queryStr
+        print 'url: ',url
+        print err
+        print '-------\n'
+        return {} 
 
 def strip_query(url):
     scheme, host, path, query, fragment = urlparse.urlsplit(url)

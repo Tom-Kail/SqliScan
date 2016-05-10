@@ -7,7 +7,7 @@ import request
 import bloomFilter
 import urlparse
 import formParse
-import config.config
+import config.config as config
 import scripts.sqli.bsqli_response_diff as bsqlitf
 import scripts.sqli.bsqli_time_delay as bsqlitd
 import scripts.sqli.sqli as sqli
@@ -15,13 +15,13 @@ from bs4 import BeautifulSoup
 from posixpath import normpath
 
 def getCookie(loginUrl):
-    if loginUlr == '':
+    if loginUrl == '':
         return ''
     # recording cookie
     try:
         webbrowser.open_new(loginUrl)
     except Exception as err:
-        print err
+        pass
     print 'Please enter "Y" if you finishing recording cookie.'
     while True: 
         finish = raw_input('')
@@ -30,15 +30,15 @@ def getCookie(loginUrl):
         else:
             finish = ''
     # read cookie from cookieFile
-    cookieFileName = config.conf['CookieFileName']
+    #print config.conf
+    #cookieFileName = config.conf['CookieFileName']
     # cookieFileName = '/root/cntzapfile.txt'
-    print 'Read cookie from file: ',cookieFileName
-    cookiePat = re.compile(r'\bCookie:([\S \t]*)')
-    allText = open(cookieFileName).read()
-    cookieTmp = cookiePat.findall(allText)
+    #print 'Read cookie from file: ',cookieFileName
+    
+    cookieTmp = open('cookie.txt','r').read()
     cookie = {}
-    if len(cookieTmp) != 0:
-        for line in cookieTmp[0].split(';'):
+    if len(cookieTmp.strip()) != 0:
+        for line in cookieTmp.split(';'):
             name,value = line.strip().split('=',1)
             cookie[name] = value
     print 'cookie is:',cookie
@@ -51,9 +51,9 @@ if __name__ == "__main__":
     # check url find out if it is valid 
 
     #seed = Request(base='http://192.168.42.131/dvwa/index.php',url='http://192.168.42.131/dvwa/index.php',method='get')
-    seed = request.Request(base='http://192.168.42.133/',url='http://192.168.42.136/',query={},method='get')
+    #seed = request.Request(base='http://localhost/MCIR/sqlol/',url='http://localhost/MCIR/sqlol/',query={},method='get')
+    seed = request.Request(base='http://192.168.42.133/',url='http://192.168.42.133/',query={},method='get')
     print 'seed url: ',seed._url
-
     #cookie = getCookie(seed._url)
     cookie ={}
     # begin crawler
@@ -71,7 +71,10 @@ if __name__ == "__main__":
         req._cookies = cookie
         # test sqli vuln
     
-        print 'req._BFUrl: ',req._BFUrl,' ',req._method,' ', req._source
+        print '\nreq._BFUrl: ',req._BFUrl,' ',req._method,' ', req._source
+        print req._query
+        print '\n'
+
         #print 'Url: ',req._url
         count += 1
         html = ''
@@ -95,16 +98,18 @@ if __name__ == "__main__":
             print '[Check Vuln Error]: ',err 
             
         # parse form in response content
-        soup = BeautifulSoup(html,'lxml')
+        soup = BeautifulSoup(html)
         formReqs = []
         #formPat = re.compile(r'<form[\S\s]*?</form>')
-        #forms = formPat.findall(r.content)
+        #forms = formPat.findall(html)
+        #print forms
         forms = []
         try:
             forms = soup.find_all(name='form')
+            print forms
         except Exception as err:
             print err
-
+        
         #forms = soup.find_all(name='form')
         for child in forms:
             #print child
