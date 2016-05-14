@@ -78,9 +78,7 @@ class Form(object):
         self._inputs = []
         self._selects = []
         self._textareas = []
-        raw_input('')
         for child in soup.find_all(name='input'):
-            raw_input('')
             try:
                 if child.attrs['name'] == '':
                     continue
@@ -88,7 +86,6 @@ class Form(object):
                 continue
             self._inputs.append(Input(child))
         for child in soup.find_all(name='select'):
-            raw_input('')
             try:
                 if child.attrs['name'] == '':
                     continue
@@ -97,7 +94,7 @@ class Form(object):
             self._selects.append(Select(child))
 
         for child in soup.find_all(name='textarea'):
-            raw_input('')
+            #raw_input('')
             try:
                 if child.attrs['name'] == '':
                     continue
@@ -110,7 +107,6 @@ class Form(object):
 
         checkboxCount = False
         for child in self._inputs:
-
             if child._type == 'radio' and child._checked == 'checked':    
                 query =query + child._name + '=' + child._value + '&'
             elif child._type == 'checkbox' and checkboxCount == False:

