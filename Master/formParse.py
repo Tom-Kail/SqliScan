@@ -45,9 +45,10 @@ class Select(object):
             self._name = content.attrs['name']
         except Exception as err:
             self._name = ''
-        if len(content.contents) != 0:
+        options = content.find_all(name='option')
+        if len(options) != 0:
             try:
-                self._value = content.contents[0].attrs['value']
+                self._value = options[0].attrs['value']
             except Exception as err:
                 self._value = 'cntvalue'
         else:
