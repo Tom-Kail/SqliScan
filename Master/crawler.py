@@ -33,7 +33,7 @@ def crawl(req):
     # begin crawler
     tup = urlparse.urlparse(req._url)
     # test sqli vuln
-    print '\nreq._BFUrl: ',req._BFUrl,' ',req._method,' ', req._source
+    #print '\nreq._BFUrl: ',req._BFUrl,' ',req._method,' ', req._source
     html = ''
     try:
         if req._source == 'regex':

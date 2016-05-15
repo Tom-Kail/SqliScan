@@ -92,11 +92,13 @@ def start(baseUrl,seedUrl):
     while(not q.empty()):
         req = q.get()
         req._cookies = cookie
-        if req._url.find('sql')==-1:
-            continue
+
         count += 1 
-        if req._query != {}:
+        print '------'
+        if req._query != {} :
+            colors.yellow('Check Vuln')
             checkVuln.start(req,logfileName)
+        print '------'
         
         reqs = crawler.crawl(req)
         # test sqli vuln

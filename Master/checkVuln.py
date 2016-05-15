@@ -38,6 +38,7 @@ def write_vuln_log(rst,fileName):
 	f.close()
 
 def check(req):
+	print 'req._BFUrl: ',req._BFUrl,' ',req._method,' ', req._source
 	try:
 		if req._query == {}:
 			return None
@@ -64,5 +65,3 @@ def start(req,fileName):
 	if rsp != None:
 		colors.red("Find Vuln")
 		write_vuln_log(rsp,fileName)
-	else:
-		colors.green('rsp is None')

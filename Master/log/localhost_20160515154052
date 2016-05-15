@@ -1,0 +1,16 @@
+Target: http://localhost/dvwa/ (GET)
+
+---
+URL:http://localhost/dvwa/vulnerabilities/sqli/ (GET)
+VulnName: sqli
+Query: {'id': 'cntvalue', 'Submit': 'Submit'}
+Payload: d'z"0
+Advice: use orm
+---
+---
+URL:http://localhost/dvwa/vulnerabilities/sqli_blind/ (GET)
+VulnName: 
+Query: {'id': 'cntvalue', 'Submit': 'Submit'}
+Payload: ' or SLEEP(3);-- 
+Advice: 
+---
