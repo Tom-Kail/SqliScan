@@ -1,0 +1,36 @@
+Target: http://localhost/dvwa/vulnerabilities/sqli/ (GET)
+
+---
+URL:http://localhost/dvwa/vulnerabilities/sqli/ (GET)
+VulnName: sqli
+Query: {'id': 'cntvalue', 'Submit': 'Submit'}
+Payload: d'z"0
+Advice: use orm
+---
+---
+URL:http://localhost/dvwa/vulnerabilities/brute/ (GET)
+VulnName: sqli
+Query: {'username': 'cntvalue', 'Login': 'Login', 'password': 'cntvalue'}
+Payload: d'z"0
+Advice: use orm
+---
+---
+URL:http://localhost/dvwa/security.php (GET)
+VulnName: 
+Query: {'phpids': 'on'}
+Payload: +and+37371=37371
++and+40122=40122
++or+28527=28527#
++and+32772=32773
+Advice: 
+---
+---
+URL:http://localhost/dvwa/security.php (POST)
+VulnName: 
+Query: {'user_token': '6eb15b4844e9e55e16314932ef2e04bd', 'security': 'cntvalue', 'seclev_submit': 'Submit'}
+Payload: +and+37371=37371
++and+40122=40122
++or+28527=28527#
++and+32772=32773
+Advice: 
+---

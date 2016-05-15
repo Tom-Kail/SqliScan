@@ -141,7 +141,7 @@ class Sqli(object):
 				print "*  Url:",req._url
 				print "*  Database: ",db
 				print "*********************************************"
-				return result.Result([req],[rsp],[SQLIPayload])			
+				return result.Result([req],[rsp],[SQLIPayload],vulnName='sqli',advice='use orm')			
 		return None
 	
 def start(req):

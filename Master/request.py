@@ -65,11 +65,13 @@ def get_query_from_url(url):
             queryDict[k] = v
         return queryDict
     except Exception as err:
+        '''
         print '\n--------'
         print 'queryStr: ',queryStr
         print 'url: ',url
         print err
         print '-------\n'
+        '''
         return {} 
 
 def strip_query(url):

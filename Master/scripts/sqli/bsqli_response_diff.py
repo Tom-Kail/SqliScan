@@ -126,7 +126,7 @@ class BSqliRspDiff():
                 tmpReq3 = copy.deepcopy(req)
                 tmpReq4 = copy.deepcopy(req)
 
-                tmpReq1._query = trueQueryList1[j] 
+                #tmpReq1._query = trueQueryList1[j] 
                 tmpReq2._query = trueQueryList2[j] 
                 rsp1 = request.sendRequest(tmpReq1)
                 rsp2 = request.sendRequest(tmpReq2)

