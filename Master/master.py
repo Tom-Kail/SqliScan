@@ -12,12 +12,13 @@ import formParse
 import crawler
 import checkVuln
 import config.config as config
-import scripts.sqli.bsqli_response_diff as bsqlitf
-import scripts.sqli.bsqli_time_delay as bsqlitd
-import scripts.sqli.sqli as sqli
+from threadpool import ThreadPool
 from color_printer import colors
 from bs4 import BeautifulSoup
 from posixpath import normpath
+def startCheck(*args, **kwds):
+    colors.yellow('Check Vuln')
+    checkVuln.start(args[0],args[1])
 
 def create_logfile(seedUrl):
     tup = urlparse.urlparse(seedUrl)
@@ -87,6 +88,11 @@ def start(baseUrl,seedUrl):
     q = Queue.Queue()
     q.put(seed)
     bf = bloomFilter.BloomFilter(0.001,100000)
+    nums =1
+    pool = ThreadPool(nums)
+    
+# Join and destroy all threads
+
     # !!! need deal with seed._url
     bf.insert(seed._url)
     while(not q.empty()):
@@ -96,8 +102,8 @@ def start(baseUrl,seedUrl):
         count += 1 
         print '------'
         if req._query != {} :
-            colors.yellow('Check Vuln')
-            checkVuln.start(req,logfileName)
+            #pool.add_task(startCheck,req,logfileName)
+            startCheck(req,logfileName)
         print '------'
         
         reqs = crawler.crawl(req)
@@ -112,6 +118,7 @@ def start(baseUrl,seedUrl):
     f = open(logfileName,'r')
     x  = f.read()
     colors.green(x)
+    pool.destroy()
 
 
 #if __name__ == "__main__":

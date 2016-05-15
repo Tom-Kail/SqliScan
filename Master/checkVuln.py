@@ -8,7 +8,6 @@ import scripts.sqli.sqli as sqli
 from color_printer import colors
 import time
 
-
 # write log int log file 
 def write_vuln_log(rst,fileName):
 	# url, vulnName,payload, req, rsp
