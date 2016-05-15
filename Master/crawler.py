@@ -10,7 +10,24 @@ import scripts.sqli.bsqli_response_diff as bsqlitf
 import scripts.sqli.bsqli_time_delay as bsqlitd
 import scripts.sqli.sqli as sqli
 from bs4 import BeautifulSoup
+NotCrawlList=(
+    'logout',
+    'exit',
+    'phpids',
+    'sigout',
+   'logoff','signoff','quit','bye-bye','clearuser','invalidate','注销','退出','再见','清除用户','无效'
+    )
 
+def not_crawl(req):
+    for i in NotCrawlList:
+        if req._url.find(i)!=-1:
+            return True
+        for j in req._query:
+            if j.find(i)!=-1:
+                return True
+            if req._query[j].find(i)!=-1:
+                return True
+    return False
 
 def crawl(req):
     # begin crawler
@@ -44,7 +61,9 @@ def crawl(req):
         #print child
         #tmp = BeautifulSoup(child)
         tmpForm = formParse.Form(req._url,str(child))
-        formReqs.append(tmpForm.getReq())
+        tmpReq = tmpForm.getReq()
+        if not not_crawl(tmpReq):
+            formReqs.append(tmpReq)
 
     #print 'form urls :',formReqs:
     
@@ -57,10 +76,10 @@ def crawl(req):
 
     # only crawl url with the same netloc
     for url in urls:
-        if url.find('logout') != -1:
-            continue
 
         tmpReq = request.Request(req._url,url,'get')
+        if  not_crawl(tmpReq):
+            continue
         netlocTmp = urlparse.urlparse(tmpReq._url).netloc
         if netlocTmp == tup.netloc:
             reqs.append(request.Request(base=req._url,url=url,method='get'))

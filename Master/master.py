@@ -92,8 +92,9 @@ def start(baseUrl,seedUrl):
     while(not q.empty()):
         req = q.get()
         req._cookies = cookie
+        if req._url.find('sql')==-1:
+            continue
         count += 1 
-        
         if req._query != {}:
             checkVuln.start(req,logfileName)
         
