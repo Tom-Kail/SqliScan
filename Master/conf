@@ -7,5 +7,7 @@
 "User":"root",
 "Pwd":"",
 "CookieFileName":"cookie.txt",
-"DB":"sqliscan"
+"DB":"sqliscan",
+"MaxNode":50,
+"MaxThread":100
 }

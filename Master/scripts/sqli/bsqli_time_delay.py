@@ -65,12 +65,12 @@ class BSqliTimeDelay():
 			for payload in payloadQueryList:
 				payloadTime, rsp = self.get_payload_time(req,payload)
 				if (payloadTime - originTime) > maxTimeDiff:
-					print "\n*******************************"
-					print "* Find bsqlitd in:"
-					print "!++++++!url:",self._req._url
-					print "payload:",DelayPayload[i]%(delaySeconds)
-					print "*******************************\n"    
-					return result.Result([req],[rsp],[DelayPayload[i]%(delaySeconds)])
+					print "**************************"
+					print "* Find time delay sqli vuln!"
+					print "* URL:",self._req._url
+					print "* Payload:",DelayPayload[i]%(delaySeconds)
+					print "**************************"    
+					return result.Result([req],[rsp],[DelayPayload[i]%(delaySeconds)],vulnName='time delay sqli vuln',advice='use orm')
 		return None
 
 	

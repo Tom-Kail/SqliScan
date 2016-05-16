@@ -134,14 +134,18 @@ class Sqli(object):
 		for i in payloadQueryList:
 			req = copy.deepcopy(self._req)
 			rsp = request.sendPayload(req,i)
+			if rsp  == None:
+				return None
 			db = self.match_sql_error(rsp.text)
-			if db != "":	
-				print "*********************************************"
+			if db != "":			
+				print "**************************"
 				print "*  Find sqli vlun"
 				print "*  Url:",req._url
+				print "*  Payload:", SQLIPayload
 				print "*  Database: ",db
-				print "*********************************************"
-				return result.Result([req],[rsp],[SQLIPayload],vulnName='sqli',advice='use orm')			
+				print "**************************"
+				
+				return result.Result([req],[rsp],[SQLIPayload],vulnName='sqli',advice='use orm',db=db)			
 		return None
 	
 def start(req):

@@ -18,6 +18,7 @@ def write_vuln_log(rst,fileName):
 	advice = ''
 	vulnName = ''
 	method = ''
+	db = ''
 	if len(rst._req) != 0:
 		req = rst._req[0]
 		url = req._url
@@ -25,6 +26,7 @@ def write_vuln_log(rst,fileName):
 		query = str(req._query)
 		advice = rst._advice
 		vulnName = rst._vulnName
+		db = rst._db
 		payload = '\n'.join(rst._payload)
 
 	f.write('\n---')
@@ -33,11 +35,12 @@ def write_vuln_log(rst,fileName):
 	f.write('\nQuery: %s'%query)
 	f.write('\nPayload: %s'%payload)
 	f.write('\nAdvice: %s'%advice)
+	f.write('\nDatabase: %s'%db)
 	f.write('\n---')
 	f.close()
 
 def check(req):
-	print 'req._BFUrl: ',req._BFUrl,' ',req._method,' ', req._source
+	print 'URL fingerprint: ',req._BFUrl,'  ', req._source
 	try:
 		if req._query == {}:
 			return None

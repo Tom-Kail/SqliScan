@@ -6,13 +6,11 @@ import request
 import urlparse
 import formParse
 import config.config as config
-import scripts.sqli.bsqli_response_diff as bsqlitf
-import scripts.sqli.bsqli_time_delay as bsqlitd
-import scripts.sqli.sqli as sqli
 from bs4 import BeautifulSoup
 NotCrawlList=(
     'logout',
     'exit',
+    'security',
     'phpids',
     'sigout',
    'logoff','signoff','quit','bye-bye','clearuser','invalidate','注销','退出','再见','清除用户','无效'

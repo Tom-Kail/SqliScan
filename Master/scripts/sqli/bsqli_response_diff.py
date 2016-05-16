@@ -130,38 +130,40 @@ class BSqliRspDiff():
                 tmpReq2._query = trueQueryList2[j] 
                 rsp1 = request.sendRequest(tmpReq1)
                 rsp2 = request.sendRequest(tmpReq2)
+                if rsp1 == None or rsp2 ==None:
+                    return None
                 cleanRsp = self.relative_compare(rsp1.content,rsp2.content)
                 
                 tmpReq4._query = falseQueryList[j] 
                 rsp4 = request.sendRequest(tmpReq4)
+                if rsp4 == None:
+                    return None
                 payloadRsp = self.relative_compare(rsp1.content,rsp4.content)  
                 # payloadRsp = self.compare_response_diff(tmpReq1,tmpReq2)
                 
                 if cleanRsp == True and payloadRsp == False:
                     # find vuln and insert record into db
                     # code for insert db    
-                    print "\n*******************************"
-                    print "**Find bsqli in:"
-                    print "!!!!!!!!!!!url:",self._req._url
-                    print "*payload:",falseStm
-                    print "*cleanRsp:",cleanRsp
-                    print "*payloadRsp:",payloadRsp
-                    print "*******************************\n"
+                    print "**************************"
+                    print "* Find blind sqli vuln!"
+                    print "* URL:",self._req._url
+                    print "* Payload:",falseStm
+                    print "**************************"  
                     return result.Result([tmpReq1,tmpReq2,tmpReq4],[rsp1,rsp2,rsp4],TrueFalsePayload[i])
 
                 else:
                     tmpReq3._query = trueQueryList3[j] 
                     rsp3 = request.sendRequest(tmpReq3)
+                    if rsp3 == None:
+                        return None
                     orRsp = self.relative_compare(rsp3.content,rsp4.content) 
                     if cleanRsp == True and orRsp == False:
-                        print "\n*******************************"
-                        print "* Find bsqli in:"
-                        print "!!!!!!!!!url:",self._req._url
-                        print "*payload:",falseStm
-                        print "*cleanRsp:",cleanRsp
-                        print "*orRsp:",orRsp
-                        print "*******************************\n"                                       
-                        return result.Result([tmpReq1,tmpReq2,tmpReq3,tmpReq4],[rsp1,rsp2,rsp3,rsp4],TrueFalsePayload[i]) 
+                        print "**************************"
+                        print "* Find blind sqli vuln!"
+                        print "* URL:",self._req._url
+                        print "* Payload:",falseStm
+                        print "**************************"                                       
+                        return result.Result([tmpReq1,tmpReq2,tmpReq3,tmpReq4],[rsp1,rsp2,rsp3,rsp4],TrueFalsePayload[i],vulnName='blind sqli',advice='use orm') 
 
 
 def start(req): 

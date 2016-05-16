@@ -11,11 +11,14 @@ import urlparse
 import formParse
 import crawler
 import checkVuln
-import config.config as config
+from config.config import conf
 from threadpool import ThreadPool
 from color_printer import colors
 from bs4 import BeautifulSoup
 from posixpath import normpath
+
+MaxTreeLeafNum = conf['MaxNode']
+
 def startCheck(*args, **kwds):
     colors.yellow('Check Vuln')
     checkVuln.start(args[0],args[1])
@@ -60,8 +63,8 @@ def getCookie(loginUrl):
     #cookieFileName = config.conf['CookieFileName']
     # cookieFileName = '/root/cntzapfile.txt'
     #print 'Read cookie from file: ',cookieFileName
-    
-    cookieTmp = open('cookie.txt','r').read()
+    cookieFileName  =conf['CookieFileName']
+    cookieTmp = open(cookieFileName,'r').read()
     cookie = {}
     try:
         if len(cookieTmp.strip()) != 0:
@@ -73,6 +76,26 @@ def getCookie(loginUrl):
         pass
     return cookie
 
+tree = {}
+def gen_tree_path(url):
+    scheme, host, path, query, fragment = urlparse.urlsplit(url)
+    path = '/' if path=='' else path[:path.rfind('/')+1]
+    treePath = urlparse.urlunsplit((scheme,host,path,'',''))
+    return treePath
+def treeFilter(url):
+    '''
+    1. non-leaf-node
+    2. leaf-node
+    '''
+    treePath = gen_tree_path(url)
+    if tree.has_key(treePath):
+        val = tree[treePath]
+        if val > MaxTreeLeafNum:
+            return False
+        tree[treePath] =val + 1
+    else:
+        tree[treePath] = 1
+    return True
 
 def start(baseUrl,seedUrl):
     #seed = Request(base='http://192.168.42.131/dvwa/index.php',url='http://192.168.42.131/dvwa/index.php',method='get')
@@ -88,7 +111,8 @@ def start(baseUrl,seedUrl):
     q = Queue.Queue()
     q.put(seed)
     bf = bloomFilter.BloomFilter(0.001,100000)
-    nums =1
+    
+    nums = conf['MaxThread']
     pool = ThreadPool(nums)
     
 # Join and destroy all threads
@@ -100,25 +124,25 @@ def start(baseUrl,seedUrl):
         req._cookies = cookie
 
         count += 1 
-        print '------'
         if req._query != {} :
-            #pool.add_task(startCheck,req,logfileName)
-            startCheck(req,logfileName)
-        print '------'
+            pool.add_task(startCheck,req,logfileName)
+            #startCheck(req,logfileName)
         
         reqs = crawler.crawl(req)
         # test sqli vuln
-        # prase url by bloomFilter and treeFilter ?++?
+        # prase url by bloomFilter and treeFilter ?
         for x in reqs:
-            if not bf.exist(x._BFUrl):
+            if not bf.exist(x._BFUrl) and treeFilter(x._url):
+            #if not bf.exist(x._BFUrl) :
                 bf.insert(x._BFUrl)
                 q.put(x)
 
     print "Number of url:",count
+    pool.destroy()
     f = open(logfileName,'r')
     x  = f.read()
     colors.green(x)
-    pool.destroy()
+    
 
 
 #if __name__ == "__main__":
