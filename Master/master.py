@@ -11,7 +11,7 @@ import urlparse
 import formParse
 import crawler
 import checkVuln
-from config.config import conf
+import config.config as config
 from threadpool import ThreadPool
 from color_printer import colors
 from bs4 import BeautifulSoup
@@ -58,10 +58,10 @@ def getCookie(loginUrl):
             finish = ''
     # read cookie from cookieFile
     #print config.conf
-    #cookieFileName = config.conf['CookieFileName']
+    #cookieFileName = config.config.conf['CookieFileName']
     # cookieFileName = '/root/cntzapfile.txt'
     #print 'Read cookie from file: ',cookieFileName
-    cookieFileName  =conf['CookieFileName']
+    cookieFileName  =config.conf['CookieFileName']
     cookieTmp = open(cookieFileName,'r').read()
     cookie = {}
     try:
@@ -87,19 +87,22 @@ def treeFilter(url):
     '''
     treePath = gen_tree_path(url)
     if tree.has_key(treePath):
-        val = tree[treePath]
-        colors.red('maxnode'+str(conf['MaxNode']))
-        if val > conf['MaxNode']:
+        #if tree[treePath] > config.conf['MaxNode']:
+        if int(tree[treePath]) > int(config.conf['MaxNode']):
+            #print 'treePath:',tree[treePath],'\tmaxnode:',maxnode,'\tRst:','False'
             return False
-        tree[treePath] =val + 1
+        else:
+            tree[treePath] +=1
+            #colors.red( 'treePath:'+str(tree[treePath])+'\tmaxnode:'+str(maxnode)+'\tRst:'+'True')
+            return True
     else:
         tree[treePath] = 1
-    return True
+        return True
 
 def start(baseUrl,seedUrl):
     #seed = Request(base='http://192.168.42.131/dvwa/index.php',url='http://192.168.42.131/dvwa/index.php',method='get')
 
-    seed = request.Request(base=baseUrl,url=seedUrl,timeout=conf['connTimeout'],query={},method='get')
+    seed = request.Request(base=baseUrl,url=seedUrl,timeout=config.conf['connTimeout'],query={},method='get')
     #seed = request.Request(base='http://192.168.42.132/dvwa/',url='http://192.168.42.132/dvwa/',query={},method='get')
     colors.green( 'seed url: %s'%seed._url)
     logfileName = create_logfile(seed._url)
@@ -112,7 +115,7 @@ def start(baseUrl,seedUrl):
     q.put(seed)
     bf = bloomFilter.BloomFilter(0.001,100000)
     
-    nums = conf['MaxThread']
+    nums = config.conf['MaxThread']
     pool = ThreadPool(nums)
     
 # Join and destroy all threads
@@ -132,7 +135,7 @@ def start(baseUrl,seedUrl):
         # prase url by bloomFilter and treeFilter ?
         for x in reqs:
             if not bf.exist(x._BFUrl) and treeFilter(x._url):
-            #if not bf.exist(x._BFUrl) :
+                #if not bf.exist(x._BFUrl) :
                 bf.insert(x._BFUrl)
                 q.put(x)
 
@@ -164,8 +167,7 @@ def main(argv):
         print str(err)
         Usage()
         sys.exit(2)
-    conf['url'] = ''
-
+    config.conf['url'] = ''
     for k, v in opts:
         if k in ('-h', '--help'):
             Usage()
@@ -174,22 +176,24 @@ def main(argv):
             Version()
             sys.exit(0)
         elif k in ('-u', '--url'):
-            conf['url'] = v
+            config.conf['url'] = v
         elif k in ('--thread',):
-            conf['MaxThread'] = v
+            config.conf['MaxThread'] = v
         elif k in ('-t','--timeout'):
-            conf['connTimeout'] = v
-        elif k in ('-m','-maxnode'):
-            conf['MaxNode'] = v
+            config.conf['connTimeout'] = v
+        elif k in ('-m','--maxnode'):
+            #MaxNode = v
+            config.conf['MaxNode'] = v
+
         else:
             print 'unhandled option'
             sys.exit(3)
-    if conf['url'] =='':
+    if config.conf['url'] =='':
         colors.red('please input url!')
         sys.exit()
     else:
         colors.blue('Start scanning')
-        start(conf['url'],conf['url'])
+        start(config.conf['url'],config.conf['url'])
 
 
 if len(sys.argv) == 1:
