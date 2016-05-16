@@ -6,8 +6,10 @@
 "DBPort":"3306",
 "User":"root",
 "Pwd":"",
+"connTimeout":2,
+"bsqliTimeout":20,
 "CookieFileName":"cookie.txt",
 "DB":"sqliscan",
-"MaxNode":50,
-"MaxThread":100
+"MaxNode":20,
+"MaxThread":50
 }

@@ -16,8 +16,7 @@ from threadpool import ThreadPool
 from color_printer import colors
 from bs4 import BeautifulSoup
 from posixpath import normpath
-
-MaxTreeLeafNum = conf['MaxNode']
+import getopt
 
 def startCheck(*args, **kwds):
     checkVuln.start(args[0],args[1])
@@ -89,7 +88,8 @@ def treeFilter(url):
     treePath = gen_tree_path(url)
     if tree.has_key(treePath):
         val = tree[treePath]
-        if val > MaxTreeLeafNum:
+        colors.red('maxnode'+str(conf['MaxNode']))
+        if val > conf['MaxNode']:
             return False
         tree[treePath] =val + 1
     else:
@@ -98,7 +98,8 @@ def treeFilter(url):
 
 def start(baseUrl,seedUrl):
     #seed = Request(base='http://192.168.42.131/dvwa/index.php',url='http://192.168.42.131/dvwa/index.php',method='get')
-    seed = request.Request(base=baseUrl,url=seedUrl,query={},method='get')
+
+    seed = request.Request(base=baseUrl,url=seedUrl,timeout=conf['connTimeout'],query={},method='get')
     #seed = request.Request(base='http://192.168.42.132/dvwa/',url='http://192.168.42.132/dvwa/',query={},method='get')
     colors.green( 'seed url: %s'%seed._url)
     logfileName = create_logfile(seed._url)
@@ -126,7 +127,6 @@ def start(baseUrl,seedUrl):
         if req._query != {} :
             pool.add_task(startCheck,req,logfileName)
             #startCheck(req,logfileName)
-        
         reqs = crawler.crawl(req)
         # test sqli vuln
         # prase url by bloomFilter and treeFilter ?
@@ -136,8 +136,9 @@ def start(baseUrl,seedUrl):
                 bf.insert(x._BFUrl)
                 q.put(x)
 
-    print "Number of url:",count
+
     pool.destroy()
+    print "Number of url:",count
     f = open(logfileName,'r')
     colors.blue('\nScan result:\n\n')
     x  = f.read()
@@ -145,10 +146,54 @@ def start(baseUrl,seedUrl):
     colors.blue('\nAbove is the result of scan, and the result is stored in file "%s"\n\n'%logfileName)
     
 
+def Usage():
+    print 'SqliScan Usage:\n'
+    print '\t-h,--help:\tprint help message.\n'
+    print '\t-u,--url:\tseed url\n'
+    print '\t-m,--maxnode:\tmax url num in one dir\n'
+    print '\t-t,--timeout:\thttp request timeout\n'
+    print '\t--thread:\tmax thread num \n'
+    print '\t--version:\tprint version \n'
+def Version():
+    print 'SqliScan 1.0.0'
 
-#if __name__ == "__main__":
-if len(sys.argv) == 2:
-    start(sys.argv[1],sys.argv[1])
-else:
+def main(argv):
+    try:
+        opts, args = getopt.getopt(argv[1:], 'hu:m:t:', ['help','thread=', 'version','url=','maxnode=','thread='])
+    except getopt.GetoptError, err:
+        print str(err)
+        Usage()
+        sys.exit(2)
+    conf['url'] = ''
+
+    for k, v in opts:
+        if k in ('-h', '--help'):
+            Usage()
+            sys.exit(1)
+        elif k in ('-v', '--version'):
+            Version()
+            sys.exit(0)
+        elif k in ('-u', '--url'):
+            conf['url'] = v
+        elif k in ('--thread',):
+            conf['MaxThread'] = v
+        elif k in ('-t','--timeout'):
+            conf['connTimeout'] = v
+        elif k in ('-m','-maxnode'):
+            conf['MaxNode'] = v
+        else:
+            print 'unhandled option'
+            sys.exit(3)
+    if conf['url'] =='':
+        colors.red('please input url!')
+        sys.exit()
+    else:
+        colors.blue('Start scanning')
+        start(conf['url'],conf['url'])
+
+
+if len(sys.argv) == 1:
     colors.red('please input url!')
     sys.exit()
+else:
+    main(sys.argv)

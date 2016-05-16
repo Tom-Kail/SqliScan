@@ -5,7 +5,7 @@ import re
 import request
 import urlparse
 import formParse
-import config.config as config
+from config.config import conf
 from bs4 import BeautifulSoup
 NotCrawlList=(
     'logout',
@@ -29,6 +29,7 @@ def not_crawl(req):
 
 def crawl(req):
     # begin crawler
+    req._timeout = conf['connTimeout'] 
     tup = urlparse.urlparse(req._url)
     # test sqli vuln
     #print '\nreq._BFUrl: ',req._BFUrl,' ',req._method,' ', req._source
