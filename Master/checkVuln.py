@@ -40,7 +40,7 @@ def write_vuln_log(rst,fileName):
 	f.close()
 
 def check(req):
-	print 'URL fingerprint: ',req._BFUrl,'  ', req._source
+	print 'URL: ',req._BFUrl,'  ', req._source
 	try:
 		if req._query == {}:
 			return None
@@ -63,7 +63,5 @@ def check(req):
 
 def start(req,fileName):
 	rsp = check(req)
-
 	if rsp != None:
-		colors.red("Find Vuln")
 		write_vuln_log(rsp,fileName)

@@ -2,6 +2,7 @@
 import request
 import result
 import Levenshtein
+from color_printer import colors
 import copy
 import re
 import os
@@ -65,11 +66,11 @@ class BSqliTimeDelay():
 			for payload in payloadQueryList:
 				payloadTime, rsp = self.get_payload_time(req,payload)
 				if (payloadTime - originTime) > maxTimeDiff:
-					print "**************************"
-					print "* Find time delay sqli vuln!"
-					print "* URL:",self._req._url
-					print "* Payload:",DelayPayload[i]%(delaySeconds)
-					print "**************************"    
+					colors.yellow("**************************")
+					colors.yellow( "* Find time delay sqli vuln!")
+					colors.yellow( "* URL:"+self._req._url)
+					colors.yellow("* Payload:"+DelayPayload[i]%(delaySeconds))
+					colors.yellow( "**************************" ) 
 					return result.Result([req],[rsp],[DelayPayload[i]%(delaySeconds)],vulnName='time delay sqli vuln',advice='use orm')
 		return None
 

@@ -2,6 +2,7 @@
 import request
 import result
 import Levenshtein
+from color_printer import colors
 import copy
 import re
 import os
@@ -144,11 +145,11 @@ class BSqliRspDiff():
                 if cleanRsp == True and payloadRsp == False:
                     # find vuln and insert record into db
                     # code for insert db    
-                    print "**************************"
-                    print "* Find blind sqli vuln!"
-                    print "* URL:",self._req._url
-                    print "* Payload:",falseStm
-                    print "**************************"  
+                    colors.yellow(  "**************************")
+                    colors.yellow(  "* Find blind sqli vuln!")
+                    colors.yellow(  "* URL:"+self._req._url)
+                    colors.yellow(  "* Payload:"+falseStm)
+                    colors.yellow(  "**************************"  )
                     return result.Result([tmpReq1,tmpReq2,tmpReq4],[rsp1,rsp2,rsp4],TrueFalsePayload[i])
 
                 else:
@@ -158,11 +159,11 @@ class BSqliRspDiff():
                         return None
                     orRsp = self.relative_compare(rsp3.content,rsp4.content) 
                     if cleanRsp == True and orRsp == False:
-                        print "**************************"
-                        print "* Find blind sqli vuln!"
-                        print "* URL:",self._req._url
-                        print "* Payload:",falseStm
-                        print "**************************"                                       
+                        colors.yellow(  "**************************")
+                        colors.yellow(  "* Find blind sqli vuln!")
+                        colors.yellow(  "* URL:"+self._req._url)
+                        colors.yellow(  "* Payload:"+falseStm)
+                        colors.yellow(  "**************************")                                       
                         return result.Result([tmpReq1,tmpReq2,tmpReq3,tmpReq4],[rsp1,rsp2,rsp3,rsp4],TrueFalsePayload[i],vulnName='blind sqli',advice='use orm') 
 
 

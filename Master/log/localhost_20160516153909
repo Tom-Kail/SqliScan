@@ -1,9 +1,0 @@
-Target: http://localhost/dvwa/ (GET)
-
----
-URL:http://localhost/dvwa/vulnerabilities/brute/ (GET)
-VulnName: sqli
-Query: {'username': 'cntvalue', 'Login': 'Login', 'password': 'cntvalue'}
-Payload: d'z"0
-Advice: use orm
----

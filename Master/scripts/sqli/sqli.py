@@ -4,6 +4,7 @@ import result
 import Levenshtein
 import copy
 import re
+from color_printer import colors
          
 #SQLIPayload = "d';z\"0`\\"                       
 SQLIPayload = "d'z\"0"                       
@@ -138,12 +139,12 @@ class Sqli(object):
 				return None
 			db = self.match_sql_error(rsp.text)
 			if db != "":			
-				print "**************************"
-				print "*  Find sqli vlun"
-				print "*  Url:",req._url
-				print "*  Payload:", SQLIPayload
-				print "*  Database: ",db
-				print "**************************"
+				colors.yellow( "**************************")
+				colors.yellow( "*  Find sqli vlun")
+				colors.yellow( "*  Url:"+req._url)
+				colors.yellow(  "*  Payload:"+ SQLIPayload)
+				colors.yellow(  "*  Database: "+db)
+				colors.yellow(  "**************************")
 				
 				return result.Result([req],[rsp],[SQLIPayload],vulnName='sqli',advice='use orm',db=db)			
 		return None

@@ -20,7 +20,6 @@ from posixpath import normpath
 MaxTreeLeafNum = conf['MaxNode']
 
 def startCheck(*args, **kwds):
-    colors.yellow('Check Vuln')
     checkVuln.start(args[0],args[1])
 
 def create_logfile(seedUrl):
@@ -140,8 +139,10 @@ def start(baseUrl,seedUrl):
     print "Number of url:",count
     pool.destroy()
     f = open(logfileName,'r')
+    colors.blue('\nScan result:\n\n')
     x  = f.read()
     colors.green(x)
+    colors.blue('\nAbove is the result of scan, and the result is stored in file "%s"\n\n'%logfileName)
     
 
 

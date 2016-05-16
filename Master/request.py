@@ -33,7 +33,7 @@ class Request(object):
         if len(tmp) >0 and tmp[-1] == '&':
              tmp = tmp[:-1]
         self._BFUrl += tmp
-        self._BFUrl += self._method        
+        self._BFUrl += '\t'+self._method        
         '''
         if self._method == 'get':
             if tup.query != '':
