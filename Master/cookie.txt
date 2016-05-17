@@ -1,9 +1,1 @@
-GET http://platform.twitter.com/widgets.js HTTP/1.1
-Host: platform.twitter.com
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0 Iceweasel/31.8.0
-Accept: */*
-Accept-Language: zh-cn,en-us;q=0.7,en;q=0.3
-Accept-Encoding: gzip, deflate
-Referer: http://192.168.42.133/
-Connection: keep-alive
-
+ security=impossible; PHPSESSID=0hhtubf3vou5cnpoiemvjstsp5

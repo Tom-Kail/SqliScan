@@ -4,27 +4,44 @@ import sys
 import re
 import request
 import urlparse
+import chardet
 import formParse
 from config.config import conf
 from bs4 import BeautifulSoup
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 NotCrawlList=(
     'logout',
     'exit',
     'security',
     'phpids',
-    'sigout',
+    'sigout','.js','.css',
    'logoff','signoff','quit','bye-bye','clearuser','invalidate','注销','退出','再见','清除用户','无效'
     )
 
+def toUTF8(s):
+    return s
+    encoding = chardet.detect(s)
+    if encoding['encoding'] == 'GB2312':
+        s = s.decode('GB2312','ignore').encode('utf-8')
+    elif encoding['encoding'] == 'GBK':
+        s = s.decode('gbk','ignore').encode('utf-8')
+    return s
+
 def not_crawl(req):
     for i in NotCrawlList:
-        if req._url.find(i)!=-1:
-            return True
-        for j in req._query:
-            if j.find(i)!=-1:
+        try:
+            if req._url.find(i)!=-1:
                 return True
-            if req._query[j].find(i)!=-1:
-                return True
+            for j in req._query:
+                if j.find(i)!=-1:
+                    return True
+                if req._query[j].find(i)!=-1:
+                    return True
+        except Exception as err:
+            return False
     return False
 
 def crawl(req):
@@ -38,7 +55,7 @@ def crawl(req):
         if req._source == 'regex':
             rsp = request.sendRequest(req)
             if rsp != None:
-                html = rsp.content
+                html = toUTF8(rsp.content)
     except Exception as err:
         print '[Spider Error]: ',err,' Url: ',req._url
 

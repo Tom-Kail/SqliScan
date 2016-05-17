@@ -1,7 +1,9 @@
 # coding=utf-8
 import cmath
 from BitVector import BitVector
-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 class BloomFilter(object):
     def __init__(self, error_rate, elementNum):
         #计算所需要的bit数
@@ -88,6 +90,7 @@ class BloomFilter(object):
             chval = ord(ch)
             hash_val = hash_val * seed + chval
         return hash_val
+
 if __name__ == "__main__":
     #测试代码
     bf = BloomFilter(0.001, 1000000)

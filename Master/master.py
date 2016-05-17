@@ -11,6 +11,7 @@ import bloomFilter
 import urlparse
 import formParse
 import crawler
+import threading
 import checkVuln
 import config.config as config
 from threadpool import ThreadPool
@@ -18,6 +19,11 @@ from color_printer import colors
 from bs4 import BeautifulSoup
 from posixpath import normpath
 import getopt
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
+
 
 def startCheck(*args, **kwds):
     checkVuln.start(args[0],args[1])
@@ -32,9 +38,14 @@ def create_logfile(seedUrl):
     logfile .write('Target: '+ seedUrl + ' (GET)\n')
     logfile.close()
     return logName
+def start_proxy():
+    
+    os.system('ps -ef | grep -v grep | grep proxy.py | awk \'{print $2}\'|xargs kill -9')
+    os.system('python proxy.py --hostname 127.0.0.1 --port 8899 --log-level ERROR')
 
 def getCookie(loginUrl):
     colors.green('Do you want recording cookie?(y/N)')
+    
     while True: 
         finish = raw_input('')
         i = finish.lower().lower() 
@@ -42,7 +53,8 @@ def getCookie(loginUrl):
             return  {}
         else:
             break
-
+    th = threading.Thread(target=start_proxy)
+    th.start()
     if loginUrl == '':
         return ''
     # recording cookie
@@ -124,11 +136,14 @@ def start(baseUrl,seedUrl):
     # !!! need deal with seed._url
     bf.insert(seed._url)
     while(not q.empty()):
+        
         req = q.get()
+        print 'URL: ',req._BFUrl,'  ', req._source
         req._cookies = cookie
 
         count += 1 
         if req._query != {} :
+            #pass
             pool.add_task(startCheck,req,logfileName)
             #startCheck(req,logfileName)
         reqs = crawler.crawl(req)
@@ -148,6 +163,7 @@ def start(baseUrl,seedUrl):
     x  = f.read()
     colors.green(x)
     colors.blue('\nAbove is the result of scan, and the result is stored in file "%s"\n\n'%(os.getcwd()+'/'+logfileName))
+    os.system('ps -ef | grep -v grep | grep proxy.py | awk \'{print $2}\'|xargs kill -9')
     
 
 def Usage():
@@ -177,7 +193,15 @@ def main(argv):
             Version()
             sys.exit(0)
         elif k in ('-u', '--url'):
-            config.conf['url'] = v
+            # 1. http://xxx
+            # 1. http://xxx
+            if len(v) < 4:
+                config.conf['url'] = 'http://'+v
+            elif len(v)>4 and v[0:4].lower()!='http':
+                config.conf['url'] = 'http://'+v
+            elif len(v)>4 and v[0:4].lower()=='http':
+                config.conf['url'] = v
+
         elif k in ('--thread',):
             config.conf['MaxThread'] = int(v)
         elif k in ('-t','--timeout'):

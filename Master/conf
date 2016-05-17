@@ -10,6 +10,6 @@
 "bsqliTimeout":20,
 "CookieFileName":"cookie.txt",
 "DB":"sqliscan",
-"MaxNode":15,
-"MaxThread":50
+"MaxNode":1000000,
+"MaxThread":100
 }
