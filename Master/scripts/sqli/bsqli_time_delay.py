@@ -56,23 +56,29 @@ class BSqliTimeDelay():
 		return time2 - time1, rsp
 
 	def time_delay(self):
-		originTime = self.get_origin_time()
-		for i in range(len(DelayPayload)):
-			req = copy.deepcopy(self._req)
-			# use DelayPayload to generate payload req
-			delaySeconds = "3"
-			maxTimeDiff  = 2 
-			payloadQueryList = request.get_payload_query_list(req._query,DelayPayload[i]%(delaySeconds))
-			for payload in payloadQueryList:
-				payloadTime, rsp = self.get_payload_time(req,payload)
-				if (payloadTime - originTime) > maxTimeDiff:
-					colors.yellow("**************************")
-					colors.yellow( "* Find time delay sqli vuln!")
-					colors.yellow( "* URL:"+self._req._url)
-					colors.yellow("* Payload:"+DelayPayload[i]%(delaySeconds))
-					colors.yellow( "**************************" ) 
-					return result.Result([req],[rsp],[DelayPayload[i]%(delaySeconds)],vulnName='time delay sqli vuln',advice='use orm')
-		return None
+		try:
+			originTime = self.get_origin_time()
+			for i in range(len(DelayPayload)):
+				req = copy.deepcopy(self._req)
+				# use DelayPayload to generate payload req
+				delaySeconds = "3"
+				maxTimeDiff  = 2 
+				payloadQueryList = request.get_payload_query_list(req._query,DelayPayload[i]%(delaySeconds))
+				for payload in payloadQueryList:
+					payloadTime, rsp = self.get_payload_time(req,payload)
+					if (payloadTime - originTime) > maxTimeDiff:
+						colors.yellow("**************************")
+						colors.yellow("* Find time delay sqli vuln!")
+						colors.yellow("* URL:"+self._req._url)
+						colors.yellow("* Payload:"+DelayPayload[i]%(delaySeconds))
+						colors.yellow( "**************************" ) 
+						return result.Result([req],[rsp],[DelayPayload[i]%(delaySeconds)],vulnName='time delay sqli vuln',advice='use orm')
+			return None
+		except Exception as err:
+			return None
+
+
+
 
 	
 def start(req):

@@ -108,64 +108,66 @@ class BSqliRspDiff():
         print "ratio:",ratio," eq_limit:0.98"," rst:",True
             
     def response_diff(self):
-        req = self._req
-        #true/false response comparison
-        for i in range(0,len(TrueFalsePayload)):
-            trueStm1 = TrueFalsePayload[i][0]
-            trueStm2 = TrueFalsePayload[i][1]
-            trueStm3 = TrueFalsePayload[i][2]
-            falseStm = TrueFalsePayload[i][3]
-            
-            trueQueryList1=request.get_payload_query_list(req._query,trueStm1)
-            trueQueryList2=request.get_payload_query_list(req._query,trueStm2)
-            trueQueryList3=request.get_payload_query_list(req._query,trueStm3)
-            falseQueryList=request.get_payload_query_list(req._query,falseStm)
-
-            for j in range(len(trueQueryList1)):
-                tmpReq1 = copy.deepcopy(req)
-                tmpReq2 = copy.deepcopy(req)
-                tmpReq3 = copy.deepcopy(req)
-                tmpReq4 = copy.deepcopy(req)
-
-                #tmpReq1._query = trueQueryList1[j] 
-                tmpReq2._query = trueQueryList2[j] 
-                rsp1 = request.sendRequest(tmpReq1)
-                rsp2 = request.sendRequest(tmpReq2)
-                if rsp1 == None or rsp2 ==None:
-                    return None
-                cleanRsp = self.relative_compare(rsp1.content,rsp2.content)
+        try:
+            req = self._req
+            #true/false response comparison
+            for i in range(0,len(TrueFalsePayload)):
+                trueStm1 = TrueFalsePayload[i][0]
+                trueStm2 = TrueFalsePayload[i][1]
+                trueStm3 = TrueFalsePayload[i][2]
+                falseStm = TrueFalsePayload[i][3]
                 
-                tmpReq4._query = falseQueryList[j] 
-                rsp4 = request.sendRequest(tmpReq4)
-                if rsp4 == None:
-                    return None
-                payloadRsp = self.relative_compare(rsp1.content,rsp4.content)  
-                # payloadRsp = self.compare_response_diff(tmpReq1,tmpReq2)
-                
-                if cleanRsp == True and payloadRsp == False:
-                    # find vuln and insert record into db
-                    # code for insert db    
-                    colors.yellow(  "**************************")
-                    colors.yellow(  "* Find blind sqli vuln!")
-                    colors.yellow(  "* URL:"+self._req._url)
-                    colors.yellow(  "* Payload:"+falseStm)
-                    colors.yellow(  "**************************"  )
-                    return result.Result([tmpReq1,tmpReq2,tmpReq4],[rsp1,rsp2,rsp4],TrueFalsePayload[i])
+                trueQueryList1=request.get_payload_query_list(req._query,trueStm1)
+                trueQueryList2=request.get_payload_query_list(req._query,trueStm2)
+                trueQueryList3=request.get_payload_query_list(req._query,trueStm3)
+                falseQueryList=request.get_payload_query_list(req._query,falseStm)
 
-                else:
-                    tmpReq3._query = trueQueryList3[j] 
-                    rsp3 = request.sendRequest(tmpReq3)
-                    if rsp3 == None:
+                for j in range(len(trueQueryList1)):
+                    tmpReq1 = copy.deepcopy(req)
+                    tmpReq2 = copy.deepcopy(req)
+                    tmpReq3 = copy.deepcopy(req)
+                    tmpReq4 = copy.deepcopy(req)
+
+                    #tmpReq1._query = trueQueryList1[j] 
+                    tmpReq2._query = trueQueryList2[j] 
+                    rsp1 = request.sendRequest(tmpReq1)
+                    rsp2 = request.sendRequest(tmpReq2)
+                    if rsp1 == None or rsp2 ==None:
                         return None
-                    orRsp = self.relative_compare(rsp3.content,rsp4.content) 
-                    if cleanRsp == True and orRsp == False:
+                    cleanRsp = self.relative_compare(rsp1.content,rsp2.content)
+                    
+                    tmpReq4._query = falseQueryList[j] 
+                    rsp4 = request.sendRequest(tmpReq4)
+                    if rsp4 == None:
+                        return None
+                    payloadRsp = self.relative_compare(rsp1.content,rsp4.content)  
+                    # payloadRsp = self.compare_response_diff(tmpReq1,tmpReq2)
+                    
+                    if cleanRsp == True and payloadRsp == False:
+                        # find vuln and insert record into db
+                        # code for insert db    
                         colors.yellow(  "**************************")
                         colors.yellow(  "* Find blind sqli vuln!")
                         colors.yellow(  "* URL:"+self._req._url)
                         colors.yellow(  "* Payload:"+falseStm)
-                        colors.yellow(  "**************************")                                       
-                        return result.Result([tmpReq1,tmpReq2,tmpReq3,tmpReq4],[rsp1,rsp2,rsp3,rsp4],TrueFalsePayload[i],vulnName='blind sqli',advice='use orm') 
+                        colors.yellow(  "**************************"  )
+                        return result.Result([tmpReq1,tmpReq2,tmpReq4],[rsp1,rsp2,rsp4],TrueFalsePayload[i])
 
+                    else:
+                        tmpReq3._query = trueQueryList3[j] 
+                        rsp3 = request.sendRequest(tmpReq3)
+                        if rsp3 == None:
+                            return None
+                        orRsp = self.relative_compare(rsp3.content,rsp4.content) 
+                        if cleanRsp == True and orRsp == False:
+                            colors.yellow(  "**************************")
+                            colors.yellow(  "* Find blind sqli vuln!")
+                            colors.yellow(  "* URL:"+self._req._url)
+                            colors.yellow(  "* Payload:"+falseStm)
+                            colors.yellow(  "**************************")                                       
+                            return result.Result([tmpReq1,tmpReq2,tmpReq3,tmpReq4],[rsp1,rsp2,rsp3,rsp4],TrueFalsePayload[i],vulnName='blind sqli',advice='use orm') 
+        except Exception as err:
+            return None
 
 def start(req): 
     bsi = BSqliRspDiff(req)

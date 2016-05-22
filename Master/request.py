@@ -2,6 +2,7 @@
 # encoding=utf-8
 import requests
 import urlparse
+import config.config as config
 import copy
 
 class Request(object):
@@ -121,7 +122,9 @@ def sendPayload(req,payloadQuery):
     tmpReq._query = payloadQuery
     return sendRequest(tmpReq)
 
-def sendRequest(req):
+def sendRequest(req,tried=0):
+    if tried == config.conf['MaxRetryTimes']:
+        raise(requests.exceptions.ConnectTimeout)
     try:
         method = req._method.lower()
         if method == 'get':
@@ -132,9 +135,11 @@ def sendRequest(req):
             return r
         else:
             print '[Info]: Method '+ method +' not support!'
-
+            return None
     except Exception as err:
-        print '[Error]: ',err
-    return None
+        if type(err) == requests.exceptions.ConnectTimeout:
+            sendRequest(req,tried+1)
+        else:
+            raise(err)
 
 

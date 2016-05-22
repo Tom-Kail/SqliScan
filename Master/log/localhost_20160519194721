@@ -1,0 +1,2864 @@
+Target: http://localhost/dvwa/ (GET)
+
+---
+URL:http://localhost/dvwa/vulnerabilities/exec/ (POST)
+VulnName: blind sqli
+Query: {'ip': 'cntvalue', 'Submit': 'Submit', 'user_token': '80fc6ea9b371f4c2951478149b5f233d'}
+Payload: +and+26912=26912
++and+31127=31127
++or+12624=12624#
++and+8117=8118
+Advice: use orm
+Database: unknown
+-----------1:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Vulnerability: Command Injection :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="../../dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="../../favicon.ico" />
+
+		<script type="text/javascript" src="../../dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="../../dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='../../.'" class=""><a href="../../.">Home</a></li>
+<li onclick="window.location='../../instructions.php'" class=""><a href="../../instructions.php">Instructions</a></li>
+<li onclick="window.location='../../setup.php'" class=""><a href="../../setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../vulnerabilities/brute/'" class=""><a href="../../vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='../../vulnerabilities/exec/'" class="selected"><a href="../../vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/csrf/'" class=""><a href="../../vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='../../vulnerabilities/fi/.?page=include.php'" class=""><a href="../../vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='../../vulnerabilities/upload/'" class=""><a href="../../vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='../../vulnerabilities/captcha/'" class=""><a href="../../vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli/'" class=""><a href="../../vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli_blind/'" class=""><a href="../../vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_r/'" class=""><a href="../../vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_s/'" class=""><a href="../../vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../security.php'" class=""><a href="../../security.php">DVWA Security</a></li>
+<li onclick="window.location='../../phpinfo.php'" class=""><a href="../../phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='../../about.php'" class=""><a href="../../about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../logout.php'" class=""><a href="../../logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+<div class="body_padded">
+	<h1>Vulnerability: Command Injection</h1>
+
+	<div class="vulnerable_code_area">
+		<h2>Ping a device</h2>
+
+		<form name="ping" action="#" method="post">
+			<p>
+				Enter an IP address:
+				<input type="text" name="ip" size="30">
+				<input type="submit" name="Submit" value="Submit">
+			</p>
+			<input type='hidden' name='user_token' value='8374872fa27f7c3614315650bf8e625e' />
+		</form>
+		
+	</div>
+
+	<h2>More Information</h2>
+	<ul>
+		<li><a href="http://hiderefer.com/?http://www.scribd.com/doc/2530476/Php-Endangers-Remote-Code-Execution" target="_blank">http://www.scribd.com/doc/2530476/Php-Endangers-Remote-Code-Execution</a></li>
+		<li><a href="http://hiderefer.com/?http://www.ss64.com/bash/" target="_blank">http://www.ss64.com/bash/</a></li>
+		<li><a href="http://hiderefer.com/?http://www.ss64.com/nt/" target="_blank">http://www.ss64.com/nt/</a></li>
+		<li><a href="http://hiderefer.com/?https://www.owasp.org/index.php/Command_Injection" target="_blank">https://www.owasp.org/index.php/Command_Injection</a></li>
+	</ul>
+</div>
+
+				<br /><br />
+				<div class="body_padded"><div class="message">CSRF token is incorrect</div></div>
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<input type="button" value="View Help" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_help.php?id=exec&security=impossible' )"> <input type="button" value="View Source" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_source.php?id=exec&security=impossible' )"> <div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+-----------2:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Vulnerability: Command Injection :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="../../dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="../../favicon.ico" />
+
+		<script type="text/javascript" src="../../dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="../../dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='../../.'" class=""><a href="../../.">Home</a></li>
+<li onclick="window.location='../../instructions.php'" class=""><a href="../../instructions.php">Instructions</a></li>
+<li onclick="window.location='../../setup.php'" class=""><a href="../../setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../vulnerabilities/brute/'" class=""><a href="../../vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='../../vulnerabilities/exec/'" class="selected"><a href="../../vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/csrf/'" class=""><a href="../../vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='../../vulnerabilities/fi/.?page=include.php'" class=""><a href="../../vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='../../vulnerabilities/upload/'" class=""><a href="../../vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='../../vulnerabilities/captcha/'" class=""><a href="../../vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli/'" class=""><a href="../../vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli_blind/'" class=""><a href="../../vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_r/'" class=""><a href="../../vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_s/'" class=""><a href="../../vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../security.php'" class=""><a href="../../security.php">DVWA Security</a></li>
+<li onclick="window.location='../../phpinfo.php'" class=""><a href="../../phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='../../about.php'" class=""><a href="../../about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../logout.php'" class=""><a href="../../logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+<div class="body_padded">
+	<h1>Vulnerability: Command Injection</h1>
+
+	<div class="vulnerable_code_area">
+		<h2>Ping a device</h2>
+
+		<form name="ping" action="#" method="post">
+			<p>
+				Enter an IP address:
+				<input type="text" name="ip" size="30">
+				<input type="submit" name="Submit" value="Submit">
+			</p>
+			<input type='hidden' name='user_token' value='b100d644102f653f4699a0ba73ac6f86' />
+		</form>
+		
+	</div>
+
+	<h2>More Information</h2>
+	<ul>
+		<li><a href="http://hiderefer.com/?http://www.scribd.com/doc/2530476/Php-Endangers-Remote-Code-Execution" target="_blank">http://www.scribd.com/doc/2530476/Php-Endangers-Remote-Code-Execution</a></li>
+		<li><a href="http://hiderefer.com/?http://www.ss64.com/bash/" target="_blank">http://www.ss64.com/bash/</a></li>
+		<li><a href="http://hiderefer.com/?http://www.ss64.com/nt/" target="_blank">http://www.ss64.com/nt/</a></li>
+		<li><a href="http://hiderefer.com/?https://www.owasp.org/index.php/Command_Injection" target="_blank">https://www.owasp.org/index.php/Command_Injection</a></li>
+	</ul>
+</div>
+
+				<br /><br />
+				<div class="body_padded"><div class="message">CSRF token is incorrect</div><div class="message">CSRF token is incorrect</div><div class="message">CSRF token is incorrect</div><div class="message">CSRF token is incorrect</div></div>
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<input type="button" value="View Help" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_help.php?id=exec&security=impossible' )"> <input type="button" value="View Source" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_source.php?id=exec&security=impossible' )"> <div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+-----------3:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Vulnerability: Command Injection :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="../../dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="../../favicon.ico" />
+
+		<script type="text/javascript" src="../../dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="../../dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='../../.'" class=""><a href="../../.">Home</a></li>
+<li onclick="window.location='../../instructions.php'" class=""><a href="../../instructions.php">Instructions</a></li>
+<li onclick="window.location='../../setup.php'" class=""><a href="../../setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../vulnerabilities/brute/'" class=""><a href="../../vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='../../vulnerabilities/exec/'" class="selected"><a href="../../vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/csrf/'" class=""><a href="../../vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='../../vulnerabilities/fi/.?page=include.php'" class=""><a href="../../vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='../../vulnerabilities/upload/'" class=""><a href="../../vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='../../vulnerabilities/captcha/'" class=""><a href="../../vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli/'" class=""><a href="../../vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli_blind/'" class=""><a href="../../vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_r/'" class=""><a href="../../vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_s/'" class=""><a href="../../vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../security.php'" class=""><a href="../../security.php">DVWA Security</a></li>
+<li onclick="window.location='../../phpinfo.php'" class=""><a href="../../phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='../../about.php'" class=""><a href="../../about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../logout.php'" class=""><a href="../../logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+<div class="body_padded">
+	<h1>Vulnerability: Command Injection</h1>
+
+	<div class="vulnerable_code_area">
+		<h2>Ping a device</h2>
+
+		<form name="ping" action="#" method="post">
+			<p>
+				Enter an IP address:
+				<input type="text" name="ip" size="30">
+				<input type="submit" name="Submit" value="Submit">
+			</p>
+			<input type='hidden' name='user_token' value='50928dc70375089987aaae86010e5274' />
+		</form>
+		
+	</div>
+
+	<h2>More Information</h2>
+	<ul>
+		<li><a href="http://hiderefer.com/?http://www.scribd.com/doc/2530476/Php-Endangers-Remote-Code-Execution" target="_blank">http://www.scribd.com/doc/2530476/Php-Endangers-Remote-Code-Execution</a></li>
+		<li><a href="http://hiderefer.com/?http://www.ss64.com/bash/" target="_blank">http://www.ss64.com/bash/</a></li>
+		<li><a href="http://hiderefer.com/?http://www.ss64.com/nt/" target="_blank">http://www.ss64.com/nt/</a></li>
+		<li><a href="http://hiderefer.com/?https://www.owasp.org/index.php/Command_Injection" target="_blank">https://www.owasp.org/index.php/Command_Injection</a></li>
+	</ul>
+</div>
+
+				<br /><br />
+				<div class="body_padded"><div class="message">CSRF token is incorrect</div><div class="message">CSRF token is incorrect</div><div class="message">CSRF token is incorrect</div><div class="message">CSRF token is incorrect</div></div>
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<input type="button" value="View Help" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_help.php?id=exec&security=impossible' )"> <input type="button" value="View Source" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_source.php?id=exec&security=impossible' )"> <div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+-----------4:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Vulnerability: Command Injection :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="../../dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="../../favicon.ico" />
+
+		<script type="text/javascript" src="../../dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="../../dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='../../.'" class=""><a href="../../.">Home</a></li>
+<li onclick="window.location='../../instructions.php'" class=""><a href="../../instructions.php">Instructions</a></li>
+<li onclick="window.location='../../setup.php'" class=""><a href="../../setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../vulnerabilities/brute/'" class=""><a href="../../vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='../../vulnerabilities/exec/'" class="selected"><a href="../../vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/csrf/'" class=""><a href="../../vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='../../vulnerabilities/fi/.?page=include.php'" class=""><a href="../../vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='../../vulnerabilities/upload/'" class=""><a href="../../vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='../../vulnerabilities/captcha/'" class=""><a href="../../vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli/'" class=""><a href="../../vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli_blind/'" class=""><a href="../../vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_r/'" class=""><a href="../../vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_s/'" class=""><a href="../../vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../security.php'" class=""><a href="../../security.php">DVWA Security</a></li>
+<li onclick="window.location='../../phpinfo.php'" class=""><a href="../../phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='../../about.php'" class=""><a href="../../about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../logout.php'" class=""><a href="../../logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+<div class="body_padded">
+	<h1>Vulnerability: Command Injection</h1>
+
+	<div class="vulnerable_code_area">
+		<h2>Ping a device</h2>
+
+		<form name="ping" action="#" method="post">
+			<p>
+				Enter an IP address:
+				<input type="text" name="ip" size="30">
+				<input type="submit" name="Submit" value="Submit">
+			</p>
+			<input type='hidden' name='user_token' value='a030eb4923eab398c69c21f5bc20e3e3' />
+		</form>
+		
+	</div>
+
+	<h2>More Information</h2>
+	<ul>
+		<li><a href="http://hiderefer.com/?http://www.scribd.com/doc/2530476/Php-Endangers-Remote-Code-Execution" target="_blank">http://www.scribd.com/doc/2530476/Php-Endangers-Remote-Code-Execution</a></li>
+		<li><a href="http://hiderefer.com/?http://www.ss64.com/bash/" target="_blank">http://www.ss64.com/bash/</a></li>
+		<li><a href="http://hiderefer.com/?http://www.ss64.com/nt/" target="_blank">http://www.ss64.com/nt/</a></li>
+		<li><a href="http://hiderefer.com/?https://www.owasp.org/index.php/Command_Injection" target="_blank">https://www.owasp.org/index.php/Command_Injection</a></li>
+	</ul>
+</div>
+
+				<br /><br />
+				
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<input type="button" value="View Help" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_help.php?id=exec&security=impossible' )"> <input type="button" value="View Source" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_source.php?id=exec&security=impossible' )"> <div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+---
+---
+URL:http://localhost/dvwa/setup.php (POST)
+VulnName: blind sqli
+Query: {'user_token': 'a4b53eae959cf7118217ae73f3edca1f', 'create_db': 'Create / Reset Database'}
+Payload: '	and	'70410'='70410
+'	and	'29147'='29147
+'	or	30529=30529#
+'	and	'88805'='88806
+Advice: use orm
+Database: unknown
+-----------1:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Setup :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="favicon.ico" />
+
+		<script type="text/javascript" src="dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='.'" class=""><a href=".">Home</a></li>
+<li onclick="window.location='instructions.php'" class=""><a href="instructions.php">Instructions</a></li>
+<li onclick="window.location='setup.php'" class="selected"><a href="setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='vulnerabilities/brute/'" class=""><a href="vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='vulnerabilities/exec/'" class=""><a href="vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='vulnerabilities/csrf/'" class=""><a href="vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='vulnerabilities/fi/.?page=include.php'" class=""><a href="vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='vulnerabilities/upload/'" class=""><a href="vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='vulnerabilities/captcha/'" class=""><a href="vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='vulnerabilities/sqli/'" class=""><a href="vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='vulnerabilities/sqli_blind/'" class=""><a href="vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='vulnerabilities/xss_r/'" class=""><a href="vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='vulnerabilities/xss_s/'" class=""><a href="vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='security.php'" class=""><a href="security.php">DVWA Security</a></li>
+<li onclick="window.location='phpinfo.php'" class=""><a href="phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='about.php'" class=""><a href="about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='logout.php'" class=""><a href="logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+<div class="body_padded">
+	<h1>Database Setup <img src="dvwa/images/spanner.png" /></h1>
+
+	<p>Click on the 'Create / Reset Database' button below to create or reset your database.</br>
+	If you get an error make sure you have the correct user credentials in: <em>/var/www/html/dvwa/config/config.inc.php</em></p>
+
+	<p>If the database already exists, <em>it will be cleared and the data will be reset</em>.<br />
+	You can also use this to reset the administrator credentials ("<em>admin</em> // <em>password</em>") at any stage.</p>
+	<hr />
+	<br />
+
+	<h2>Setup Check</h2>
+
+	Operating system: <em>*nix</em><br />
+	Backend database: <em>MySQL</em><br />
+	PHP version: <em>5.6.9-0+deb8u1</em><br />
+	<br />
+	Web Server SERVER_NAME: <em>localhost</em><br />
+	<br />
+	PHP function display_errors: <em>Disabled</em><br />
+	PHP function safe_mode: <span class="success">Disabled</span><br/ >
+	PHP function allow_url_include: <span class="failure">Disabled</span><br/ >
+	PHP function allow_url_fopen: <span class="success">Enabled</span><br />
+	PHP function magic_quotes_gpc: <span class="success">Disabled</span><br />
+	PHP module php-gd: <span class="failure">Missing</span><br />
+	<br />
+	reCAPTCHA key: <span class="failure">Missing</span><br />
+	<br />
+	Writable folder /var/www/html/dvwa/hackable/uploads/: <span class="success">Yes)</span><br />
+	Writable file /var/www/html/dvwa/external/phpids/0.6/lib/IDS/tmp/phpids_log.txt: <span class="success">Yes</span><br />
+	<br />
+	<i><span class="failure">Status in red</span>, indicate there will be an issue when trying to complete some modules.</i><br />
+	<br /><br /><br />
+
+	<!-- Create db button -->
+	<form action="#" method="post">
+		<input name="create_db" type="submit" value="Create / Reset Database">
+		<input type='hidden' name='user_token' value='bfba5fffa997bb08a5bf6a64ebc23dc3' />
+	</form>
+	<br />
+	<hr />
+</div>
+				<br /><br />
+				
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+-----------2:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Setup :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="favicon.ico" />
+
+		<script type="text/javascript" src="dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='.'" class=""><a href=".">Home</a></li>
+<li onclick="window.location='instructions.php'" class=""><a href="instructions.php">Instructions</a></li>
+<li onclick="window.location='setup.php'" class="selected"><a href="setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='vulnerabilities/brute/'" class=""><a href="vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='vulnerabilities/exec/'" class=""><a href="vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='vulnerabilities/csrf/'" class=""><a href="vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='vulnerabilities/fi/.?page=include.php'" class=""><a href="vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='vulnerabilities/upload/'" class=""><a href="vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='vulnerabilities/captcha/'" class=""><a href="vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='vulnerabilities/sqli/'" class=""><a href="vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='vulnerabilities/sqli_blind/'" class=""><a href="vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='vulnerabilities/xss_r/'" class=""><a href="vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='vulnerabilities/xss_s/'" class=""><a href="vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='security.php'" class=""><a href="security.php">DVWA Security</a></li>
+<li onclick="window.location='phpinfo.php'" class=""><a href="phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='about.php'" class=""><a href="about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='logout.php'" class=""><a href="logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+<div class="body_padded">
+	<h1>Database Setup <img src="dvwa/images/spanner.png" /></h1>
+
+	<p>Click on the 'Create / Reset Database' button below to create or reset your database.</br>
+	If you get an error make sure you have the correct user credentials in: <em>/var/www/html/dvwa/config/config.inc.php</em></p>
+
+	<p>If the database already exists, <em>it will be cleared and the data will be reset</em>.<br />
+	You can also use this to reset the administrator credentials ("<em>admin</em> // <em>password</em>") at any stage.</p>
+	<hr />
+	<br />
+
+	<h2>Setup Check</h2>
+
+	Operating system: <em>*nix</em><br />
+	Backend database: <em>MySQL</em><br />
+	PHP version: <em>5.6.9-0+deb8u1</em><br />
+	<br />
+	Web Server SERVER_NAME: <em>localhost</em><br />
+	<br />
+	PHP function display_errors: <em>Disabled</em><br />
+	PHP function safe_mode: <span class="success">Disabled</span><br/ >
+	PHP function allow_url_include: <span class="failure">Disabled</span><br/ >
+	PHP function allow_url_fopen: <span class="success">Enabled</span><br />
+	PHP function magic_quotes_gpc: <span class="success">Disabled</span><br />
+	PHP module php-gd: <span class="failure">Missing</span><br />
+	<br />
+	reCAPTCHA key: <span class="failure">Missing</span><br />
+	<br />
+	Writable folder /var/www/html/dvwa/hackable/uploads/: <span class="success">Yes)</span><br />
+	Writable file /var/www/html/dvwa/external/phpids/0.6/lib/IDS/tmp/phpids_log.txt: <span class="success">Yes</span><br />
+	<br />
+	<i><span class="failure">Status in red</span>, indicate there will be an issue when trying to complete some modules.</i><br />
+	<br /><br /><br />
+
+	<!-- Create db button -->
+	<form action="#" method="post">
+		<input name="create_db" type="submit" value="Create / Reset Database">
+		<input type='hidden' name='user_token' value='2a158e6131f506412e5cc08a6e78709d' />
+	</form>
+	<br />
+	<hr />
+</div>
+				<br /><br />
+				<div class="body_padded"><div class="message">CSRF token is incorrect</div><div class="message">CSRF token is incorrect</div></div>
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+-----------3:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Setup :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="favicon.ico" />
+
+		<script type="text/javascript" src="dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='.'" class=""><a href=".">Home</a></li>
+<li onclick="window.location='instructions.php'" class=""><a href="instructions.php">Instructions</a></li>
+<li onclick="window.location='setup.php'" class="selected"><a href="setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='vulnerabilities/brute/'" class=""><a href="vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='vulnerabilities/exec/'" class=""><a href="vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='vulnerabilities/csrf/'" class=""><a href="vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='vulnerabilities/fi/.?page=include.php'" class=""><a href="vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='vulnerabilities/upload/'" class=""><a href="vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='vulnerabilities/captcha/'" class=""><a href="vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='vulnerabilities/sqli/'" class=""><a href="vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='vulnerabilities/sqli_blind/'" class=""><a href="vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='vulnerabilities/xss_r/'" class=""><a href="vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='vulnerabilities/xss_s/'" class=""><a href="vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='security.php'" class=""><a href="security.php">DVWA Security</a></li>
+<li onclick="window.location='phpinfo.php'" class=""><a href="phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='about.php'" class=""><a href="about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='logout.php'" class=""><a href="logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+<div class="body_padded">
+	<h1>Database Setup <img src="dvwa/images/spanner.png" /></h1>
+
+	<p>Click on the 'Create / Reset Database' button below to create or reset your database.</br>
+	If you get an error make sure you have the correct user credentials in: <em>/var/www/html/dvwa/config/config.inc.php</em></p>
+
+	<p>If the database already exists, <em>it will be cleared and the data will be reset</em>.<br />
+	You can also use this to reset the administrator credentials ("<em>admin</em> // <em>password</em>") at any stage.</p>
+	<hr />
+	<br />
+
+	<h2>Setup Check</h2>
+
+	Operating system: <em>*nix</em><br />
+	Backend database: <em>MySQL</em><br />
+	PHP version: <em>5.6.9-0+deb8u1</em><br />
+	<br />
+	Web Server SERVER_NAME: <em>localhost</em><br />
+	<br />
+	PHP function display_errors: <em>Disabled</em><br />
+	PHP function safe_mode: <span class="success">Disabled</span><br/ >
+	PHP function allow_url_include: <span class="failure">Disabled</span><br/ >
+	PHP function allow_url_fopen: <span class="success">Enabled</span><br />
+	PHP function magic_quotes_gpc: <span class="success">Disabled</span><br />
+	PHP module php-gd: <span class="failure">Missing</span><br />
+	<br />
+	reCAPTCHA key: <span class="failure">Missing</span><br />
+	<br />
+	Writable folder /var/www/html/dvwa/hackable/uploads/: <span class="success">Yes)</span><br />
+	Writable file /var/www/html/dvwa/external/phpids/0.6/lib/IDS/tmp/phpids_log.txt: <span class="success">Yes</span><br />
+	<br />
+	<i><span class="failure">Status in red</span>, indicate there will be an issue when trying to complete some modules.</i><br />
+	<br /><br /><br />
+
+	<!-- Create db button -->
+	<form action="#" method="post">
+		<input name="create_db" type="submit" value="Create / Reset Database">
+		<input type='hidden' name='user_token' value='0408b13af8a13ed6ee11cff84f733858' />
+	</form>
+	<br />
+	<hr />
+</div>
+				<br /><br />
+				<div class="body_padded"><div class="message">CSRF token is incorrect</div><div class="message">CSRF token is incorrect</div><div class="message">CSRF token is incorrect</div></div>
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+-----------4:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Setup :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="favicon.ico" />
+
+		<script type="text/javascript" src="dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='.'" class=""><a href=".">Home</a></li>
+<li onclick="window.location='instructions.php'" class=""><a href="instructions.php">Instructions</a></li>
+<li onclick="window.location='setup.php'" class="selected"><a href="setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='vulnerabilities/brute/'" class=""><a href="vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='vulnerabilities/exec/'" class=""><a href="vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='vulnerabilities/csrf/'" class=""><a href="vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='vulnerabilities/fi/.?page=include.php'" class=""><a href="vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='vulnerabilities/upload/'" class=""><a href="vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='vulnerabilities/captcha/'" class=""><a href="vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='vulnerabilities/sqli/'" class=""><a href="vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='vulnerabilities/sqli_blind/'" class=""><a href="vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='vulnerabilities/xss_r/'" class=""><a href="vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='vulnerabilities/xss_s/'" class=""><a href="vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='security.php'" class=""><a href="security.php">DVWA Security</a></li>
+<li onclick="window.location='phpinfo.php'" class=""><a href="phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='about.php'" class=""><a href="about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='logout.php'" class=""><a href="logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+<div class="body_padded">
+	<h1>Database Setup <img src="dvwa/images/spanner.png" /></h1>
+
+	<p>Click on the 'Create / Reset Database' button below to create or reset your database.</br>
+	If you get an error make sure you have the correct user credentials in: <em>/var/www/html/dvwa/config/config.inc.php</em></p>
+
+	<p>If the database already exists, <em>it will be cleared and the data will be reset</em>.<br />
+	You can also use this to reset the administrator credentials ("<em>admin</em> // <em>password</em>") at any stage.</p>
+	<hr />
+	<br />
+
+	<h2>Setup Check</h2>
+
+	Operating system: <em>*nix</em><br />
+	Backend database: <em>MySQL</em><br />
+	PHP version: <em>5.6.9-0+deb8u1</em><br />
+	<br />
+	Web Server SERVER_NAME: <em>localhost</em><br />
+	<br />
+	PHP function display_errors: <em>Disabled</em><br />
+	PHP function safe_mode: <span class="success">Disabled</span><br/ >
+	PHP function allow_url_include: <span class="failure">Disabled</span><br/ >
+	PHP function allow_url_fopen: <span class="success">Enabled</span><br />
+	PHP function magic_quotes_gpc: <span class="success">Disabled</span><br />
+	PHP module php-gd: <span class="failure">Missing</span><br />
+	<br />
+	reCAPTCHA key: <span class="failure">Missing</span><br />
+	<br />
+	Writable folder /var/www/html/dvwa/hackable/uploads/: <span class="success">Yes)</span><br />
+	Writable file /var/www/html/dvwa/external/phpids/0.6/lib/IDS/tmp/phpids_log.txt: <span class="success">Yes</span><br />
+	<br />
+	<i><span class="failure">Status in red</span>, indicate there will be an issue when trying to complete some modules.</i><br />
+	<br /><br /><br />
+
+	<!-- Create db button -->
+	<form action="#" method="post">
+		<input name="create_db" type="submit" value="Create / Reset Database">
+		<input type='hidden' name='user_token' value='ef3466ef24e52cca6983510480ad92c3' />
+	</form>
+	<br />
+	<hr />
+</div>
+				<br /><br />
+				
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+---
+---
+URL:http://localhost/dvwa/vulnerabilities/sqli/ (GET)
+VulnName: blind sqli
+Query: {'user_token': '367c36dc67be27904282d5ffae2207b4', 'id': 'cntvalue', 'Submit': 'Submit'}
+Payload: +and+26912=26912
++and+31127=31127
++or+12624=12624#
++and+8117=8118
+Advice: use orm
+Database: unknown
+-----------1:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Vulnerability: SQL Injection :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="../../dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="../../favicon.ico" />
+
+		<script type="text/javascript" src="../../dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="../../dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='../../.'" class=""><a href="../../.">Home</a></li>
+<li onclick="window.location='../../instructions.php'" class=""><a href="../../instructions.php">Instructions</a></li>
+<li onclick="window.location='../../setup.php'" class=""><a href="../../setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../vulnerabilities/brute/'" class=""><a href="../../vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='../../vulnerabilities/exec/'" class=""><a href="../../vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/csrf/'" class=""><a href="../../vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='../../vulnerabilities/fi/.?page=include.php'" class=""><a href="../../vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='../../vulnerabilities/upload/'" class=""><a href="../../vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='../../vulnerabilities/captcha/'" class=""><a href="../../vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli/'" class="selected"><a href="../../vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli_blind/'" class=""><a href="../../vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_r/'" class=""><a href="../../vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_s/'" class=""><a href="../../vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../security.php'" class=""><a href="../../security.php">DVWA Security</a></li>
+<li onclick="window.location='../../phpinfo.php'" class=""><a href="../../phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='../../about.php'" class=""><a href="../../about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../logout.php'" class=""><a href="../../logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+<div class="body_padded">
+	<h1>Vulnerability: SQL Injection</h1>
+
+	
+
+	<div class="vulnerable_code_area">
+		<form action="#" method="GET">
+			<p>
+				User ID:
+				<input type="text" size="15" name="id">
+				<input type="submit" name="Submit" value="Submit">
+			</p>
+			<input type='hidden' name='user_token' value='b22dd892a44e44dc4d9aadef07406015' />
+		</form>
+		
+	</div>
+
+	<h2>More Information</h2>
+	<ul>
+		<li><a href="http://hiderefer.com/?http://www.securiteam.com/securityreviews/5DP0N1P76E.html" target="_blank">http://www.securiteam.com/securityreviews/5DP0N1P76E.html</a></li>
+		<li><a href="http://hiderefer.com/?https://en.wikipedia.org/wiki/SQL_injection" target="_blank">https://en.wikipedia.org/wiki/SQL_injection</a></li>
+		<li><a href="http://hiderefer.com/?http://ferruh.mavituna.com/sql-injection-cheatsheet-oku/" target="_blank">http://ferruh.mavituna.com/sql-injection-cheatsheet-oku/</a></li>
+		<li><a href="http://hiderefer.com/?http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet" target="_blank">http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet</a></li>
+		<li><a href="http://hiderefer.com/?https://www.owasp.org/index.php/SQL_Injection" target="_blank">https://www.owasp.org/index.php/SQL_Injection</a></li>
+		<li><a href="http://hiderefer.com/?http://bobby-tables.com/" target="_blank">http://bobby-tables.com/</a></li>
+	</ul>
+</div>
+
+				<br /><br />
+				<div class="body_padded"><div class="message">CSRF token is incorrect</div></div>
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<input type="button" value="View Help" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_help.php?id=sqli&security=impossible' )"> <input type="button" value="View Source" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_source.php?id=sqli&security=impossible' )"> <div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+-----------2:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Vulnerability: SQL Injection :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="../../dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="../../favicon.ico" />
+
+		<script type="text/javascript" src="../../dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="../../dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='../../.'" class=""><a href="../../.">Home</a></li>
+<li onclick="window.location='../../instructions.php'" class=""><a href="../../instructions.php">Instructions</a></li>
+<li onclick="window.location='../../setup.php'" class=""><a href="../../setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../vulnerabilities/brute/'" class=""><a href="../../vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='../../vulnerabilities/exec/'" class=""><a href="../../vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/csrf/'" class=""><a href="../../vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='../../vulnerabilities/fi/.?page=include.php'" class=""><a href="../../vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='../../vulnerabilities/upload/'" class=""><a href="../../vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='../../vulnerabilities/captcha/'" class=""><a href="../../vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli/'" class="selected"><a href="../../vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli_blind/'" class=""><a href="../../vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_r/'" class=""><a href="../../vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_s/'" class=""><a href="../../vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../security.php'" class=""><a href="../../security.php">DVWA Security</a></li>
+<li onclick="window.location='../../phpinfo.php'" class=""><a href="../../phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='../../about.php'" class=""><a href="../../about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../logout.php'" class=""><a href="../../logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+<div class="body_padded">
+	<h1>Vulnerability: SQL Injection</h1>
+
+	
+
+	<div class="vulnerable_code_area">
+		<form action="#" method="GET">
+			<p>
+				User ID:
+				<input type="text" size="15" name="id">
+				<input type="submit" name="Submit" value="Submit">
+			</p>
+			<input type='hidden' name='user_token' value='ffac8bfbb27c70c2a716a8454fdaea01' />
+		</form>
+		
+	</div>
+
+	<h2>More Information</h2>
+	<ul>
+		<li><a href="http://hiderefer.com/?http://www.securiteam.com/securityreviews/5DP0N1P76E.html" target="_blank">http://www.securiteam.com/securityreviews/5DP0N1P76E.html</a></li>
+		<li><a href="http://hiderefer.com/?https://en.wikipedia.org/wiki/SQL_injection" target="_blank">https://en.wikipedia.org/wiki/SQL_injection</a></li>
+		<li><a href="http://hiderefer.com/?http://ferruh.mavituna.com/sql-injection-cheatsheet-oku/" target="_blank">http://ferruh.mavituna.com/sql-injection-cheatsheet-oku/</a></li>
+		<li><a href="http://hiderefer.com/?http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet" target="_blank">http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet</a></li>
+		<li><a href="http://hiderefer.com/?https://www.owasp.org/index.php/SQL_Injection" target="_blank">https://www.owasp.org/index.php/SQL_Injection</a></li>
+		<li><a href="http://hiderefer.com/?http://bobby-tables.com/" target="_blank">http://bobby-tables.com/</a></li>
+	</ul>
+</div>
+
+				<br /><br />
+				
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<input type="button" value="View Help" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_help.php?id=sqli&security=impossible' )"> <input type="button" value="View Source" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_source.php?id=sqli&security=impossible' )"> <div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+-----------3:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Vulnerability: SQL Injection :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="../../dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="../../favicon.ico" />
+
+		<script type="text/javascript" src="../../dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="../../dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='../../.'" class=""><a href="../../.">Home</a></li>
+<li onclick="window.location='../../instructions.php'" class=""><a href="../../instructions.php">Instructions</a></li>
+<li onclick="window.location='../../setup.php'" class=""><a href="../../setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../vulnerabilities/brute/'" class=""><a href="../../vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='../../vulnerabilities/exec/'" class=""><a href="../../vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/csrf/'" class=""><a href="../../vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='../../vulnerabilities/fi/.?page=include.php'" class=""><a href="../../vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='../../vulnerabilities/upload/'" class=""><a href="../../vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='../../vulnerabilities/captcha/'" class=""><a href="../../vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli/'" class="selected"><a href="../../vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli_blind/'" class=""><a href="../../vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_r/'" class=""><a href="../../vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_s/'" class=""><a href="../../vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../security.php'" class=""><a href="../../security.php">DVWA Security</a></li>
+<li onclick="window.location='../../phpinfo.php'" class=""><a href="../../phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='../../about.php'" class=""><a href="../../about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../logout.php'" class=""><a href="../../logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+<div class="body_padded">
+	<h1>Vulnerability: SQL Injection</h1>
+
+	
+
+	<div class="vulnerable_code_area">
+		<form action="#" method="GET">
+			<p>
+				User ID:
+				<input type="text" size="15" name="id">
+				<input type="submit" name="Submit" value="Submit">
+			</p>
+			<input type='hidden' name='user_token' value='8acbc33d34bb0ab12474882e4a65647a' />
+		</form>
+		
+	</div>
+
+	<h2>More Information</h2>
+	<ul>
+		<li><a href="http://hiderefer.com/?http://www.securiteam.com/securityreviews/5DP0N1P76E.html" target="_blank">http://www.securiteam.com/securityreviews/5DP0N1P76E.html</a></li>
+		<li><a href="http://hiderefer.com/?https://en.wikipedia.org/wiki/SQL_injection" target="_blank">https://en.wikipedia.org/wiki/SQL_injection</a></li>
+		<li><a href="http://hiderefer.com/?http://ferruh.mavituna.com/sql-injection-cheatsheet-oku/" target="_blank">http://ferruh.mavituna.com/sql-injection-cheatsheet-oku/</a></li>
+		<li><a href="http://hiderefer.com/?http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet" target="_blank">http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet</a></li>
+		<li><a href="http://hiderefer.com/?https://www.owasp.org/index.php/SQL_Injection" target="_blank">https://www.owasp.org/index.php/SQL_Injection</a></li>
+		<li><a href="http://hiderefer.com/?http://bobby-tables.com/" target="_blank">http://bobby-tables.com/</a></li>
+	</ul>
+</div>
+
+				<br /><br />
+				
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<input type="button" value="View Help" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_help.php?id=sqli&security=impossible' )"> <input type="button" value="View Source" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_source.php?id=sqli&security=impossible' )"> <div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+-----------4:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Vulnerability: SQL Injection :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="../../dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="../../favicon.ico" />
+
+		<script type="text/javascript" src="../../dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="../../dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='../../.'" class=""><a href="../../.">Home</a></li>
+<li onclick="window.location='../../instructions.php'" class=""><a href="../../instructions.php">Instructions</a></li>
+<li onclick="window.location='../../setup.php'" class=""><a href="../../setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../vulnerabilities/brute/'" class=""><a href="../../vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='../../vulnerabilities/exec/'" class=""><a href="../../vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/csrf/'" class=""><a href="../../vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='../../vulnerabilities/fi/.?page=include.php'" class=""><a href="../../vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='../../vulnerabilities/upload/'" class=""><a href="../../vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='../../vulnerabilities/captcha/'" class=""><a href="../../vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli/'" class="selected"><a href="../../vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli_blind/'" class=""><a href="../../vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_r/'" class=""><a href="../../vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_s/'" class=""><a href="../../vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../security.php'" class=""><a href="../../security.php">DVWA Security</a></li>
+<li onclick="window.location='../../phpinfo.php'" class=""><a href="../../phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='../../about.php'" class=""><a href="../../about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../logout.php'" class=""><a href="../../logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+<div class="body_padded">
+	<h1>Vulnerability: SQL Injection</h1>
+
+	
+
+	<div class="vulnerable_code_area">
+		<form action="#" method="GET">
+			<p>
+				User ID:
+				<input type="text" size="15" name="id">
+				<input type="submit" name="Submit" value="Submit">
+			</p>
+			<input type='hidden' name='user_token' value='8ed36381ac075cdebe09ed8f225763ae' />
+		</form>
+		
+	</div>
+
+	<h2>More Information</h2>
+	<ul>
+		<li><a href="http://hiderefer.com/?http://www.securiteam.com/securityreviews/5DP0N1P76E.html" target="_blank">http://www.securiteam.com/securityreviews/5DP0N1P76E.html</a></li>
+		<li><a href="http://hiderefer.com/?https://en.wikipedia.org/wiki/SQL_injection" target="_blank">https://en.wikipedia.org/wiki/SQL_injection</a></li>
+		<li><a href="http://hiderefer.com/?http://ferruh.mavituna.com/sql-injection-cheatsheet-oku/" target="_blank">http://ferruh.mavituna.com/sql-injection-cheatsheet-oku/</a></li>
+		<li><a href="http://hiderefer.com/?http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet" target="_blank">http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet</a></li>
+		<li><a href="http://hiderefer.com/?https://www.owasp.org/index.php/SQL_Injection" target="_blank">https://www.owasp.org/index.php/SQL_Injection</a></li>
+		<li><a href="http://hiderefer.com/?http://bobby-tables.com/" target="_blank">http://bobby-tables.com/</a></li>
+	</ul>
+</div>
+
+				<br /><br />
+				<div class="body_padded"><div class="message">CSRF token is incorrect</div><div class="message">CSRF token is incorrect</div><div class="message">CSRF token is incorrect</div></div>
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<input type="button" value="View Help" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_help.php?id=sqli&security=impossible' )"> <input type="button" value="View Source" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_source.php?id=sqli&security=impossible' )"> <div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+---
+---
+URL:http://localhost/dvwa/vulnerabilities/brute/ (POST)
+VulnName: 
+Query: {'username': 'cntvalue', 'user_token': 'd25869590279957ebd79a4d6cc69ceb1', 'Login': 'Login', 'password': 'cntvalue'}
+Payload: "+and+"88160"="88160
+"+and+"86861"="86861
+"+or+30979=30979#
+"+and+"4049"="4050
+Advice: 
+Database: unknown
+-----------1:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Vulnerability: Brute Force :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="../../dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="../../favicon.ico" />
+
+		<script type="text/javascript" src="../../dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="../../dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='../../.'" class=""><a href="../../.">Home</a></li>
+<li onclick="window.location='../../instructions.php'" class=""><a href="../../instructions.php">Instructions</a></li>
+<li onclick="window.location='../../setup.php'" class=""><a href="../../setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../vulnerabilities/brute/'" class="selected"><a href="../../vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='../../vulnerabilities/exec/'" class=""><a href="../../vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/csrf/'" class=""><a href="../../vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='../../vulnerabilities/fi/.?page=include.php'" class=""><a href="../../vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='../../vulnerabilities/upload/'" class=""><a href="../../vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='../../vulnerabilities/captcha/'" class=""><a href="../../vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli/'" class=""><a href="../../vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli_blind/'" class=""><a href="../../vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_r/'" class=""><a href="../../vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_s/'" class=""><a href="../../vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../security.php'" class=""><a href="../../security.php">DVWA Security</a></li>
+<li onclick="window.location='../../phpinfo.php'" class=""><a href="../../phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='../../about.php'" class=""><a href="../../about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../logout.php'" class=""><a href="../../logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+<div class="body_padded">
+	<h1>Vulnerability: Brute Force</h1>
+
+	<div class="vulnerable_code_area">
+		<h2>Login</h2>
+
+		<form action="#" method="POST">
+			Username:<br />
+			<input type="text" name="username"><br />
+			Password:<br />
+			<input type="password" AUTOCOMPLETE="off" name="password"><br />
+			<br />
+			<input type="submit" value="Login" name="Login">
+			<input type='hidden' name='user_token' value='3416141b46daf87715b86714dba88bf4' />
+		</form>
+		
+	</div>
+
+	<h2>More Information</h2>
+	<ul>
+		<li><a href="http://hiderefer.com/?https://www.owasp.org/index.php/Testing_for_Brute_Force_(OWASP-AT-004)" target="_blank">https://www.owasp.org/index.php/Testing_for_Brute_Force_(OWASP-AT-004)</a></li>
+		<li><a href="http://hiderefer.com/?http://www.symantec.com/connect/articles/password-crackers-ensuring-security-your-password" target="_blank">http://www.symantec.com/connect/articles/password-crackers-ensuring-security-your-password</a></li>
+		<li><a href="http://hiderefer.com/?http://www.sillychicken.co.nz/Security/how-to-brute-force-http-forms-in-windows.html" target="_blank">http://www.sillychicken.co.nz/Security/how-to-brute-force-http-forms-in-windows.html</a></li>
+	</ul>
+</div>
+
+				<br /><br />
+				
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<input type="button" value="View Help" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_help.php?id=brute&security=impossible' )"> <input type="button" value="View Source" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_source.php?id=brute&security=impossible' )"> <div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+-----------2:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Vulnerability: Brute Force :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="../../dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="../../favicon.ico" />
+
+		<script type="text/javascript" src="../../dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="../../dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='../../.'" class=""><a href="../../.">Home</a></li>
+<li onclick="window.location='../../instructions.php'" class=""><a href="../../instructions.php">Instructions</a></li>
+<li onclick="window.location='../../setup.php'" class=""><a href="../../setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../vulnerabilities/brute/'" class="selected"><a href="../../vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='../../vulnerabilities/exec/'" class=""><a href="../../vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/csrf/'" class=""><a href="../../vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='../../vulnerabilities/fi/.?page=include.php'" class=""><a href="../../vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='../../vulnerabilities/upload/'" class=""><a href="../../vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='../../vulnerabilities/captcha/'" class=""><a href="../../vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli/'" class=""><a href="../../vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli_blind/'" class=""><a href="../../vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_r/'" class=""><a href="../../vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_s/'" class=""><a href="../../vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../security.php'" class=""><a href="../../security.php">DVWA Security</a></li>
+<li onclick="window.location='../../phpinfo.php'" class=""><a href="../../phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='../../about.php'" class=""><a href="../../about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../logout.php'" class=""><a href="../../logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+<div class="body_padded">
+	<h1>Vulnerability: Brute Force</h1>
+
+	<div class="vulnerable_code_area">
+		<h2>Login</h2>
+
+		<form action="#" method="POST">
+			Username:<br />
+			<input type="text" name="username"><br />
+			Password:<br />
+			<input type="password" AUTOCOMPLETE="off" name="password"><br />
+			<br />
+			<input type="submit" value="Login" name="Login">
+			<input type='hidden' name='user_token' value='6710f056f485833327e3702904243645' />
+		</form>
+		
+	</div>
+
+	<h2>More Information</h2>
+	<ul>
+		<li><a href="http://hiderefer.com/?https://www.owasp.org/index.php/Testing_for_Brute_Force_(OWASP-AT-004)" target="_blank">https://www.owasp.org/index.php/Testing_for_Brute_Force_(OWASP-AT-004)</a></li>
+		<li><a href="http://hiderefer.com/?http://www.symantec.com/connect/articles/password-crackers-ensuring-security-your-password" target="_blank">http://www.symantec.com/connect/articles/password-crackers-ensuring-security-your-password</a></li>
+		<li><a href="http://hiderefer.com/?http://www.sillychicken.co.nz/Security/how-to-brute-force-http-forms-in-windows.html" target="_blank">http://www.sillychicken.co.nz/Security/how-to-brute-force-http-forms-in-windows.html</a></li>
+	</ul>
+</div>
+
+				<br /><br />
+				
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<input type="button" value="View Help" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_help.php?id=brute&security=impossible' )"> <input type="button" value="View Source" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_source.php?id=brute&security=impossible' )"> <div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+-----------3:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Vulnerability: Brute Force :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="../../dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="../../favicon.ico" />
+
+		<script type="text/javascript" src="../../dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="../../dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='../../.'" class=""><a href="../../.">Home</a></li>
+<li onclick="window.location='../../instructions.php'" class=""><a href="../../instructions.php">Instructions</a></li>
+<li onclick="window.location='../../setup.php'" class=""><a href="../../setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../vulnerabilities/brute/'" class="selected"><a href="../../vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='../../vulnerabilities/exec/'" class=""><a href="../../vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/csrf/'" class=""><a href="../../vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='../../vulnerabilities/fi/.?page=include.php'" class=""><a href="../../vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='../../vulnerabilities/upload/'" class=""><a href="../../vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='../../vulnerabilities/captcha/'" class=""><a href="../../vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli/'" class=""><a href="../../vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli_blind/'" class=""><a href="../../vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_r/'" class=""><a href="../../vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_s/'" class=""><a href="../../vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../security.php'" class=""><a href="../../security.php">DVWA Security</a></li>
+<li onclick="window.location='../../phpinfo.php'" class=""><a href="../../phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='../../about.php'" class=""><a href="../../about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../logout.php'" class=""><a href="../../logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+<div class="body_padded">
+	<h1>Vulnerability: Brute Force</h1>
+
+	<div class="vulnerable_code_area">
+		<h2>Login</h2>
+
+		<form action="#" method="POST">
+			Username:<br />
+			<input type="text" name="username"><br />
+			Password:<br />
+			<input type="password" AUTOCOMPLETE="off" name="password"><br />
+			<br />
+			<input type="submit" value="Login" name="Login">
+			<input type='hidden' name='user_token' value='f7bffbc529914988660c9fb41688fdf0' />
+		</form>
+		
+	</div>
+
+	<h2>More Information</h2>
+	<ul>
+		<li><a href="http://hiderefer.com/?https://www.owasp.org/index.php/Testing_for_Brute_Force_(OWASP-AT-004)" target="_blank">https://www.owasp.org/index.php/Testing_for_Brute_Force_(OWASP-AT-004)</a></li>
+		<li><a href="http://hiderefer.com/?http://www.symantec.com/connect/articles/password-crackers-ensuring-security-your-password" target="_blank">http://www.symantec.com/connect/articles/password-crackers-ensuring-security-your-password</a></li>
+		<li><a href="http://hiderefer.com/?http://www.sillychicken.co.nz/Security/how-to-brute-force-http-forms-in-windows.html" target="_blank">http://www.sillychicken.co.nz/Security/how-to-brute-force-http-forms-in-windows.html</a></li>
+	</ul>
+</div>
+
+				<br /><br />
+				<div class="body_padded"><div class="message">CSRF token is incorrect</div><div class="message">CSRF token is incorrect</div><div class="message">CSRF token is incorrect</div><div class="message">CSRF token is incorrect</div></div>
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<input type="button" value="View Help" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_help.php?id=brute&security=impossible' )"> <input type="button" value="View Source" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_source.php?id=brute&security=impossible' )"> <div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+---
+---
+URL:http://localhost/dvwa/vulnerabilities/sqli_blind/ (GET)
+VulnName: 
+Query: {'user_token': '17c4d780228aedcc49ab40bc6dc697e9', 'id': 'cntvalue', 'Submit': 'Submit'}
+Payload: "+and+"88160"="88160
+"+and+"86861"="86861
+"+or+30979=30979#
+"+and+"4049"="4050
+Advice: 
+Database: unknown
+-----------1:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Vulnerability: SQL Injection (Blind) :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="../../dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="../../favicon.ico" />
+
+		<script type="text/javascript" src="../../dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="../../dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='../../.'" class=""><a href="../../.">Home</a></li>
+<li onclick="window.location='../../instructions.php'" class=""><a href="../../instructions.php">Instructions</a></li>
+<li onclick="window.location='../../setup.php'" class=""><a href="../../setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../vulnerabilities/brute/'" class=""><a href="../../vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='../../vulnerabilities/exec/'" class=""><a href="../../vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/csrf/'" class=""><a href="../../vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='../../vulnerabilities/fi/.?page=include.php'" class=""><a href="../../vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='../../vulnerabilities/upload/'" class=""><a href="../../vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='../../vulnerabilities/captcha/'" class=""><a href="../../vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli/'" class=""><a href="../../vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli_blind/'" class="selected"><a href="../../vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_r/'" class=""><a href="../../vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_s/'" class=""><a href="../../vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../security.php'" class=""><a href="../../security.php">DVWA Security</a></li>
+<li onclick="window.location='../../phpinfo.php'" class=""><a href="../../phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='../../about.php'" class=""><a href="../../about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../logout.php'" class=""><a href="../../logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+<div class="body_padded">
+	<h1>Vulnerability: SQL Injection (Blind)</h1>
+
+	
+
+	<div class="vulnerable_code_area">
+		<form action="#" method="GET">
+			<p>
+				User ID:
+				<input type="text" size="15" name="id">
+				<input type="submit" name="Submit" value="Submit">
+			</p>
+			<input type='hidden' name='user_token' value='4349ddfdb17503cfe931a00eb8ae3694' />
+		</form>
+		
+	</div>
+
+	<h2>More Information</h2>
+	<ul>
+		<li><a href="http://hiderefer.com/?http://www.securiteam.com/securityreviews/5DP0N1P76E.html" target="_blank">http://www.securiteam.com/securityreviews/5DP0N1P76E.html</a></li>
+		<li><a href="http://hiderefer.com/?https://en.wikipedia.org/wiki/SQL_injection" target="_blank">https://en.wikipedia.org/wiki/SQL_injection</a></li>
+		<li><a href="http://hiderefer.com/?http://ferruh.mavituna.com/sql-injection-cheatsheet-oku/" target="_blank">http://ferruh.mavituna.com/sql-injection-cheatsheet-oku/</a></li>
+		<li><a href="http://hiderefer.com/?http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet" target="_blank">http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet</a></li>
+		<li><a href="http://hiderefer.com/?https://www.owasp.org/index.php/Blind_SQL_Injection" target="_blank">https://www.owasp.org/index.php/Blind_SQL_Injection</a></li>
+		<li><a href="http://hiderefer.com/?http://bobby-tables.com/" target="_blank">http://bobby-tables.com/</a></li>
+	</ul>
+</div>
+
+				<br /><br />
+				<div class="body_padded"><div class="message">CSRF token is incorrect</div><div class="message">CSRF token is incorrect</div><div class="message">CSRF token is incorrect</div></div>
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<input type="button" value="View Help" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_help.php?id=sqli_blind&security=impossible' )"> <input type="button" value="View Source" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_source.php?id=sqli_blind&security=impossible' )"> <div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+-----------2:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Vulnerability: SQL Injection (Blind) :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="../../dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="../../favicon.ico" />
+
+		<script type="text/javascript" src="../../dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="../../dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='../../.'" class=""><a href="../../.">Home</a></li>
+<li onclick="window.location='../../instructions.php'" class=""><a href="../../instructions.php">Instructions</a></li>
+<li onclick="window.location='../../setup.php'" class=""><a href="../../setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../vulnerabilities/brute/'" class=""><a href="../../vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='../../vulnerabilities/exec/'" class=""><a href="../../vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/csrf/'" class=""><a href="../../vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='../../vulnerabilities/fi/.?page=include.php'" class=""><a href="../../vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='../../vulnerabilities/upload/'" class=""><a href="../../vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='../../vulnerabilities/captcha/'" class=""><a href="../../vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli/'" class=""><a href="../../vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli_blind/'" class="selected"><a href="../../vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_r/'" class=""><a href="../../vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_s/'" class=""><a href="../../vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../security.php'" class=""><a href="../../security.php">DVWA Security</a></li>
+<li onclick="window.location='../../phpinfo.php'" class=""><a href="../../phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='../../about.php'" class=""><a href="../../about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../logout.php'" class=""><a href="../../logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+<div class="body_padded">
+	<h1>Vulnerability: SQL Injection (Blind)</h1>
+
+	
+
+	<div class="vulnerable_code_area">
+		<form action="#" method="GET">
+			<p>
+				User ID:
+				<input type="text" size="15" name="id">
+				<input type="submit" name="Submit" value="Submit">
+			</p>
+			<input type='hidden' name='user_token' value='f41975628a1eed425bc1b2decec37972' />
+		</form>
+		
+	</div>
+
+	<h2>More Information</h2>
+	<ul>
+		<li><a href="http://hiderefer.com/?http://www.securiteam.com/securityreviews/5DP0N1P76E.html" target="_blank">http://www.securiteam.com/securityreviews/5DP0N1P76E.html</a></li>
+		<li><a href="http://hiderefer.com/?https://en.wikipedia.org/wiki/SQL_injection" target="_blank">https://en.wikipedia.org/wiki/SQL_injection</a></li>
+		<li><a href="http://hiderefer.com/?http://ferruh.mavituna.com/sql-injection-cheatsheet-oku/" target="_blank">http://ferruh.mavituna.com/sql-injection-cheatsheet-oku/</a></li>
+		<li><a href="http://hiderefer.com/?http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet" target="_blank">http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet</a></li>
+		<li><a href="http://hiderefer.com/?https://www.owasp.org/index.php/Blind_SQL_Injection" target="_blank">https://www.owasp.org/index.php/Blind_SQL_Injection</a></li>
+		<li><a href="http://hiderefer.com/?http://bobby-tables.com/" target="_blank">http://bobby-tables.com/</a></li>
+	</ul>
+</div>
+
+				<br /><br />
+				<div class="body_padded"><div class="message">CSRF token is incorrect</div></div>
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<input type="button" value="View Help" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_help.php?id=sqli_blind&security=impossible' )"> <input type="button" value="View Source" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_source.php?id=sqli_blind&security=impossible' )"> <div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+-----------3:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Vulnerability: SQL Injection (Blind) :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="../../dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="../../favicon.ico" />
+
+		<script type="text/javascript" src="../../dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="../../dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='../../.'" class=""><a href="../../.">Home</a></li>
+<li onclick="window.location='../../instructions.php'" class=""><a href="../../instructions.php">Instructions</a></li>
+<li onclick="window.location='../../setup.php'" class=""><a href="../../setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../vulnerabilities/brute/'" class=""><a href="../../vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='../../vulnerabilities/exec/'" class=""><a href="../../vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/csrf/'" class=""><a href="../../vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='../../vulnerabilities/fi/.?page=include.php'" class=""><a href="../../vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='../../vulnerabilities/upload/'" class=""><a href="../../vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='../../vulnerabilities/captcha/'" class=""><a href="../../vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli/'" class=""><a href="../../vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli_blind/'" class="selected"><a href="../../vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_r/'" class=""><a href="../../vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_s/'" class=""><a href="../../vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../security.php'" class=""><a href="../../security.php">DVWA Security</a></li>
+<li onclick="window.location='../../phpinfo.php'" class=""><a href="../../phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='../../about.php'" class=""><a href="../../about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../logout.php'" class=""><a href="../../logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+<div class="body_padded">
+	<h1>Vulnerability: SQL Injection (Blind)</h1>
+
+	
+
+	<div class="vulnerable_code_area">
+		<form action="#" method="GET">
+			<p>
+				User ID:
+				<input type="text" size="15" name="id">
+				<input type="submit" name="Submit" value="Submit">
+			</p>
+			<input type='hidden' name='user_token' value='a19e6ddcef6af44f8133ecd4b181ca07' />
+		</form>
+		
+	</div>
+
+	<h2>More Information</h2>
+	<ul>
+		<li><a href="http://hiderefer.com/?http://www.securiteam.com/securityreviews/5DP0N1P76E.html" target="_blank">http://www.securiteam.com/securityreviews/5DP0N1P76E.html</a></li>
+		<li><a href="http://hiderefer.com/?https://en.wikipedia.org/wiki/SQL_injection" target="_blank">https://en.wikipedia.org/wiki/SQL_injection</a></li>
+		<li><a href="http://hiderefer.com/?http://ferruh.mavituna.com/sql-injection-cheatsheet-oku/" target="_blank">http://ferruh.mavituna.com/sql-injection-cheatsheet-oku/</a></li>
+		<li><a href="http://hiderefer.com/?http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet" target="_blank">http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet</a></li>
+		<li><a href="http://hiderefer.com/?https://www.owasp.org/index.php/Blind_SQL_Injection" target="_blank">https://www.owasp.org/index.php/Blind_SQL_Injection</a></li>
+		<li><a href="http://hiderefer.com/?http://bobby-tables.com/" target="_blank">http://bobby-tables.com/</a></li>
+	</ul>
+</div>
+
+				<br /><br />
+				
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<input type="button" value="View Help" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_help.php?id=sqli_blind&security=impossible' )"> <input type="button" value="View Source" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_source.php?id=sqli_blind&security=impossible' )"> <div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+---
+---
+URL:http://localhost/dvwa/vulnerabilities/captcha/ (POST)
+VulnName: blind sqli
+Query: {'password_current': 'cntvalue', 'password_conf': 'cntvalue', 'recaptcha_response_field': 'manual_challenge', 'recaptcha_challenge_field': '', 'password_new': 'cntvalue', 'user_token': '5abdbc1b632daecc8f9c8fe3fa175bde', 'step': '1', 'Change': 'Change'}
+Payload: +and+26912=26912
++and+31127=31127
++or+12624=12624#
++and+8117=8118
+Advice: use orm
+Database: unknown
+-----------1:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Vulnerability: Insecure CAPTCHA :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="../../dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="../../favicon.ico" />
+
+		<script type="text/javascript" src="../../dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="../../dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='../../.'" class=""><a href="../../.">Home</a></li>
+<li onclick="window.location='../../instructions.php'" class=""><a href="../../instructions.php">Instructions</a></li>
+<li onclick="window.location='../../setup.php'" class=""><a href="../../setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../vulnerabilities/brute/'" class=""><a href="../../vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='../../vulnerabilities/exec/'" class=""><a href="../../vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/csrf/'" class=""><a href="../../vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='../../vulnerabilities/fi/.?page=include.php'" class=""><a href="../../vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='../../vulnerabilities/upload/'" class=""><a href="../../vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='../../vulnerabilities/captcha/'" class="selected"><a href="../../vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli/'" class=""><a href="../../vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli_blind/'" class=""><a href="../../vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_r/'" class=""><a href="../../vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_s/'" class=""><a href="../../vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../security.php'" class=""><a href="../../security.php">DVWA Security</a></li>
+<li onclick="window.location='../../phpinfo.php'" class=""><a href="../../phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='../../about.php'" class=""><a href="../../about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../logout.php'" class=""><a href="../../logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+	<div class="body_padded">
+	<h1>Vulnerability: Insecure CAPTCHA</h1>
+
+	<div class="warning"><em>reCAPTCHA API key missing</em> from config file: /var/www/html/dvwa/config/config.inc.php</div>
+
+	<div class="vulnerable_code_area">
+		<form action="#" method="POST" style="display:none;">
+			<h3>Change your password:</h3>
+			<br />
+
+			<input type="hidden" name="step" value="1" />
+
+			Current password:<br />
+			<input type="password" AUTOCOMPLETE="off" name="password_current"><br />			New password:<br />
+			<input type="password" AUTOCOMPLETE="off" name="password_new"><br />
+			Confirm new password:<br />
+			<input type="password" AUTOCOMPLETE="off" name="password_conf"><br />
+
+			<script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k="></script>
+
+	<noscript>
+  		<iframe src="http://www.google.com/recaptcha/api/noscript?k=" height="300" width="500" frameborder="0"></iframe><br/>
+  		<textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+  		<input type="hidden" name="recaptcha_response_field" value="manual_challenge"/>
+	</noscript>
+			<input type='hidden' name='user_token' value='657e800c1e492e6e5f9a5d2b190e8c97' />
+			<br />
+
+			<input type="submit" value="Change" name="Change">
+		</form>
+		<em>Please register for a key</em> from reCAPTCHA: <a href="http://hiderefer.com/?https://www.google.com/recaptcha/admin/create" target="_blank">https://www.google.com/recaptcha/admin/create</a>
+	</div>
+
+	<h2>More Information</h2>
+	<ul>
+		<li><a href="http://hiderefer.com/?http://www.captcha.net/" target="_blank">http://www.captcha.net/</a></li>
+		<li><a href="http://hiderefer.com/?https://www.google.com/recaptcha/" target="_blank">https://www.google.com/recaptcha/</a></li>
+		<li><a href="http://hiderefer.com/?https://www.owasp.org/index.php/Testing_for_Captcha_(OWASP-AT-012)" target="_blank">https://www.owasp.org/index.php/Testing_for_Captcha_(OWASP-AT-012)</a></li>
+	</ul>
+</div>
+
+				<br /><br />
+				<div class="body_padded"><div class="message">CSRF token is incorrect</div></div>
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<input type="button" value="View Help" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_help.php?id=captcha&security=impossible' )"> <input type="button" value="View Source" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_source.php?id=captcha&security=impossible' )"> <div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+-----------2:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Vulnerability: Insecure CAPTCHA :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="../../dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="../../favicon.ico" />
+
+		<script type="text/javascript" src="../../dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="../../dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='../../.'" class=""><a href="../../.">Home</a></li>
+<li onclick="window.location='../../instructions.php'" class=""><a href="../../instructions.php">Instructions</a></li>
+<li onclick="window.location='../../setup.php'" class=""><a href="../../setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../vulnerabilities/brute/'" class=""><a href="../../vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='../../vulnerabilities/exec/'" class=""><a href="../../vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/csrf/'" class=""><a href="../../vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='../../vulnerabilities/fi/.?page=include.php'" class=""><a href="../../vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='../../vulnerabilities/upload/'" class=""><a href="../../vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='../../vulnerabilities/captcha/'" class="selected"><a href="../../vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli/'" class=""><a href="../../vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli_blind/'" class=""><a href="../../vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_r/'" class=""><a href="../../vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_s/'" class=""><a href="../../vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../security.php'" class=""><a href="../../security.php">DVWA Security</a></li>
+<li onclick="window.location='../../phpinfo.php'" class=""><a href="../../phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='../../about.php'" class=""><a href="../../about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../logout.php'" class=""><a href="../../logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+	<div class="body_padded">
+	<h1>Vulnerability: Insecure CAPTCHA</h1>
+
+	<div class="warning"><em>reCAPTCHA API key missing</em> from config file: /var/www/html/dvwa/config/config.inc.php</div>
+
+	<div class="vulnerable_code_area">
+		<form action="#" method="POST" style="display:none;">
+			<h3>Change your password:</h3>
+			<br />
+
+			<input type="hidden" name="step" value="1" />
+
+			Current password:<br />
+			<input type="password" AUTOCOMPLETE="off" name="password_current"><br />			New password:<br />
+			<input type="password" AUTOCOMPLETE="off" name="password_new"><br />
+			Confirm new password:<br />
+			<input type="password" AUTOCOMPLETE="off" name="password_conf"><br />
+
+			<script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k="></script>
+
+	<noscript>
+  		<iframe src="http://www.google.com/recaptcha/api/noscript?k=" height="300" width="500" frameborder="0"></iframe><br/>
+  		<textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+  		<input type="hidden" name="recaptcha_response_field" value="manual_challenge"/>
+	</noscript>
+			<input type='hidden' name='user_token' value='f638b5168eb6f8408ef599e33edd9afd' />
+			<br />
+
+			<input type="submit" value="Change" name="Change">
+		</form>
+		<em>Please register for a key</em> from reCAPTCHA: <a href="http://hiderefer.com/?https://www.google.com/recaptcha/admin/create" target="_blank">https://www.google.com/recaptcha/admin/create</a>
+	</div>
+
+	<h2>More Information</h2>
+	<ul>
+		<li><a href="http://hiderefer.com/?http://www.captcha.net/" target="_blank">http://www.captcha.net/</a></li>
+		<li><a href="http://hiderefer.com/?https://www.google.com/recaptcha/" target="_blank">https://www.google.com/recaptcha/</a></li>
+		<li><a href="http://hiderefer.com/?https://www.owasp.org/index.php/Testing_for_Captcha_(OWASP-AT-012)" target="_blank">https://www.owasp.org/index.php/Testing_for_Captcha_(OWASP-AT-012)</a></li>
+	</ul>
+</div>
+
+				<br /><br />
+				
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<input type="button" value="View Help" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_help.php?id=captcha&security=impossible' )"> <input type="button" value="View Source" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_source.php?id=captcha&security=impossible' )"> <div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+-----------3:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Vulnerability: Insecure CAPTCHA :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="../../dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="../../favicon.ico" />
+
+		<script type="text/javascript" src="../../dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="../../dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='../../.'" class=""><a href="../../.">Home</a></li>
+<li onclick="window.location='../../instructions.php'" class=""><a href="../../instructions.php">Instructions</a></li>
+<li onclick="window.location='../../setup.php'" class=""><a href="../../setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../vulnerabilities/brute/'" class=""><a href="../../vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='../../vulnerabilities/exec/'" class=""><a href="../../vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/csrf/'" class=""><a href="../../vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='../../vulnerabilities/fi/.?page=include.php'" class=""><a href="../../vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='../../vulnerabilities/upload/'" class=""><a href="../../vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='../../vulnerabilities/captcha/'" class="selected"><a href="../../vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli/'" class=""><a href="../../vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli_blind/'" class=""><a href="../../vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_r/'" class=""><a href="../../vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_s/'" class=""><a href="../../vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../security.php'" class=""><a href="../../security.php">DVWA Security</a></li>
+<li onclick="window.location='../../phpinfo.php'" class=""><a href="../../phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='../../about.php'" class=""><a href="../../about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../logout.php'" class=""><a href="../../logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+	<div class="body_padded">
+	<h1>Vulnerability: Insecure CAPTCHA</h1>
+
+	<div class="warning"><em>reCAPTCHA API key missing</em> from config file: /var/www/html/dvwa/config/config.inc.php</div>
+
+	<div class="vulnerable_code_area">
+		<form action="#" method="POST" style="display:none;">
+			<h3>Change your password:</h3>
+			<br />
+
+			<input type="hidden" name="step" value="1" />
+
+			Current password:<br />
+			<input type="password" AUTOCOMPLETE="off" name="password_current"><br />			New password:<br />
+			<input type="password" AUTOCOMPLETE="off" name="password_new"><br />
+			Confirm new password:<br />
+			<input type="password" AUTOCOMPLETE="off" name="password_conf"><br />
+
+			<script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k="></script>
+
+	<noscript>
+  		<iframe src="http://www.google.com/recaptcha/api/noscript?k=" height="300" width="500" frameborder="0"></iframe><br/>
+  		<textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+  		<input type="hidden" name="recaptcha_response_field" value="manual_challenge"/>
+	</noscript>
+			<input type='hidden' name='user_token' value='4bfa681956da67612544fa0ac70d3359' />
+			<br />
+
+			<input type="submit" value="Change" name="Change">
+		</form>
+		<em>Please register for a key</em> from reCAPTCHA: <a href="http://hiderefer.com/?https://www.google.com/recaptcha/admin/create" target="_blank">https://www.google.com/recaptcha/admin/create</a>
+	</div>
+
+	<h2>More Information</h2>
+	<ul>
+		<li><a href="http://hiderefer.com/?http://www.captcha.net/" target="_blank">http://www.captcha.net/</a></li>
+		<li><a href="http://hiderefer.com/?https://www.google.com/recaptcha/" target="_blank">https://www.google.com/recaptcha/</a></li>
+		<li><a href="http://hiderefer.com/?https://www.owasp.org/index.php/Testing_for_Captcha_(OWASP-AT-012)" target="_blank">https://www.owasp.org/index.php/Testing_for_Captcha_(OWASP-AT-012)</a></li>
+	</ul>
+</div>
+
+				<br /><br />
+				<div class="body_padded"><div class="message">CSRF token is incorrect</div><div class="message">CSRF token is incorrect</div><div class="message">CSRF token is incorrect</div><div class="message">CSRF token is incorrect</div></div>
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<input type="button" value="View Help" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_help.php?id=captcha&security=impossible' )"> <input type="button" value="View Source" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_source.php?id=captcha&security=impossible' )"> <div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+-----------4:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Vulnerability: Insecure CAPTCHA :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="../../dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="../../favicon.ico" />
+
+		<script type="text/javascript" src="../../dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="../../dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='../../.'" class=""><a href="../../.">Home</a></li>
+<li onclick="window.location='../../instructions.php'" class=""><a href="../../instructions.php">Instructions</a></li>
+<li onclick="window.location='../../setup.php'" class=""><a href="../../setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../vulnerabilities/brute/'" class=""><a href="../../vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='../../vulnerabilities/exec/'" class=""><a href="../../vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/csrf/'" class=""><a href="../../vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='../../vulnerabilities/fi/.?page=include.php'" class=""><a href="../../vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='../../vulnerabilities/upload/'" class=""><a href="../../vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='../../vulnerabilities/captcha/'" class="selected"><a href="../../vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli/'" class=""><a href="../../vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli_blind/'" class=""><a href="../../vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_r/'" class=""><a href="../../vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_s/'" class=""><a href="../../vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../security.php'" class=""><a href="../../security.php">DVWA Security</a></li>
+<li onclick="window.location='../../phpinfo.php'" class=""><a href="../../phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='../../about.php'" class=""><a href="../../about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../logout.php'" class=""><a href="../../logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+	<div class="body_padded">
+	<h1>Vulnerability: Insecure CAPTCHA</h1>
+
+	<div class="warning"><em>reCAPTCHA API key missing</em> from config file: /var/www/html/dvwa/config/config.inc.php</div>
+
+	<div class="vulnerable_code_area">
+		<form action="#" method="POST" style="display:none;">
+			<h3>Change your password:</h3>
+			<br />
+
+			<input type="hidden" name="step" value="1" />
+
+			Current password:<br />
+			<input type="password" AUTOCOMPLETE="off" name="password_current"><br />			New password:<br />
+			<input type="password" AUTOCOMPLETE="off" name="password_new"><br />
+			Confirm new password:<br />
+			<input type="password" AUTOCOMPLETE="off" name="password_conf"><br />
+
+			<script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k="></script>
+
+	<noscript>
+  		<iframe src="http://www.google.com/recaptcha/api/noscript?k=" height="300" width="500" frameborder="0"></iframe><br/>
+  		<textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+  		<input type="hidden" name="recaptcha_response_field" value="manual_challenge"/>
+	</noscript>
+			<input type='hidden' name='user_token' value='33e861bdc60d9184f8eb1d630d4b45b0' />
+			<br />
+
+			<input type="submit" value="Change" name="Change">
+		</form>
+		<em>Please register for a key</em> from reCAPTCHA: <a href="http://hiderefer.com/?https://www.google.com/recaptcha/admin/create" target="_blank">https://www.google.com/recaptcha/admin/create</a>
+	</div>
+
+	<h2>More Information</h2>
+	<ul>
+		<li><a href="http://hiderefer.com/?http://www.captcha.net/" target="_blank">http://www.captcha.net/</a></li>
+		<li><a href="http://hiderefer.com/?https://www.google.com/recaptcha/" target="_blank">https://www.google.com/recaptcha/</a></li>
+		<li><a href="http://hiderefer.com/?https://www.owasp.org/index.php/Testing_for_Captcha_(OWASP-AT-012)" target="_blank">https://www.owasp.org/index.php/Testing_for_Captcha_(OWASP-AT-012)</a></li>
+	</ul>
+</div>
+
+				<br /><br />
+				
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<input type="button" value="View Help" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_help.php?id=captcha&security=impossible' )"> <input type="button" value="View Source" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_source.php?id=captcha&security=impossible' )"> <div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+---
+---
+URL:http://localhost/dvwa/vulnerabilities/xss_r/ (GET)
+VulnName: 
+Query: {'user_token': '6bb3eccd32e3d76f7090c8305d7fe274', 'name': 'cntvalue'}
+Payload: /**/and/**/17538=17538
+/**/and/**/37506=37506
+/**/or/**/31186=31186#
+/**/and/**/17379=17380
+Advice: 
+Database: unknown
+-----------1:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Vulnerability: Reflected Cross Site Scripting (XSS) :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="../../dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="../../favicon.ico" />
+
+		<script type="text/javascript" src="../../dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="../../dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='../../.'" class=""><a href="../../.">Home</a></li>
+<li onclick="window.location='../../instructions.php'" class=""><a href="../../instructions.php">Instructions</a></li>
+<li onclick="window.location='../../setup.php'" class=""><a href="../../setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../vulnerabilities/brute/'" class=""><a href="../../vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='../../vulnerabilities/exec/'" class=""><a href="../../vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/csrf/'" class=""><a href="../../vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='../../vulnerabilities/fi/.?page=include.php'" class=""><a href="../../vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='../../vulnerabilities/upload/'" class=""><a href="../../vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='../../vulnerabilities/captcha/'" class=""><a href="../../vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli/'" class=""><a href="../../vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli_blind/'" class=""><a href="../../vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_r/'" class="selected"><a href="../../vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_s/'" class=""><a href="../../vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../security.php'" class=""><a href="../../security.php">DVWA Security</a></li>
+<li onclick="window.location='../../phpinfo.php'" class=""><a href="../../phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='../../about.php'" class=""><a href="../../about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../logout.php'" class=""><a href="../../logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+<div class="body_padded">
+	<h1>Vulnerability: Reflected Cross Site Scripting (XSS)</h1>
+
+	<div class="vulnerable_code_area">
+		<form name="XSS" action="#" method="GET">
+			<p>
+				What's your name?
+				<input type="text" name="name">
+				<input type="submit" value="Submit">
+			</p>
+			<input type='hidden' name='user_token' value='a4c7b3c292415ab675f2b647d6a54b97' />
+		</form>
+		
+	</div>
+
+	<h2>More Information</h2>
+	<ul>
+		<li><a href="http://hiderefer.com/?https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)" target="_blank">https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)</a></li>
+		<li><a href="http://hiderefer.com/?https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet" target="_blank">https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet</a></li>
+		<li><a href="http://hiderefer.com/?https://en.wikipedia.org/wiki/Cross-site_scripting" target="_blank">https://en.wikipedia.org/wiki/Cross-site_scripting</a></li>
+		<li><a href="http://hiderefer.com/?http://www.cgisecurity.com/xss-faq.html" target="_blank">http://www.cgisecurity.com/xss-faq.html</a></li>
+		<li><a href="http://hiderefer.com/?http://www.scriptalert1.com/" target="_blank">http://www.scriptalert1.com/</a></li>
+	</ul>
+</div>
+
+				<br /><br />
+				
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<input type="button" value="View Help" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_help.php?id=xss_r&security=impossible' )"> <input type="button" value="View Source" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_source.php?id=xss_r&security=impossible' )"> <div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+-----------2:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Vulnerability: Reflected Cross Site Scripting (XSS) :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="../../dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="../../favicon.ico" />
+
+		<script type="text/javascript" src="../../dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="../../dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='../../.'" class=""><a href="../../.">Home</a></li>
+<li onclick="window.location='../../instructions.php'" class=""><a href="../../instructions.php">Instructions</a></li>
+<li onclick="window.location='../../setup.php'" class=""><a href="../../setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../vulnerabilities/brute/'" class=""><a href="../../vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='../../vulnerabilities/exec/'" class=""><a href="../../vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/csrf/'" class=""><a href="../../vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='../../vulnerabilities/fi/.?page=include.php'" class=""><a href="../../vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='../../vulnerabilities/upload/'" class=""><a href="../../vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='../../vulnerabilities/captcha/'" class=""><a href="../../vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli/'" class=""><a href="../../vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli_blind/'" class=""><a href="../../vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_r/'" class="selected"><a href="../../vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_s/'" class=""><a href="../../vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../security.php'" class=""><a href="../../security.php">DVWA Security</a></li>
+<li onclick="window.location='../../phpinfo.php'" class=""><a href="../../phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='../../about.php'" class=""><a href="../../about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../logout.php'" class=""><a href="../../logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+<div class="body_padded">
+	<h1>Vulnerability: Reflected Cross Site Scripting (XSS)</h1>
+
+	<div class="vulnerable_code_area">
+		<form name="XSS" action="#" method="GET">
+			<p>
+				What's your name?
+				<input type="text" name="name">
+				<input type="submit" value="Submit">
+			</p>
+			<input type='hidden' name='user_token' value='bd74237104b27bc1a230208e040fbf0e' />
+		</form>
+		
+	</div>
+
+	<h2>More Information</h2>
+	<ul>
+		<li><a href="http://hiderefer.com/?https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)" target="_blank">https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)</a></li>
+		<li><a href="http://hiderefer.com/?https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet" target="_blank">https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet</a></li>
+		<li><a href="http://hiderefer.com/?https://en.wikipedia.org/wiki/Cross-site_scripting" target="_blank">https://en.wikipedia.org/wiki/Cross-site_scripting</a></li>
+		<li><a href="http://hiderefer.com/?http://www.cgisecurity.com/xss-faq.html" target="_blank">http://www.cgisecurity.com/xss-faq.html</a></li>
+		<li><a href="http://hiderefer.com/?http://www.scriptalert1.com/" target="_blank">http://www.scriptalert1.com/</a></li>
+	</ul>
+</div>
+
+				<br /><br />
+				<div class="body_padded"><div class="message">CSRF token is incorrect</div></div>
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<input type="button" value="View Help" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_help.php?id=xss_r&security=impossible' )"> <input type="button" value="View Source" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_source.php?id=xss_r&security=impossible' )"> <div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+-----------3:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Vulnerability: Reflected Cross Site Scripting (XSS) :: Damn Vulnerable Web Application (DVWA) v1.9</title>
+
+		<link rel="stylesheet" type="text/css" href="../../dvwa/css/main.css" />
+
+		<link rel="icon" type="\image/ico" href="../../favicon.ico" />
+
+		<script type="text/javascript" src="../../dvwa/js/dvwaPage.js"></script>
+
+	</head>
+
+	<body class="home">
+		<div id="container">
+
+			<div id="header">
+
+				<img src="../../dvwa/images/logo.png" alt="Damn Vulnerable Web Application" />
+
+			</div>
+
+			<div id="main_menu">
+
+				<div id="main_menu_padded">
+				<ul class="menuBlocks"><li onclick="window.location='../../.'" class=""><a href="../../.">Home</a></li>
+<li onclick="window.location='../../instructions.php'" class=""><a href="../../instructions.php">Instructions</a></li>
+<li onclick="window.location='../../setup.php'" class=""><a href="../../setup.php">Setup / Reset DB</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../vulnerabilities/brute/'" class=""><a href="../../vulnerabilities/brute/">Brute Force</a></li>
+<li onclick="window.location='../../vulnerabilities/exec/'" class=""><a href="../../vulnerabilities/exec/">Command Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/csrf/'" class=""><a href="../../vulnerabilities/csrf/">CSRF</a></li>
+<li onclick="window.location='../../vulnerabilities/fi/.?page=include.php'" class=""><a href="../../vulnerabilities/fi/.?page=include.php">File Inclusion</a></li>
+<li onclick="window.location='../../vulnerabilities/upload/'" class=""><a href="../../vulnerabilities/upload/">File Upload</a></li>
+<li onclick="window.location='../../vulnerabilities/captcha/'" class=""><a href="../../vulnerabilities/captcha/">Insecure CAPTCHA</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli/'" class=""><a href="../../vulnerabilities/sqli/">SQL Injection</a></li>
+<li onclick="window.location='../../vulnerabilities/sqli_blind/'" class=""><a href="../../vulnerabilities/sqli_blind/">SQL Injection (Blind)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_r/'" class="selected"><a href="../../vulnerabilities/xss_r/">XSS (Reflected)</a></li>
+<li onclick="window.location='../../vulnerabilities/xss_s/'" class=""><a href="../../vulnerabilities/xss_s/">XSS (Stored)</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../security.php'" class=""><a href="../../security.php">DVWA Security</a></li>
+<li onclick="window.location='../../phpinfo.php'" class=""><a href="../../phpinfo.php">PHP Info</a></li>
+<li onclick="window.location='../../about.php'" class=""><a href="../../about.php">About</a></li>
+</ul><ul class="menuBlocks"><li onclick="window.location='../../logout.php'" class=""><a href="../../logout.php">Logout</a></li>
+</ul>
+				</div>
+
+			</div>
+
+			<div id="main_body">
+
+				
+<div class="body_padded">
+	<h1>Vulnerability: Reflected Cross Site Scripting (XSS)</h1>
+
+	<div class="vulnerable_code_area">
+		<form name="XSS" action="#" method="GET">
+			<p>
+				What's your name?
+				<input type="text" name="name">
+				<input type="submit" value="Submit">
+			</p>
+			<input type='hidden' name='user_token' value='f4e33dce4ad8220b2a03cbbf2ab0cec0' />
+		</form>
+		
+	</div>
+
+	<h2>More Information</h2>
+	<ul>
+		<li><a href="http://hiderefer.com/?https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)" target="_blank">https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)</a></li>
+		<li><a href="http://hiderefer.com/?https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet" target="_blank">https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet</a></li>
+		<li><a href="http://hiderefer.com/?https://en.wikipedia.org/wiki/Cross-site_scripting" target="_blank">https://en.wikipedia.org/wiki/Cross-site_scripting</a></li>
+		<li><a href="http://hiderefer.com/?http://www.cgisecurity.com/xss-faq.html" target="_blank">http://www.cgisecurity.com/xss-faq.html</a></li>
+		<li><a href="http://hiderefer.com/?http://www.scriptalert1.com/" target="_blank">http://www.scriptalert1.com/</a></li>
+	</ul>
+</div>
+
+				<br /><br />
+				<div class="body_padded"><div class="message">CSRF token is incorrect</div><div class="message">CSRF token is incorrect</div><div class="message">CSRF token is incorrect</div></div>
+
+			</div>
+
+			<div class="clear">
+			</div>
+
+			<div id="system_info">
+				<input type="button" value="View Help" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_help.php?id=xss_r&security=impossible' )"> <input type="button" value="View Source" class="popup_button" onClick="javascript:popUp( '../../vulnerabilities/view_source.php?id=xss_r&security=impossible' )"> <div align="left"><em>Username:</em> admin<br /><em>Security Level:</em> impossible<br /><em>PHPIDS:</em> disabled</div>
+			</div>
+
+			<div id="footer">
+
+				<p>Damn Vulnerable Web Application (DVWA) v1.9</p>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
+----------------
+---
