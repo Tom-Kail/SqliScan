@@ -4,6 +4,7 @@ import requests
 import urlparse
 import config.config as config
 import copy
+import time
 
 class Request(object):
     def __init__(self,base,url,method='get',query={},cookie={},timeout=1,source='regex'):
@@ -138,6 +139,7 @@ def sendRequest(req,tried=0):
             return None
     except Exception as err:
         if type(err) == requests.exceptions.ConnectTimeout:
+            time.sleep(0.5) 
             sendRequest(req,tried+1)
         else:
             raise(err)
