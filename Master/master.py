@@ -13,6 +13,7 @@ import formParse
 import crawler
 import threading
 import checkVuln
+import tagComp as tc
 import config.config as config
 from threadpool import ThreadPool
 from color_printer import colors
@@ -22,7 +23,7 @@ import getopt
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
-
+tree = {}
 
 
 def startCheck(*args, **kwds):
@@ -87,30 +88,8 @@ def getCookie(loginUrl):
         pass
     return cookie
 
-tree = {}
-def gen_tree_path(url):
-    scheme, host, path, query, fragment = urlparse.urlsplit(url)
-    path = '/' if path=='' else path[:path.rfind('/')+1]
-    treePath = urlparse.urlunsplit((scheme,host,path,'',''))
-    return treePath
-def treeFilter(url):
-    '''
-    1. non-leaf-node
-    2. leaf-node
-    '''
-    treePath = gen_tree_path(url)
-    if tree.has_key(treePath):
-        #if tree[treePath] > config.conf['MaxNode']:
-        if int(tree[treePath]) > int(config.conf['MaxNode']):
-            #print 'treePath:',tree[treePath],'\tmaxnode:',maxnode,'\tRst:','False'
-            return False
-        else:
-            tree[treePath] +=1
-            #colors.red( 'treePath:'+str(tree[treePath])+'\tmaxnode:'+str(maxnode)+'\tRst:'+'True')
-            return True
-    else:
-        tree[treePath] = 1
-        return True
+
+
 
 def start(baseUrl,seedUrl):
     #seed = Request(base='http://192.168.42.131/dvwa/index.php',url='http://192.168.42.131/dvwa/index.php',method='get')
@@ -143,15 +122,14 @@ def start(baseUrl,seedUrl):
 
         count += 1 
         if req._query != {} :
-            #pass
-            pool.add_task(startCheck,req,logfileName)
+            pass
+            #pool.add_task(startCheck,req,logfileName)
             #startCheck(req,logfileName)
-        reqs = crawler.crawl(req)
+        reqs = crawler.crawl(req,tree)
         # test sqli vuln
         # prase url by bloomFilter and treeFilter ?
         for x in reqs:
-            if not bf.exist(x._BFUrl) and treeFilter(x._url):
-                #if not bf.exist(x._BFUrl) :
+            if not bf.exist(x._BFUrl):
                 bf.insert(x._BFUrl)
                 q.put(x)
 
@@ -172,6 +150,7 @@ def Usage():
     print '\t-u,--url:\tseed url\n'
     print '\t-m,--maxnode:\tmax url num in one dir\n'
     print '\t-t,--timeout:\thttp request timeout\n'
+    print '\t-e,--eqlimit:\tthe minimum similarity between two identical strings \n'
     print '\t--thread:\tmax thread num \n'
     print '\t--version:\tprint version \n'
 def Version():
@@ -179,7 +158,7 @@ def Version():
 
 def main(argv):
     try:
-        opts, args = getopt.getopt(argv[1:], 'hu:m:t:', ['help','thread=', 'version','url=','maxnode=','thread='])
+        opts, args = getopt.getopt(argv[1:], 'hvu:m:t:e:', ['help','thread=', 'version','url=','maxnode=','eqlimit','thread='])
     except getopt.GetoptError, err:
         print str(err)
         Usage()
@@ -191,6 +170,8 @@ def main(argv):
             sys.exit(1)
         elif k in ('-v', '--version'):
             Version()
+
+
             sys.exit(0)
         elif k in ('-u', '--url'):
             # 1. http://xxx
@@ -204,6 +185,8 @@ def main(argv):
 
         elif k in ('--thread',):
             config.conf['MaxThread'] = int(v)
+        elif k in ('-e','--eqlimit'):
+            config.conf['EqLimit'] = float(v)
         elif k in ('-t','--timeout'):
             config.conf['connTimeout'] = float(v)
         elif k in ('-m','--maxnode'):

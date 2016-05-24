@@ -3,6 +3,7 @@ import request
 import result
 import Levenshtein
 from color_printer import colors
+import config.config as config
 import copy
 import re
 import os
@@ -56,7 +57,9 @@ PayloadTuple = (
 Quote=(
     "'",
     '',
-    '"'
+    '"',
+    'char(0x27)',
+    'char(0x22)'
     #"%bf%27"
 )
 Delimiter=(
@@ -88,7 +91,8 @@ TrueFalsePayload = get_payload_list()
 
 #TrueFalsePayload = TrueFalsePayload2
 class BSqliRspDiff():
-    def __init__(self, req, eq_limit=0.98):
+    def __init__(self, req, eq_limit=config.conf['EqLimit']):
+        print "eqlimit:%f"%eq_limit
         self._req = copy.deepcopy(req)
         self._eq_limit = eq_limit
             
@@ -98,14 +102,9 @@ class BSqliRspDiff():
         '''
         ratio = Levenshtein.ratio(strA,strB)
         if ratio >= self._eq_limit:
-            #print "\nRatio:%f and result = True"%(ratio)
-            #print "ratio:",ratio," eq_limit:0.98"," rst:",True
             return True
         else:
-            #print "\nRatio:%f and result = False"%(ratio)
-            #print "ratio:",ratio," eq_limit:0.98"," rst:",True
             return False
-        print "ratio:",ratio," eq_limit:0.98"," rst:",True
             
     def response_diff(self):
         try:
