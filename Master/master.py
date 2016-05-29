@@ -128,7 +128,7 @@ def start(baseUrl,seedUrl):
         
         if req._query != {} :
             count += 1 
-            pool.add_task(startCheck,req,logfileName)
+            #pool.add_task(startCheck,req,logfileName)
             #startCheck(req,logfileName)
         reqs = crawler.crawl(req,tree)
         # test sqli vuln

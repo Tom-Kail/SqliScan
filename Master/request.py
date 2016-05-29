@@ -8,7 +8,7 @@ import random
 
 class Request(object):
     def __init__(self,base,url,method='get',query={},cookie={},timeout=1,source='regex'):
-        tmpUrl = my_join(base,url)
+        #tmpUrl = my_join(base,url)
         self._url = my_join(base,url)
         self._method = method.lower()
         if query == {} and self._method == 'get':
@@ -21,14 +21,12 @@ class Request(object):
         self._BFUrl = '' # like ID to identify unique request
         self._source = source
         tup = urlparse.urlparse(self._url)
-        # self._url has two kind:
-        # 1. *?*
-        # 1. 
-        # self._url + self._query + self._method
+
         self._BFUrl = self._url + "?"
+        '''
         if tup.query != '':
             self._BFUrl += tup.query + "&"
-
+        '''
         tmp = ""
         for i in self._query:
             tmp +=  i + '=' + self._query[i] + '&'
@@ -84,7 +82,7 @@ def strip_query(url):
 
 
 def my_join(base,url): 
-    tup = urlparse.urlparse(url)
+    #tup = urlparse.urlparse(url)
     #if tup.netloc == '' and url.find('/') != -1 and len(url) > 0 and url[0] != '/':
     #    url = '/' + url
         #print 'Special Url: ',url

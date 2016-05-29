@@ -1,1 +1,9 @@
- security=impossible; PHPSESSID=e6d5jl5833k7ef97n3n65i5d92
+GET http://static.360buyimg.com/devfe/toolbar/1.0.0/js/main.js HTTP/1.1
+Host: static.360buyimg.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0 Iceweasel/31.8.0
+Accept: */*
+Accept-Language: zh-cn,en-us;q=0.7,en;q=0.3
+Accept-Encoding: gzip, deflate
+Referer: http://www.jd.com/
+Connection: keep-alive
+

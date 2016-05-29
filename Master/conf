@@ -13,7 +13,7 @@
 "PageSimilarity":0.85,
 "CookieFileName":"cookie.txt",
 "DB":"sqliscan",
-"MaxNode":30,
+"MaxNode":20,
 "SelectNodeNum":10,
 "MaxThread":50
 }

@@ -7,19 +7,27 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
+def getUnicode(s):
+	if isinstance(s,str):
+		return s.decode('ascii')
+	else:
+		return s
+
 def compare(strA, strB):
+
+	a = getUnicode(strA)
+	b = getUnicode(strB)
+	
 	try :
-		ratio = Levenshtein.ratio(strA,strB)
-		print ratio
+		ratio = Levenshtein.ratio(a,b)
+		#print ratio
 		if ratio >= config.conf['PageSimilarity']:
 			return True
 		else:
 			return False
 	except Exception as err:
-		print 'StrA:',str(strA)
-		print 'StrB:',str(strB)
 		print err
-		time.sleep(100)
+		
 def genTagList(html,tagList):
 	soup = BeautifulSoup(html,'lxml')
 	for tag in soup.descendants:
