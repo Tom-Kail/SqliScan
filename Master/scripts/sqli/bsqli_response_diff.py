@@ -92,7 +92,7 @@ TrueFalsePayload = get_payload_list()
 #TrueFalsePayload = TrueFalsePayload2
 class BSqliRspDiff():
     def __init__(self, req, eq_limit=config.conf['EqLimit']):
-        print "eqlimit:%f"%eq_limit
+        #print "eqlimit:%f"%eq_limit
         self._req = copy.deepcopy(req)
         self._eq_limit = eq_limit
             

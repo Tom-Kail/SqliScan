@@ -1,1 +1,1 @@
- security=low; PHPSESSID=v02vngdgt2hskderrrlho43av6
+ security=impossible; PHPSESSID=e6d5jl5833k7ef97n3n65i5d92

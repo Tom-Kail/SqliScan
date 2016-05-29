@@ -10,7 +10,7 @@
 "MaxRetryTimes":3,
 "bsqliTimeout":20,
 "EqLimit":0.970,
-"PageSimilarity":0.8,
+"PageSimilarity":0.85,
 "CookieFileName":"cookie.txt",
 "DB":"sqliscan",
 "MaxNode":30,

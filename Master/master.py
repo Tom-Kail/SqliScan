@@ -39,8 +39,8 @@ def create_logfile(seedUrl):
     logfile .write('Target: '+ seedUrl + ' (GET)\n')
     logfile.close()
     return logName
+
 def start_proxy():
-    
     os.system('ps -ef | grep -v grep | grep proxy.py | awk \'{print $2}\'|xargs kill -9')
     os.system('python proxy.py --hostname 127.0.0.1 --port 8899 --log-level ERROR')
 
@@ -62,7 +62,8 @@ def getCookie(loginUrl):
     try:
         webbrowser.open_new(loginUrl)
     except Exception as err:
-        pass
+        print ''
+
     colors.yellow( 'Please enter "Y" if you finishing recording cookie.')
     while True: 
         finish = raw_input('')
@@ -86,6 +87,9 @@ def getCookie(loginUrl):
         print 'cookie is:',cookie
     except Exception as err:
         pass
+    print  "cookie:"
+    print cookie
+    raw_input('')
     return cookie
 
 
@@ -114,16 +118,17 @@ def start(baseUrl,seedUrl):
 
     # !!! need deal with seed._url
     bf.insert(seed._url)
+    begin = time.time()
     while(not q.empty()):
         
         req = q.get()
         print 'URL: ',req._BFUrl,'  ', req._source
         req._cookies = cookie
 
-        count += 1 
+        
         if req._query != {} :
-            pass
-            #pool.add_task(startCheck,req,logfileName)
+            count += 1 
+            pool.add_task(startCheck,req,logfileName)
             #startCheck(req,logfileName)
         reqs = crawler.crawl(req,tree)
         # test sqli vuln
@@ -135,14 +140,18 @@ def start(baseUrl,seedUrl):
 
 
     pool.destroy()
-    print "Number of url:",count
+    end = time.time()
+    
     f = open(logfileName,'r')
     colors.blue('\nScan result:\n\n')
     x  = f.read()
     colors.green(x)
     colors.blue('\nAbove is the result of scan, and the result is stored in file "%s"\n\n'%(os.getcwd()+'/'+logfileName))
+    cost = end - begin 
+    print "cost time: %fs"%cost
+    print "Number of url:",count
     os.system('ps -ef | grep -v grep | grep proxy.py | awk \'{print $2}\'|xargs kill -9')
-    
+
 
 def Usage():
     print 'SqliScan Usage:\n'
