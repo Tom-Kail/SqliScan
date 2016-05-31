@@ -32,11 +32,9 @@ def write_vuln_log(rst,fileName):
 	f.write('\n---')
 	f.write('\nURL:%s (%s)'%(url,method))
 
-	f.write('\nVulnName: %s'%vulnName)
+	f.write('\n漏洞名称: %s'%vulnName)
 	f.write('\nQuery: %s'%query)
 	f.write('\nPayload: %s'%payload)
-	f.write('\nAdvice: %s'%advice)
-	f.write('\nDatabase: %s'%db)
 	rspText = ''
 	count = 0
 	'''
@@ -45,7 +43,7 @@ def write_vuln_log(rst,fileName):
 		rspText += '\n-----------%d:\n%s\n----------------'%(count,i.content)
 	'''
 	f.write(rspText)
-	f.write('\n---')
+	f.write('\n---\n')
 	f.close()
 
 def check(req):

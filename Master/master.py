@@ -36,7 +36,7 @@ def create_logfile(seedUrl):
     dirName = 'log/'
     logName =dirName + host + '_'+ time.strftime('%Y%m%d%H%M%S',now)
     logfile = open(logName,'w')
-    logfile .write('Target: '+ seedUrl + ' (GET)\n')
+    logfile .write('目标：'+ seedUrl + ' (GET)\n')
     logfile.close()
     return logName
 
@@ -45,7 +45,7 @@ def start_proxy():
     os.system('python proxy.py --hostname 127.0.0.1 --port 8899 --log-level ERROR')
 
 def getCookie(loginUrl):
-    colors.green('Do you want recording cookie?(y/N)')
+    colors.green('您想要进行cookie录制吗(y/N)')
     
     while True: 
         finish = raw_input('')
@@ -64,7 +64,7 @@ def getCookie(loginUrl):
     except Exception as err:
         print ''
 
-    colors.yellow( 'Please enter "Y" if you finishing recording cookie.')
+    colors.yellow( '如果您已经完成了cookie录制，请在控制台中输入 Y')
     while True: 
         finish = raw_input('')
         if finish.lower() == 'y':
@@ -89,18 +89,45 @@ def getCookie(loginUrl):
         pass
     print  "cookie:"
     print cookie
-    raw_input('')
     return cookie
 
+def advice():
+    ad = """
+    防御SQL注入漏洞的建议：
 
+    [1] 库或框架
 
+        使用能够防御SQL注入漏洞的库或框架。
+
+    [2] 参数化
+
+        尽量使用自动实施数据和代码之间的分离的结构化机制。
+        这些机制也能够自动提供相关引用、编码和验证，而不是依赖于开发者在生成输出的每一处提供此能力。
+
+    [3] 环境固化
+
+        使用完成必要任务所需的最低特权来运行代码。
+
+    [4] 输出编码
+
+        如果在有风险的情况下仍需要使用动态生成的查询字符串或命令，请对参数正确地加引号并将这些参数中的任何特殊字符转义。
+
+    [5] 输入验证
+
+        假定所有输入都是恶意的。
+        使用“接受已知善意”输入验证策略：严格遵守规范的可接受输入的白名单。
+        拒绝任何没有严格遵守规范的输入，或者将其转换为遵守规范的内容。
+        不要完全依赖于通过黑名单检测恶意或格式错误的输入。但是，黑名单可帮助检测潜在攻击，或者确定哪些输入格式不正确，以致应当将其彻底拒绝。
+
+    """
+    return ad
 
 def start(baseUrl,seedUrl):
     #seed = Request(base='http://192.168.42.131/dvwa/index.php',url='http://192.168.42.131/dvwa/index.php',method='get')
 
     seed = request.Request(base=baseUrl,url=seedUrl,timeout=config.conf['connTimeout'],query={},method='get')
     #seed = request.Request(base='http://192.168.42.132/dvwa/',url='http://192.168.42.132/dvwa/',query={},method='get')
-    colors.green( 'seed url: %s'%seed._url)
+    colors.blue( '种子URL： %s\n'%seed._url)
     logfileName = create_logfile(seed._url)
     cookie = getCookie(seed._url)
     # begin crawler
@@ -128,7 +155,7 @@ def start(baseUrl,seedUrl):
         
         if req._query != {} :
             count += 1 
-            #pool.add_task(startCheck,req,logfileName)
+            pool.add_task(startCheck,req,logfileName)
             #startCheck(req,logfileName)
         reqs = crawler.crawl(req,tree)
         # test sqli vuln
@@ -143,27 +170,28 @@ def start(baseUrl,seedUrl):
     end = time.time()
     
     f = open(logfileName,'r')
-    colors.blue('\nScan result:\n\n')
+    colors.blue('\n扫描结果：\n\n')
     x  = f.read()
     colors.green(x)
-    colors.blue('\nAbove is the result of scan, and the result is stored in file "%s"\n\n'%(os.getcwd()+'/'+logfileName))
+    colors.blue('\n扫描结果已保存在 "%s"\n\n'%(os.getcwd()+'/'+logfileName)+' 中')
     cost = end - begin 
-    print "cost time: %fs"%cost
-    print "Number of url:",count
+    print "耗时：%f秒"%cost
+    print "进行测试的URL数量：",count
+    f.close()
+    f = open(logfileName,'a')
+    f.write(advice())
+    f.close()
     os.system('ps -ef | grep -v grep | grep proxy.py | awk \'{print $2}\'|xargs kill -9')
 
 
 def Usage():
-    print 'SqliScan Usage:\n'
-    print '\t-h,--help:\tprint help message.\n'
-    print '\t-u,--url:\tseed url\n'
-    print '\t-m,--maxnode:\tmax url num in one dir\n'
-    print '\t-t,--timeout:\thttp request timeout\n'
-    print '\t-e,--eqlimit:\tthe minimum similarity between two identical strings \n'
-    print '\t--thread:\tmax thread num \n'
-    print '\t--version:\tprint version \n'
+    print 'SQLIScan 使用方法:\n'
+    print '\t-h,--help:\t帮助信息\n'
+    print '\t-u,--url:\t种子URL\n'
+    print '\t--thread:\t最大线程数 \n'
+    print '\t--version:\t打印版本信息 \n'
 def Version():
-    print 'SqliScan 1.0.0'
+    print 'SQLIScan 1.0.0'
 
 def main(argv):
     try:
@@ -203,18 +231,19 @@ def main(argv):
             config.conf['MaxNode'] = int(v)
 
         else:
-            print 'unhandled option'
+            print '无效选项！'
             sys.exit(3)
     if config.conf['url'] =='':
-        colors.red('please input url!')
+        colors.red('请输入URL！')
+        Usage()
         sys.exit()
     else:
-        colors.blue('Start scanning')
+        colors.blue('开始扫描\n')
         start(config.conf['url'],config.conf['url'])
 
 
 if len(sys.argv) == 1:
-    colors.red('please input url!')
+    colors.red('请输入URL！')
     sys.exit()
 else:
     main(sys.argv)
