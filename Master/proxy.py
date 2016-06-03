@@ -18,6 +18,7 @@ __homepage__ = 'https://github.com/abhinavsingh/proxy.py'
 __license__ = 'BSD'
 
 import re
+import urlparse
 import sys
 import multiprocessing
 import datetime
@@ -40,6 +41,10 @@ else:
     binary_type = str
     import urlparse
 
+# clean txt in referer.txt
+referer = open('referer.txt','w')
+referer.write('')
+referer.close()
 
 def text_(s, encoding='utf-8', errors='strict'):
     """ If ``s`` is an instance of ``binary_type``, return
@@ -74,6 +79,17 @@ CHUNK_PARSER_STATE_WAITING_FOR_SIZE = 1
 CHUNK_PARSER_STATE_WAITING_FOR_DATA = 2
 CHUNK_PARSER_STATE_COMPLETE = 3
 
+def get_root_domain(url):
+    tup = urlparse.urlparse(url)
+    netloc = tup.netloc 
+    p1 = netloc.rfind('.')
+    p2 = netloc.rfind('.',0,p1)
+    rootDomain = ''
+    if p2 == -1:
+        rootDomain = netloc
+    else:
+        rootDomain = netloc[p2+1:]
+    return rootDomain
 
 class ChunkParser(object):
     """HTTP chunked encoding response parser."""
@@ -138,6 +154,9 @@ class HttpParser(object):
         if self.type == HTTP_REQUEST_PARSER:
             cookiePat = re.compile(r'\bCookie:([\S \t]*)')
             cookieTmp = cookiePat.findall(data)
+            refererPat = re.compile(r'\bReferer:([\S \t]*)')
+            refererTmp = refererPat.findall(data)
+            
             if cookieTmp != []:
                 try:
                     f = open('cookie.txt','w')
@@ -145,6 +164,19 @@ class HttpParser(object):
                     f.close()
                 except Exception as err:
                     print err
+            if refererTmp != []:
+                try:
+                    domainFile = open('domain.txt','r')
+                    rootDomain = domainFile.read()
+                    domainFile.close()
+                    #if  rootDomain in refererTmp[0] or 1:
+                    f = open('referer.txt','a')
+                    f.write(refererTmp[0])
+                    f.close()  
+                except Exception as err:
+                    print err
+                print 
+
         while more: 
             more, data = self.process(data)
         self.buffer = data
@@ -457,9 +489,11 @@ class Proxy(multiprocessing.Process):
                 return True
             
             try:
+                '''
                 f = open('cookie.txt','w')
                 f.write(data)
                 f.close()
+                '''
                 self._process_request(data)
             except ProxyConnectionFailed as e:
                 logger.exception(e)
@@ -569,7 +603,7 @@ def main():
     
     parser.add_argument('--hostname', default='127.0.0.1', help='Default: 127.0.0.1')
     parser.add_argument('--port', default='8899', help='Default: 8899')
-    parser.add_argument('--log-level', default='INFO', help='DEBUG, INFO, WARNING, ERROR, CRITICAL')
+    parser.add_argument('--log-level', default='ERROR', help='DEBUG, INFO, WARNING, ERROR, CRITICAL')
     args = parser.parse_args()
     
     logging.basicConfig(level=getattr(logging, args.log_level), format='%(asctime)s - %(levelname)s - pid:%(process)d - %(message)s')
