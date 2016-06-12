@@ -15,5 +15,5 @@
 "DB":"sqliscan",
 "MaxNode":20,
 "SelectNodeNum":10,
-"MaxThread":50
+"MaxThread":20
 }

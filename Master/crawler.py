@@ -15,13 +15,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 NotCrawlList=(
-    'logout',
-    'exit',
-    'csrf',
-    'security',
-    'phpids',
-    'sigout','.js','.css',
-   'logoff','signoff','quit','bye-bye','clearuser','invalidate','注销','退出','再见','清除用户','无效'
+    'logout','注销','退出','再见','清除用户','无效','exit','bye-bye','clearuser','goodbye','resetdb','rebootsys','csrf','security','phpids','sigout','.js','.css','logoff','signoff','quit','xml/example2','invalidate'
     )
 
 def toUTF8(s):
@@ -115,7 +109,8 @@ def crawl(req,tree):
             if rsp != None:
                 html = toUTF8(rsp.content)
     except Exception as err:
-        print '[Spider Error]: ',err,' Url: ',req._url
+        pass
+        #print '[Spider Error]: ',err,' Url: ',req._url
 
     #cha chong
     if treeFilter(req._url,html,tree)==False:

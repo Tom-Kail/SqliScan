@@ -46,7 +46,8 @@ def start_proxy():
 
 def getCookie(loginUrl):
     colors.green('您想要进行cookie录制吗(y/N)')
-    
+
+
     while True: 
         finish = raw_input('')
         i = finish.lower().lower() 
@@ -121,30 +122,52 @@ def advice():
 
     """
     return ad
-
+def readReffer():
+    f = open("reffer.txt","r")
+    content  = f.read()
+    f.close()
+    urls = content.split(' ')
+    reqs = []
+    # may have some post request in urls, 
+    for x in urls:
+        req = request.Request(base="",url=x,timeout=config.conf['connTimeout'],query={},method='get')
+        reqs.append(req)
+        print x._url
+    return reqs
+    
 def start(baseUrl,seedUrl):
-    #seed = Request(base='http://192.168.42.131/dvwa/index.php',url='http://192.168.42.131/dvwa/index.php',method='get')
+    # clean reffer in reffer.txt
+    f = open("reffer.txt","w")
+    f.close()
 
+    #seed = Request(base='http://192.168.42.131/dvwa/index.php',url='http://192.168.42.131/dvwa/index.php',method='get')
     seed = request.Request(base=baseUrl,url=seedUrl,timeout=config.conf['connTimeout'],query={},method='get')
     #seed = request.Request(base='http://192.168.42.132/dvwa/',url='http://192.168.42.132/dvwa/',query={},method='get')
     colors.blue( '种子URL： %s\n'%seed._url)
     logfileName = create_logfile(seed._url)
     cookie = getCookie(seed._url)
+    
     # begin crawler
     tup = urlparse.urlparse(seed._url)
     netloc = tup.netloc # seed url 
-    count = 0
+    count = 1
     q = Queue.Queue()
-    q.put(seed)
     bf = bloomFilter.BloomFilter(0.001,100000)
-    
+    # readreffer from reffer.txt
+    '''
+    reffer = readReffer()
+    reqSet = []
+    reqSet.append(seed)
+    reqSet.extend(reffer)
+    for i in reqSet:
+        q.put(i)
+        bf.insert(i._url)
+    '''
+    q.put(seed)
+    bf.insert(seed._url)
+
     nums = config.conf['MaxThread']
     pool = ThreadPool(nums)
-    
-# Join and destroy all threads
-
-    # !!! need deal with seed._url
-    bf.insert(seed._url)
     begin = time.time()
     while(not q.empty()):
         
@@ -156,9 +179,7 @@ def start(baseUrl,seedUrl):
         if req._query != {} :
             count += 1 
             pool.add_task(startCheck,req,logfileName)
-            #startCheck(req,logfileName)
         reqs = crawler.crawl(req,tree)
-        # test sqli vuln
         # prase url by bloomFilter and treeFilter ?
         for x in reqs:
             if not bf.exist(x._BFUrl):
@@ -208,7 +229,6 @@ def main(argv):
         elif k in ('-v', '--version'):
             Version()
 
-
             sys.exit(0)
         elif k in ('-u', '--url'):
             # 1. http://xxx
@@ -244,6 +264,7 @@ def main(argv):
 
 if len(sys.argv) == 1:
     colors.red('请输入URL！')
+    Usage()
     sys.exit()
 else:
     main(sys.argv)

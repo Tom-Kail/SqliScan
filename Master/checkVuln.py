@@ -65,7 +65,7 @@ def check(req):
 			return rsp3
             
  	except Exception as err:
-		print '[Check Vuln Error]: ',err
+		#print '[Check Vuln Error]: ',err
 		return None
 
 def start(req,fileName):
