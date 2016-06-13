@@ -16,7 +16,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 NotCrawlList=(
-    'logout','注销','退出','再见','清除用户','无效','exit','bye-bye','clearuser','resetdb','csrf','security','phpids','sigout','.js','.css','logoff','signoff','quit','invalidate'
+    'logout','注销','退出','再见','清除用户','无效','exit','bye-bye','clearuser','resetdb','csrf','security','phpids','sigout','.js','xml/example2','.css','logoff','signoff','quit','invalidate'
     )
 
 def toUTF8(s):

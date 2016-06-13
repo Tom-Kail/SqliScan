@@ -160,7 +160,7 @@ def start(baseUrl,seedUrl):
     # begin crawler
     tup = urlparse.urlparse(seed._url)
     netloc = tup.netloc # seed url 
-    count = 1
+    count = 0
     q = Queue.Queue()
     bf = bloomFilter.BloomFilter(0.001,100000)
     # readreffer from reffer.txt
@@ -213,11 +213,12 @@ def start(baseUrl,seedUrl):
     f.write(advice())
     f.close()
     os.system('ps -ef | grep -v grep | grep proxy.py | awk \'{print $2}\'|xargs kill -9')
+    '''
     treeCount = 0
     for k,v in tree.items():
         treeCount += len(v['list'])
     print "treeCount:"+str(treeCount)
-
+    '''
 
 
 def Usage():
