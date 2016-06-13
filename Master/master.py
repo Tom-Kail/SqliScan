@@ -20,6 +20,7 @@ from color_printer import colors
 from bs4 import BeautifulSoup
 from posixpath import normpath
 import getopt
+import treeFilter as tf
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -94,7 +95,7 @@ def getCookie(loginUrl):
 
 def advice():
     ad = """
-    防御SQL注入漏洞的建议：
+    防御SQL注入攻击的建议：
 
     [1] 库或框架
 
@@ -134,7 +135,16 @@ def readReffer():
         reqs.append(req)
         print x._url
     return reqs
-    
+def is_tree_full(url,tree):
+            treePath = tf.gen_tree_path(url)
+            
+            if tree.has_key(treePath) == False:
+                return False
+
+            if tree[treePath]['full'] == True:
+                return False
+            return True
+
 def start(baseUrl,seedUrl):
     # clean reffer in reffer.txt
     f = open("reffer.txt","w")
@@ -170,17 +180,17 @@ def start(baseUrl,seedUrl):
     pool = ThreadPool(nums)
     begin = time.time()
     while(not q.empty()):
-        
         req = q.get()
-        print 'URL: ',req._BFUrl,'  ', req._source
         req._cookies = cookie
-
-        
-        if req._query != {} :
-            count += 1 
-            pool.add_task(startCheck,req,logfileName)
         reqs = crawler.crawl(req,tree)
-        # prase url by bloomFilter and treeFilter ?
+
+        if req._query != {} and is_tree_full(req._url,tree):
+        #if req._query != {}:
+            count += 1 
+            print 'URL: ',req._BFUrl,'  ', req._source
+            pool.add_task(startCheck,req,logfileName)
+        
+
         for x in reqs:
             if not bf.exist(x._BFUrl):
                 bf.insert(x._BFUrl)
@@ -203,6 +213,11 @@ def start(baseUrl,seedUrl):
     f.write(advice())
     f.close()
     os.system('ps -ef | grep -v grep | grep proxy.py | awk \'{print $2}\'|xargs kill -9')
+    treeCount = 0
+    for k,v in tree.items():
+        treeCount += len(v['list'])
+    print "treeCount:"+str(treeCount)
+
 
 
 def Usage():
